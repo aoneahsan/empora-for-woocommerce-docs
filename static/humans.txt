@@ -1,0 +1,17 @@
+/* TEAM */
+Author: Ahsan Mahmood
+Site: https://aoneahsan.com
+Contact: aoneahsan [at] gmail.com
+GitHub: https://github.com/aoneahsan
+LinkedIn: https://linkedin.com/in/aoneahsan
+npm: https://www.npmjs.com/~aoneahsan
+
+/* PRODUCT */
+Name: Empora for WooCommerce
+Site: https://empora.aoneahsan.com
+Docs: https://docs.empora.aoneahsan.com
+Plugin: https://wordpress.org/plugins/empora-for-woocommerce/
+
+/* SITE */
+Built with: Docusaurus 3, React, TypeScript
+Hosting: Firebase Hosting + GitHub Pages

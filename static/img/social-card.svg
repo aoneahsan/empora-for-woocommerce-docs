@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Empora for WooCommerce Documentation">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="120" width="120" height="120" rx="26" fill="url(#badge)"/>
+  <text x="140" y="208" font-family="Inter, Arial, sans-serif" font-size="74" font-weight="700" fill="#ffffff" text-anchor="middle">E</text>
+  <text x="240" y="185" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="700" fill="#ffffff">Empora for WooCommerce</text>
+  <text x="240" y="232" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500" fill="#c7d2fe">Documentation</text>
+  <text x="80" y="360" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="600" fill="#ffffff">The complete WooCommerce toolkit</text>
+  <text x="80" y="420" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="400" fill="#a5b4fc">Free core + premium modules: filters, reviews, wishlist, shipping,</text>
+  <text x="80" y="458" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="400" fill="#a5b4fc">payments, gift cards, subscriptions, and more.</text>
+  <text x="80" y="560" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="500" fill="#818cf8">docs.empora.aoneahsan.com</text>
+</svg>

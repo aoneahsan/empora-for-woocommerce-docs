@@ -1,0 +1,52 @@
+# Empora for WooCommerce — Documentation
+
+> Empora for WooCommerce (formerly All-In-One WooCommerce) is a comprehensive WooCommerce plugin.
+> Its free core adds product filters, reviews, wishlist, compare, social sharing, basic SEO, and
+> basic dynamic pricing. Optional premium modules — unlocked by a paid license — add advanced
+> shipping, payment gateways, taxes, inventory, bulk edit, import/export, reports, subscriptions,
+> gift cards, rewards points, multi-currency, email automation, shipment tracking, and integrations
+> (Square, Google Listings & Ads, Klaviyo). HPOS-compatible. Requires WordPress 6.0+, WooCommerce
+> 8.0+, PHP 8.1+. The free core stays fully functional indefinitely without a license.
+
+This is the documentation site (https://docs.empora.aoneahsan.com). Product site: https://empora.aoneahsan.com.
+
+## Getting started
+
+- [Introduction](https://docs.empora.aoneahsan.com/intro): What Empora is and how the pieces fit.
+- [Installation](https://docs.empora.aoneahsan.com/getting-started/installation): Install from WordPress.org or upload the zip; requirements.
+- [Quick Start](https://docs.empora.aoneahsan.com/getting-started/quick-start): Enable and configure your first module in ~5 minutes.
+- [Activating your license](https://docs.empora.aoneahsan.com/getting-started/activating-your-license): Unlock premium modules; manage connected sites.
+
+## Modules
+
+- [Modules overview](https://docs.empora.aoneahsan.com/modules/overview): Full catalogue (free core + premium).
+- [Free core modules](https://docs.empora.aoneahsan.com/modules/free-core): Filters, Reviews, Wishlist, Compare, Social, SEO, basic Dynamic Pricing.
+- [Premium modules](https://docs.empora.aoneahsan.com/modules/premium): Advanced shipping, payments, taxes, inventory, gift cards, subscriptions, and more.
+- [Configuring modules](https://docs.empora.aoneahsan.com/modules/configuring-modules): The Modules grid and unified Settings page.
+
+## Guides
+
+- [Product Filters](https://docs.empora.aoneahsan.com/guides/product-filters)
+- [Reviews, Wishlist & Compare](https://docs.empora.aoneahsan.com/guides/reviews-wishlist-compare)
+- [Dynamic Pricing](https://docs.empora.aoneahsan.com/guides/dynamic-pricing)
+- [Gift Cards & Rewards](https://docs.empora.aoneahsan.com/guides/gift-cards-and-rewards)
+
+## Reference
+
+- [Requirements & compatibility](https://docs.empora.aoneahsan.com/reference/requirements)
+- [Architecture](https://docs.empora.aoneahsan.com/reference/architecture)
+- [REST API](https://docs.empora.aoneahsan.com/reference/rest-api)
+- [License API](https://docs.empora.aoneahsan.com/reference/license-api)
+- [Privacy & data handling](https://docs.empora.aoneahsan.com/reference/privacy-and-data)
+
+## Help
+
+- [Troubleshooting](https://docs.empora.aoneahsan.com/troubleshooting)
+- [FAQ](https://docs.empora.aoneahsan.com/faq)
+- [About the author](https://docs.empora.aoneahsan.com/about-the-author)
+
+## Distribution
+
+- Free plugin: https://wordpress.org/plugins/empora-for-woocommerce/
+- Product website: https://empora.aoneahsan.com
+- Docs source: https://github.com/aoneahsan/empora-for-woocommerce-docs

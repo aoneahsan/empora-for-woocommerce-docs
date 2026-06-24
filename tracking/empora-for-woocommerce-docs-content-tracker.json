@@ -1,0 +1,77 @@
+{
+  "$schema": "empora-for-woocommerce-docs-seo-content-tracker",
+  "description": "Per-page rich SEO content enrichment progress for the Empora for WooCommerce documentation site. Resumable across sessions. Follows ~/.claude/rules/seo-aeo-ranking.md (§13).",
+  "site": "https://docs.empora.aoneahsan.com",
+  "createdAt": "2026-06-24",
+  "lastUpdated": "2026-06-24",
+  "batchSize": 15,
+  "wordsPerPageMin": 800,
+  "wordsPerPageTarget": "800-1200",
+  "expert": "Ahsan Mahmood",
+  "totalPages": 18,
+  "enrichedPages": 18,
+  "remainingPages": 0,
+  "currentSession": "Initial site build — all baseline pages authored with real, accurate content (no thin/templated pages).",
+  "categoryStrategy": "Docs site launched fully populated. Future batches add long-tail per-module guides (one batch per module group from modules/overview), each with definition-first intro, use cases, how-it-works, examples, FAQ, tips, distinct title + meta.",
+  "categoryProgress": {
+    "getting-started": { "total": 3, "enriched": 3, "remaining": 0 },
+    "modules": { "total": 4, "enriched": 4, "remaining": 0 },
+    "guides": { "total": 4, "enriched": 4, "remaining": 0 },
+    "reference": { "total": 5, "enriched": 5, "remaining": 0 },
+    "top-level": { "total": 4, "enriched": 4, "remaining": 0, "note": "intro, troubleshooting, faq, about-the-author" }
+  },
+  "batches": [
+    {
+      "id": "batch-01",
+      "date": "2026-06-24",
+      "status": "complete",
+      "category": "site-launch",
+      "pages": [
+        "intro",
+        "getting-started/installation",
+        "getting-started/quick-start",
+        "getting-started/activating-your-license",
+        "modules/overview",
+        "modules/free-core",
+        "modules/premium",
+        "modules/configuring-modules",
+        "guides/product-filters",
+        "guides/reviews-wishlist-compare",
+        "guides/dynamic-pricing",
+        "guides/gift-cards-and-rewards",
+        "reference/requirements",
+        "reference/architecture",
+        "reference/rest-api",
+        "reference/license-api",
+        "reference/privacy-and-data",
+        "troubleshooting",
+        "faq",
+        "about-the-author"
+      ],
+      "notes": "Authored from the real plugin readme.txt, the Laravel routes/api.php, and the wp-plugin module registry (90+ modules). API + License API endpoints verified against actual code. Privacy page mirrors the plugin's honest data-handling disclosure. No fabricated features."
+    }
+  ],
+  "nextBatchSuggestion": {
+    "id": "batch-02",
+    "category": "per-module-deep-dives",
+    "rationale": "Highest long-tail SEO value: dedicated guides for high-demand modules (Subscriptions, Advanced Shipping, Gift Cards configuration, Multi-Currency, Email Automation, Bulk Edit, Import/Export).",
+    "candidatePages": [
+      "guides/subscriptions",
+      "guides/advanced-shipping",
+      "guides/import-export",
+      "guides/multi-currency",
+      "guides/email-automation",
+      "guides/bulk-edit"
+    ],
+    "verifyBeforeUse": "Read the matching module under apps/wp-plugin/includes/Modules/<Module> in the app repo so each guide is accurate to the real settings + behaviour."
+  },
+  "qualityGates": [
+    "800+ unique words per page; no shared boilerplate across pages",
+    "Distinct title + meta description per page",
+    "Definition-first intro",
+    "FAQ / use-case sections where relevant",
+    "Honest framing — what each module does and does NOT do",
+    "yarn typecheck + yarn build clean before commit",
+    "Accurate to real code — verify against the app repo before writing"
+  ]
+}

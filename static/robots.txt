@@ -1,0 +1,112 @@
+# Empora for WooCommerce Docs — robots.txt
+# Maintained by Ahsan Mahmood (https://aoneahsan.com)
+# Public crawl policy for https://docs.empora.aoneahsan.com
+#
+# Search engines and reputable AI/answer-engine bots are allowed.
+# Low-value scraper bots are blocked. The Sitemap directive lets crawlers
+# discover the URL space without spidering.
+
+# --- Search engines (full crawl allowed) -------------------------------------
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# --- AI / answer-engine bots (citation surface — keep allowed) ---------------
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+# --- Block low-value scraper bots --------------------------------------------
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# --- Default policy ----------------------------------------------------------
+
+User-agent: *
+Allow: /
+
+# --- Sitemap discovery -------------------------------------------------------
+
+Sitemap: https://docs.empora.aoneahsan.com/sitemap.xml

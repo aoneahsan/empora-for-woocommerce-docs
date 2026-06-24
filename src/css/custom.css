@@ -1,0 +1,74 @@
+/**
+ * Empora for WooCommerce — brand palette
+ * Primary: indigo (#4F46E5, matches the web app manifest theme_color)
+ * Accent: violet (decorative; hover/focus rings)
+ */
+
+:root {
+  --ifm-color-primary: #4f46e5;
+  --ifm-color-primary-dark: #3f36e0;
+  --ifm-color-primary-darker: #3a33d4;
+  --ifm-color-primary-darkest: #302aae;
+  --ifm-color-primary-light: #6259e9;
+  --ifm-color-primary-lighter: #6e66eb;
+  --ifm-color-primary-lightest: #8c85ef;
+
+  --ifm-color-secondary: #a855f7;
+  --ifm-color-success: #10b981;
+  --ifm-color-info: #6366f1;
+  --ifm-color-warning: #f59e0b;
+  --ifm-color-danger: #ef4444;
+
+  --ifm-code-font-size: 92%;
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --ifm-heading-font-weight: 700;
+
+  --docusaurus-highlighted-code-line-bg: rgba(79, 70, 229, 0.1);
+
+  --em-surface-accent: rgba(168, 85, 247, 0.06);
+  --em-surface-brand: rgba(79, 70, 229, 0.06);
+}
+
+/* Dark mode — keep brand recognisable, raise contrast */
+[data-theme='dark'] {
+  --ifm-color-primary: #a5b4fc;
+  --ifm-color-primary-dark: #8593fa;
+  --ifm-color-primary-darker: #7484f9;
+  --ifm-color-primary-darkest: #4f63f6;
+  --ifm-color-primary-light: #c5d0fe;
+  --ifm-color-primary-lighter: #d6deff;
+  --ifm-color-primary-lightest: #ffffff;
+
+  --ifm-background-color: #0d1117;
+  --ifm-background-surface-color: #161b22;
+
+  --docusaurus-highlighted-code-line-bg: rgba(165, 180, 252, 0.18);
+}
+
+/* ---------------------------------------------------------------------------
+ * Subtle entrance animation on body content (CSS-only, respects reduced motion)
+ * ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .markdown > h1,
+  .markdown > h2 {
+    animation: em-fade-up 420ms ease-out both;
+  }
+  @keyframes em-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Soften card edges + add gentle hover lift on doc cards */
+.card {
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+}

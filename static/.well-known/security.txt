@@ -1,0 +1,4 @@
+Contact: mailto:aoneahsan@gmail.com
+Preferred-Languages: en
+Canonical: https://docs.empora.aoneahsan.com/.well-known/security.txt
+Policy: https://empora.aoneahsan.com/terms
