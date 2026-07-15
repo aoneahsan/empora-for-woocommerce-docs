@@ -27,12 +27,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Corepack activates the Yarn version pinned in package.json's
+      # "packageManager" (Berry 4.x — the yarn.lock is Berry-format, which
+      # the runner's default classic yarn 1.x cannot read).
+      - name: Enable Corepack
+        run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: yarn
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
       - name: Build
         run: yarn build
       - uses: actions/configure-pages@v5
