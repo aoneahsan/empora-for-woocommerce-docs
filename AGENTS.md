@@ -7,8 +7,8 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
 ## What this is
 
 - Docusaurus 3 + React 19 + TypeScript. `docs/` holds markdown (routeBasePath `/`); `src/pages/index.tsx` is the home page.
-- Live domain: `docs.empora.aoneahsan.com`. Product: `empora.aoneahsan.com`. Plugin: WordPress.org.
-- Dual-hosting: `firebase.json` + `.firebaserc` (Firebase project `empora-for-woocommerce-docs`) AND `.github/workflows/deploy-pages.yml` (GitHub Pages). `static/CNAME` = `docs.empora.aoneahsan.com`. Pick ONE live host.
+- Live domain: `empora-docs.aoneahsan.com`. Product: `empora.aoneahsan.com`. Plugin: WordPress.org.
+- Dual-hosting: `firebase.json` + `.firebaserc` (Firebase project `empora-for-woocommerce-docs`) AND `.github/workflows/deploy-pages.yml` (GitHub Pages). `static/CNAME` = `empora-docs.aoneahsan.com`. Pick ONE live host.
 
 ## Rules
 

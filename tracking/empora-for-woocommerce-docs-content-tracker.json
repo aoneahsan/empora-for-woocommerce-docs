@@ -1,7 +1,7 @@
 {
   "$schema": "empora-for-woocommerce-docs-seo-content-tracker",
   "description": "Per-page rich SEO content enrichment progress for the Empora for WooCommerce documentation site. Resumable across sessions. Follows ~/.claude/rules/seo-aeo-ranking.md (§13).",
-  "site": "https://docs.empora.aoneahsan.com",
+  "site": "https://empora-docs.aoneahsan.com",
   "createdAt": "2026-06-24",
   "lastUpdated": "2026-06-24",
   "batchSize": 15,

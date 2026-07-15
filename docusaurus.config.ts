@@ -8,7 +8,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // Product: https://empora.aoneahsan.com  ·  Free plugin: https://wordpress.org/plugins/empora-for-woocommerce/
 // ---------------------------------------------------------------------------
 
-const SITE_URL = 'https://docs.empora.aoneahsan.com';
+const SITE_URL = 'https://empora-docs.aoneahsan.com';
 
 const config: Config = {
   title: 'Empora for WooCommerce Docs',

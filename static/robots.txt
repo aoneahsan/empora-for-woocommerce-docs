@@ -1,6 +1,6 @@
 # Empora for WooCommerce Docs — robots.txt
 # Maintained by Ahsan Mahmood (https://aoneahsan.com)
-# Public crawl policy for https://docs.empora.aoneahsan.com
+# Public crawl policy for https://empora-docs.aoneahsan.com
 #
 # Search engines and reputable AI/answer-engine bots are allowed.
 # Low-value scraper bots are blocked. The Sitemap directive lets crawlers
@@ -109,4 +109,4 @@ Allow: /
 
 # --- Sitemap discovery -------------------------------------------------------
 
-Sitemap: https://docs.empora.aoneahsan.com/sitemap.xml
+Sitemap: https://empora-docs.aoneahsan.com/sitemap.xml

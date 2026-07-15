@@ -2,7 +2,7 @@
 
 Public documentation site for **Empora for WooCommerce** (formerly All-In-One WooCommerce), a comprehensive WooCommerce toolkit (free core + premium modules). Built with [Docusaurus 3](https://docusaurus.io/).
 
-- **Live docs:** https://docs.empora.aoneahsan.com
+- **Live docs:** https://empora-docs.aoneahsan.com
 - **Product site:** https://empora.aoneahsan.com
 - **Free plugin:** https://wordpress.org/plugins/empora-for-woocommerce/
 - **App source (private):** github.com/aoneahsan/all-in-one-woocommerce
@@ -36,7 +36,7 @@ sidebars.ts           Sidebar layout
 
 ## Deployment (dual-hosting — USER-ONLY)
 
-This repo ships **two** ready hosting configs targeting `docs.empora.aoneahsan.com` (see `static/CNAME`). Make **one** live and point DNS at it.
+This repo ships **two** ready hosting configs targeting `empora-docs.aoneahsan.com` (see `static/CNAME`). Make **one** live and point DNS at it.
 
 1. **Firebase Hosting** — `firebase.json` + `.firebaserc` (project `empora-for-woocommerce-docs`):
    ```bash

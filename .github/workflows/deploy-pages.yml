@@ -2,7 +2,7 @@ name: Deploy docs to GitHub Pages
 
 # Dual-hosting note: this repo ships BOTH a Firebase Hosting config (firebase.json
 # + .firebaserc, project "empora-for-woocommerce-docs") AND this GitHub Pages
-# workflow. They both target docs.empora.aoneahsan.com via the static/CNAME file —
+# workflow. They both target empora-docs.aoneahsan.com via the static/CNAME file —
 # point DNS at whichever host you make live. Run ONE of them as the production host.
 #
 # This workflow builds the Docusaurus site and publishes it to GitHub Pages.

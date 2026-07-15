@@ -9,7 +9,7 @@ npm: https://www.npmjs.com/~aoneahsan
 /* PRODUCT */
 Name: Empora for WooCommerce
 Site: https://empora.aoneahsan.com
-Docs: https://docs.empora.aoneahsan.com
+Docs: https://empora-docs.aoneahsan.com
 Plugin: https://wordpress.org/plugins/empora-for-woocommerce/
 
 /* SITE */
