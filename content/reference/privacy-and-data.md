@@ -28,8 +28,9 @@ Customer personal data, order details, your product catalogue, and store setting
 
 ## 2. File / media uploads (premium features only)
 
-- **What:** a file-storage service operated by the plugin author, used to hold media a premium module
-  generates or that an admin uploads.
+- **Endpoint:** `https://fileshub.zaions.com`
+- **What:** FilesHub, a file-storage and transactional-email service operated by Zaions, used to hold
+  media a premium module generates or that an admin uploads.
 - **When:** only when an admin uses a feature that uploads media — PDF invoices, gift-card images, or
   import/export attachments. Nothing is uploaded in the free core, and nothing is uploaded in the
   background.
@@ -41,14 +42,14 @@ Customer personal data, order details, your product catalogue, and store setting
 
 These are off until you enable the module and configure credentials. What is sent depends on the module:
 
-| Integration | Endpoint | Data |
-|---|---|---|
-| Square | `connect.squareup.com` | Product / inventory / payment sync. |
-| Klaviyo | `a.klaviyo.com` | Customer + order events. |
-| Google Listings & Ads | Google | Product feed sync. |
-| Multi-Currency rates | exchangerate.host / openexchangerates.org | Currency code list only — no store data. |
-| Social Login | OAuth providers | Standard OAuth handshake when a customer chooses it. |
-| SMS | Twilio (etc.) | Message body + recipient phone, only when SMS is enabled. |
+| Integration           | Endpoint                                  | Data                                                      |
+| --------------------- | ----------------------------------------- | --------------------------------------------------------- |
+| Square                | `connect.squareup.com`                    | Product / inventory / payment sync.                       |
+| Klaviyo               | `a.klaviyo.com`                           | Customer + order events.                                  |
+| Google Listings & Ads | Google                                    | Product feed sync.                                        |
+| Multi-Currency rates  | exchangerate.host / openexchangerates.org | Currency code list only — no store data.                  |
+| Social Login          | OAuth providers                           | Standard OAuth handshake when a customer chooses it.      |
+| SMS                   | Twilio (etc.)                             | Message body + recipient phone, only when SMS is enabled. |
 
 ## 4. Telemetry & analytics
 

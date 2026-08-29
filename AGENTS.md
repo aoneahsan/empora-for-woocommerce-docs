@@ -1,6 +1,6 @@
 # AGENTS.md — Empora for WooCommerce Docs
 
-Last updated: 2026-06-24
+Last updated: 2026-08-30
 
 Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo is the SEPARATE, **PUBLIC** docs repo for the (private) app repo `aoneahsan/all-in-one-woocommerce`.
 
@@ -19,6 +19,16 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
 - Dual-hosting: `firebase.json` + `.firebaserc` (Firebase project `empora-for-woocommerce-docs`) AND `.github/workflows/deploy-pages.yml` (GitHub Pages). `static/CNAME` = `empora-docs.aoneahsan.com`. Pick ONE live host.
 
 ## Rules
+
+- 🔴 **FilesHub IS named on the privacy page here, deliberately** (owner decision, 2026-08-30;
+  recorded as D-035 in the product repo). The global rule bans naming it in a CLIENT project,
+  where it is private tooling the client never agreed to. On this product it is a genuine
+  **subprocessor** — uploaded files and transactional email flow through it — and the product's own
+  legal pages have always listed `FilesHub (fileshub.zaions.com)` in their subprocessor table.
+  Removing it from this site made the two disagree about the same service while keeping nothing
+  private. Do not strip it again.
+  ⚠️ It is named only as a service in the data flow — never as tooling, never a token, never a
+  Management API or vault reference.
 
 - **PUBLIC repo — NO secrets.** Never commit `.env`, keys, tokens, or service accounts. `.gitignore` ignores env files; keep it that way.
 - Local installs use **yarn** only (never npm/pnpm). `yarn.lock` is the only lock file.
@@ -43,8 +53,8 @@ Long-tail SEO batches tracked in `tracking/empora-for-woocommerce-docs-content-t
 
 Every rule here is mirrored in `CLAUDE.md`. Update both together.
 
-
 ## Sub-agents & Skills — Main-Context-First (IRON-SOLID)
+
 Default/built-in sub-agents (`general-purpose`, `Explore`, `Plan`, `claude`, `fork`, …) do NOT have
 access to `/skills`, so delegating to them silently SKIPS the skills RULE #0 requires. Do all
 skill-relevant work in the **MAIN context**; use a sub-agent ONLY when a **custom** agent exists in
@@ -53,7 +63,9 @@ no-skill search/exploration. When a relevant skill is missing, **install/enable 
 proceeding skill-less. (Owner directive 2026-07-11; full text in `~/.claude/CLAUDE.md`.)
 
 <!-- RULE:main-context-model-workflow v2026-07-16 -->
+
 ## Main-Context + Skills + Model Workflow (IRON-SOLID — CRITICAL)
+
 1. **NO default/built-in sub-agents** (`general-purpose`, `Explore`, `Plan`, `claude`, `fork`, …) for ANY work in
    this project — they cannot invoke /skills, which RULE #0 makes mandatory. Do ALL work (planning, implementation,
    review, exploration) in the MAIN context. A sub-agent is allowed ONLY when a CUSTOM agent exists in
