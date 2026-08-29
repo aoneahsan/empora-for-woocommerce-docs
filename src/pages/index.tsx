@@ -18,7 +18,7 @@ const FEATURES: Feature[] = [
   },
   {
     title: 'Premium modules on demand',
-    body: 'A paid license unlocks advanced shipping, payment gateways, taxes, inventory, bulk edit, import/export, and extended reports — enable only what your store needs.',
+    body: 'A paid license unlocks advanced shipping, payment gateways, advanced taxes, bulk edit, import/export, and extended reports — enable only what your store needs.',
   },
   {
     title: 'Conversion-focused storefront',
@@ -52,11 +52,8 @@ function HomepageHeader(): ReactNode {
           <Link className="button button--secondary button--lg" to="/getting-started/installation">
             Installation
           </Link>
-          <Link
-            className="button button--outline button--lg"
-            href="https://wordpress.org/plugins/empora-for-woocommerce/"
-          >
-            Get the free plugin
+          <Link className="button button--outline button--lg" to="/modules/reference">
+            All 78 modules
           </Link>
         </div>
       </div>

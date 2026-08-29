@@ -23,7 +23,7 @@ yarn build        # production build (must pass before a PR)
 
 ## Standards
 
-- Docusaurus 3, TypeScript config. Content lives in `docs/`; site chrome in `src/` + `docusaurus.config.ts`.
+- Docusaurus 3, TypeScript config. Published content lives in `content/`; release notes in `changelog/`; site chrome in `src/` + `docusaurus.config.ts`. (`docs/` is internal and is not published.)
 - Keep pages factual and in sync with the actual product (Empora for WooCommerce). No fabricated claims or stats.
 - Conventional Commits for commit messages (e.g. `docs: clarify license activation steps`).
 - `yarn build` must exit clean before requesting review.

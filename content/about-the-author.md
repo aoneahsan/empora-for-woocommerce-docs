@@ -24,7 +24,7 @@ sidebar_position: 99
 ## The product
 
 - Marketing + dashboard: [empora.aoneahsan.com](https://empora.aoneahsan.com)
-- Free plugin: [wordpress.org/plugins/empora-for-woocommerce](https://wordpress.org/plugins/empora-for-woocommerce/)
+- Documentation: [empora-docs.aoneahsan.com](https://empora-docs.aoneahsan.com)
 - These docs (source): [github.com/aoneahsan/empora-for-woocommerce-docs](https://github.com/aoneahsan/empora-for-woocommerce-docs)
 
 ## Support the work

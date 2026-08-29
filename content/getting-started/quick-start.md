@@ -15,7 +15,7 @@ This walks you from a fresh install to a configured store feature in about five 
 
 ## 1. Confirm prerequisites
 
-WooCommerce 8.0+ is installed and active, and you are on WordPress 6.0+ with PHP 8.1+. See [Installation](/getting-started/installation) if not.
+WooCommerce 8.0 or newer is installed and active, and you are on WordPress 6.2 or newer with PHP 8.1 or newer. See [Installation](/getting-started/installation) if not.
 
 ## 2. Open the Empora dashboard
 

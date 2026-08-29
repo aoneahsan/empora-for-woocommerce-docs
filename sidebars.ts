@@ -23,6 +23,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'modules/overview',
+        'modules/reference',
         'modules/free-core',
         'modules/premium',
         'modules/configuring-modules',
@@ -51,8 +52,10 @@ const sidebars: SidebarsConfig = {
         'reference/privacy-and-data',
       ],
     },
+    'pricing',
     'troubleshooting',
     'faq',
+    'support',
     'about-the-author',
   ],
 };

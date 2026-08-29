@@ -28,10 +28,14 @@ Customer personal data, order details, your product catalogue, and store setting
 
 ## 2. File / media uploads (premium features only)
 
-- **Endpoint:** `https://fileshub.zaions.com/api/v1`
-- **When:** only when an admin uses a feature that uploads media (PDF invoices, gift-card images, import/export attachments).
-- **Data sent:** the file you choose to upload, plus an auth token.
-- **Opt-out:** don't enable the premium modules that upload files.
+- **What:** a file-storage service operated by the plugin author, used to hold media a premium module
+  generates or that an admin uploads.
+- **When:** only when an admin uses a feature that uploads media — PDF invoices, gift-card images, or
+  import/export attachments. Nothing is uploaded in the free core, and nothing is uploaded in the
+  background.
+- **Data sent:** the file you choose to upload, plus an authentication token identifying the site. No
+  customer records and no order data are sent by this path.
+- **Opt-out:** do not enable the premium modules that upload files. They are off by default.
 
 ## 3. Per-module third-party integrations (off by default)
 

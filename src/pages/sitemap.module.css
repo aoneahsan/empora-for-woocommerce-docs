@@ -1,0 +1,110 @@
+.lede {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-800);
+  max-width: 46rem;
+}
+
+.machine {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-left: 4px solid var(--ifm-color-primary);
+  border-radius: var(--ifm-global-radius);
+  padding: 1rem 1.25rem 0.5rem;
+  margin: 1.5rem 0 2rem;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.machineHeading {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.search {
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.count {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.group {
+  margin-top: 2.5rem;
+}
+
+.blurb {
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: block;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-background-surface-color);
+  color: inherit;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(-2px);
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 8%);
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+  color: var(--ifm-color-primary);
+}
+
+.cardDesc {
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-800);
+  margin-bottom: 0.6rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.tag {
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+}

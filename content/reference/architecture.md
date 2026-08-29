@@ -66,7 +66,7 @@ A **Laravel 12 + Nova 5** application providing:
 
 - **Auth** (Sanctum tokens; email/password + Google).
 - **License** issuance, activation, validation, and deactivation.
-- **Billing** (Stripe checkout + webhooks) and subscription/entitlement management.
+- **Subscription and entitlement** state — which plan a licence is on, and therefore which modules it unlocks.
 - **Update** checks for the premium plugin build.
 - **Health** endpoints for monitoring.
 
@@ -74,7 +74,7 @@ See the [REST API](/reference/rest-api) and [License API](/reference/license-api
 
 ## Shared packages
 
-The monorepo also contains shared TypeScript packages (UI primitives, Firebase auth helpers, observability, FilesHub upload wrapper, shared types) reused by the web app and plugin admin.
+The monorepo also contains shared TypeScript packages — UI primitives, authentication helpers, observability, file-upload and shared types — reused by both the web app and the plugin admin, so the two surfaces behave the same way without duplicating code.
 
 ## Why a module registry
 

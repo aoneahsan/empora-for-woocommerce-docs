@@ -49,13 +49,17 @@ Base URL: `https://empora-api.aoneahsan.com/api`. Authentication uses **Laravel 
 | `GET` | `/v1/user/licenses/{id}` | One license + connected sites. |
 | `POST` | `/v1/user/licenses/{id}/deactivate-site` | Release a connected site. |
 
-### Billing (token required)
+### Subscription (token required)
 
 | Method | Path | Purpose |
 |---|---|---|
-| `POST` | `/v1/checkout` | Create a Stripe checkout session. |
-| `GET` | `/v1/user/subscription` | Current subscription state. |
-| `POST` | `/v1/webhooks/stripe` | Stripe webhook (server-to-server; signature-verified). |
+| `GET` | `/v1/user/subscription` | Current subscription state — plan, status and renewal date. |
+
+:::note No checkout endpoint in 1.0
+Version 1.0 ships without a payment provider, so there is no checkout or payment-webhook endpoint. A paid
+plan is applied to an account directly; see [Plans & pricing](/pricing). The subscription endpoint above
+reports the resulting state and is the one to read when you need to know what a licence is entitled to.
+:::
 
 ### Updates & health
 

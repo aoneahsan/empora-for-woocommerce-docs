@@ -1,27 +1,50 @@
 # Empora for WooCommerce — Documentation
 
-> Empora for WooCommerce (formerly All-In-One WooCommerce) is a comprehensive WooCommerce plugin.
-> Its free core adds product filters, reviews, wishlist, compare, social sharing, basic SEO, and
-> basic dynamic pricing. Optional premium modules — unlocked by a paid license — add advanced
-> shipping, payment gateways, taxes, inventory, bulk edit, import/export, reports, subscriptions,
-> gift cards, rewards points, multi-currency, email automation, shipment tracking, and integrations
-> (Square, Google Listings & Ads, Klaviyo). HPOS-compatible. Requires WordPress 6.0+, WooCommerce
-> 8.0+, PHP 8.1+. The free core stays fully functional indefinitely without a license.
+> Empora for WooCommerce (formerly All-In-One WooCommerce) is a WordPress plugin for WooCommerce stores.
+> It ships 78 independently switchable modules. Seven are free and need no license: product filters,
+> reviews, wishlist, compare, social, SEO and dynamic pricing. The remaining 71 are unlocked by a paid
+> plan and cover advanced shipping, payments, taxes, bulk edit, import/export, reports, subscriptions,
+> bookings, gift cards, rewards points, multi-currency, email automation, shipment tracking, and
+> integrations such as Square, Google Listings & Ads and Klaviyo. HPOS-compatible. Requires WordPress
+> 6.2+, WooCommerce 8.0+, PHP 8.1+. The free core stays functional indefinitely without a license.
 
 This is the documentation site (https://empora-docs.aoneahsan.com). Product site: https://empora.aoneahsan.com.
+
+## Status of version 1.0
+
+- Empora 1.0 has not been released yet. No version is published on WordPress.org, CodeCanyon or Google Play.
+- Version 1.0 ships with NO payment provider, so there is no self-serve checkout. The paid plans are real and
+  the software enforces their limits, but a plan is arranged by contacting the author. The product does have
+  paid tiers; the purchase path is simply not open yet.
+- Three of the 78 modules do not register in 1.0 and cannot be enabled: `inventory`, `livechat`, `store_credit`.
+  The other 75 are available.
+- Installation is by uploading the plugin ZIP; there is no WordPress.org listing yet.
+
+## Plans
+
+Five tiers. Each includes every module in the tiers below it.
+
+- Free — $0/month, 1 site, 7 modules. Caps: 100 products, 500 orders, 100 customers, no import/export.
+- Starter — $19/month, 1 site, 27 modules. Caps: 300 products, 1,500 orders, 300 customers, no import/export.
+- Professional — $49/month, 1 site, 48 modules. Caps: 1,000 products, 5,000 orders, 10 imports + 10 exports/month.
+- Business — $99/month, 3 sites, 68 modules. Unlimited products, orders and customers; 100 imports + exports/month.
+- Enterprise — $299/month, unlimited sites, all 78 modules, unlimited everything.
+
+Details: https://empora-docs.aoneahsan.com/pricing
 
 ## Getting started
 
 - [Introduction](https://empora-docs.aoneahsan.com/intro): What Empora is and how the pieces fit.
-- [Installation](https://empora-docs.aoneahsan.com/getting-started/installation): Install from WordPress.org or upload the zip; requirements.
-- [Quick Start](https://empora-docs.aoneahsan.com/getting-started/quick-start): Enable and configure your first module in ~5 minutes.
+- [Installation](https://empora-docs.aoneahsan.com/getting-started/installation): Upload the plugin ZIP; requirements; what activation does.
+- [Quick Start](https://empora-docs.aoneahsan.com/getting-started/quick-start): Enable and configure your first module in about five minutes.
 - [Activating your license](https://empora-docs.aoneahsan.com/getting-started/activating-your-license): Unlock premium modules; manage connected sites.
 
 ## Modules
 
-- [Modules overview](https://empora-docs.aoneahsan.com/modules/overview): Full catalogue (free core + premium).
-- [Free core modules](https://empora-docs.aoneahsan.com/modules/free-core): Filters, Reviews, Wishlist, Compare, Social, SEO, basic Dynamic Pricing.
-- [Premium modules](https://empora-docs.aoneahsan.com/modules/premium): Advanced shipping, payments, taxes, inventory, gift cards, subscriptions, and more.
+- [Modules overview](https://empora-docs.aoneahsan.com/modules/overview): How modules work.
+- [Module reference](https://empora-docs.aoneahsan.com/modules/reference): All 78 modules, searchable, with the plan each belongs to. Generated from the plugin's own manifest.
+- [Free core modules](https://empora-docs.aoneahsan.com/modules/free-core): The seven modules that need no license.
+- [Premium modules](https://empora-docs.aoneahsan.com/modules/premium): The headline modules a paid plan unlocks.
 - [Configuring modules](https://empora-docs.aoneahsan.com/modules/configuring-modules): The Modules grid and unified Settings page.
 
 ## Guides
@@ -31,6 +54,14 @@ This is the documentation site (https://empora-docs.aoneahsan.com). Product site
 - [Dynamic Pricing](https://empora-docs.aoneahsan.com/guides/dynamic-pricing)
 - [Gift Cards & Rewards](https://empora-docs.aoneahsan.com/guides/gift-cards-and-rewards)
 
+## Plans and help
+
+- [Plans & pricing](https://empora-docs.aoneahsan.com/pricing): The five tiers, their limits, and how to arrange a paid plan.
+- [Troubleshooting](https://empora-docs.aoneahsan.com/troubleshooting)
+- [FAQ](https://empora-docs.aoneahsan.com/faq)
+- [Support & contact](https://empora-docs.aoneahsan.com/support)
+- [Changelog](https://empora-docs.aoneahsan.com/changelog): Release notes. RSS: https://empora-docs.aoneahsan.com/changelog/rss.xml
+
 ## Reference
 
 - [Requirements & compatibility](https://empora-docs.aoneahsan.com/reference/requirements)
@@ -38,15 +69,12 @@ This is the documentation site (https://empora-docs.aoneahsan.com). Product site
 - [REST API](https://empora-docs.aoneahsan.com/reference/rest-api)
 - [License API](https://empora-docs.aoneahsan.com/reference/license-api)
 - [Privacy & data handling](https://empora-docs.aoneahsan.com/reference/privacy-and-data)
-
-## Help
-
-- [Troubleshooting](https://empora-docs.aoneahsan.com/troubleshooting)
-- [FAQ](https://empora-docs.aoneahsan.com/faq)
 - [About the author](https://empora-docs.aoneahsan.com/about-the-author)
 
-## Distribution
+## Discovery
 
-- Free plugin: https://wordpress.org/plugins/empora-for-woocommerce/
+- Sitemap (human): https://empora-docs.aoneahsan.com/sitemap
+- Sitemap (XML): https://empora-docs.aoneahsan.com/sitemap.xml
+- Release feed (RSS): https://empora-docs.aoneahsan.com/changelog/rss.xml
 - Product website: https://empora.aoneahsan.com
 - Docs source: https://github.com/aoneahsan/empora-for-woocommerce-docs

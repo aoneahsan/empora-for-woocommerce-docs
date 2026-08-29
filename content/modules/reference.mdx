@@ -1,0 +1,45 @@
+---
+id: reference
+title: Module Reference — All 78 Modules
+description: The complete Empora for WooCommerce module reference. Every one of the 78 modules, what it is called, which category it belongs to, and the lowest plan that includes it.
+keywords:
+  - empora module list
+  - woocommerce modules
+  - woocommerce plugin features
+  - empora plans
+  - woocommerce module reference
+sidebar_position: 2
+---
+
+import ModuleTable from '@site/src/components/ModuleTable';
+
+# Module reference
+
+Empora ships **78 modules**. Each one is a self-contained feature you switch on or off by itself from
+**Empora → Modules** in your WordPress admin, so a store only ever loads the code for what it uses.
+
+This page is generated from the plugin's own module manifest and plan catalog — the same files the plugin
+reads at runtime to decide what to register and what a license unlocks. It cannot list a module the plugin
+does not have, and it cannot put a module in a plan the catalog does not put it in.
+
+## How to read this table
+
+- **Module** — the name shown in the admin, and the internal key beneath it. The key is what appears in
+  settings, in REST payloads, and in support requests, so it is worth quoting when you report a problem.
+- **Lowest plan** — the cheapest plan that includes the module. Every higher plan includes it too: the
+  plans are cumulative, so Professional contains everything Starter has, and so on up.
+- **Status** — whether the module ships in version 1.0.
+
+:::note Three modules are not in 1.0
+`inventory` (Advanced Inventory Management), `livechat` (Live Chat & Customer Support) and `store_credit`
+(Store Credit & Wallet) are listed here because they are part of the catalogue, but they do not register in
+1.0 and cannot be enabled. They are marked **Not in 1.0** below. Every other module is available.
+:::
+
+<ModuleTable />
+
+## Related
+
+- [Plans and pricing](/pricing) — what each plan costs and which modules it unlocks.
+- [Configuring modules](/modules/configuring-modules) — enabling, disabling and settings.
+- [Activating your license](/getting-started/activating-your-license) — unlocking premium modules.

@@ -14,7 +14,7 @@ sidebar_position: 90
 ## The Empora menu doesn't appear
 
 - Confirm **WooCommerce is installed and active**. Empora stays dormant without it.
-- Confirm PHP is **8.1+** and WordPress is **6.0+** (see [Requirements](/reference/requirements)).
+- Confirm PHP is **8.1 or newer** and WordPress is **6.2 or newer** (see [Requirements](/reference/requirements)).
 - Check for a fatal error from a conflicting plugin in your server error log.
 
 ## A premium module is greyed out / missing
@@ -55,5 +55,5 @@ The Dashboard config checker flags required setup. Open the flagged item — it 
 
 ## Still stuck?
 
-- Free plugin support: the [WordPress.org support forum](https://wordpress.org/support/plugin/empora-for-woocommerce/).
+- Support for every plan, free included: [Support & contact](/support).
 - Premium support + contact: [empora.aoneahsan.com/support](https://empora.aoneahsan.com/support).

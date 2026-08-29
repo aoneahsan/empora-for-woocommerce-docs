@@ -15,9 +15,14 @@ sidebar_position: 1
 
 | Component | Minimum | Notes |
 |---|---|---|
-| WordPress | 6.0 | Tested up to current 6.x. |
-| WooCommerce | 8.0 | Must be installed and active. |
-| PHP | 8.1 | 8.2 / 8.3 recommended. |
+| WordPress | 6.2 | Tested up to 6.8. |
+| WooCommerce | 8.0 | Must be installed and active. Tested up to 9.8. |
+| PHP | 8.1 | 8.2 or 8.3 recommended. |
+
+Below any of these floors the plugin will not activate its modules. WordPress checks the WordPress and
+PHP requirements itself before it will let the plugin activate; WooCommerce is checked by Empora on
+load, and a missing or too-old WooCommerce leaves Empora dormant with an admin notice rather than
+breaking the site.
 
 ## HPOS (High-Performance Order Storage)
 
@@ -26,7 +31,7 @@ Empora declares **full HPOS compatibility**. You can run WooCommerce's High-Perf
 ## Hosting notes
 
 - **Outbound HTTPS** must be allowed so the plugin can reach the license/update server for activation and validation.
-- Standard WooCommerce hosting (PHP 8.1+, MySQL/MariaDB) is sufficient. No special extensions are required for the core; some integrations (e.g. image/barcode generation) benefit from common PHP extensions being present.
+- Standard WooCommerce hosting (PHP 8.1 or newer, MySQL or MariaDB) is sufficient. The core needs no special PHP extensions; some modules that generate images or barcodes work better where the common image extensions are present.
 - For large catalogues, give PHP enough memory for bulk operations (Bulk Edit, Import/Export).
 
 ## Multisite

@@ -1,0 +1,84 @@
+{
+  "$schema": "Derived, public-safe snapshot. Do not hand-edit.",
+  "source": "Generated from the Empora plan catalog. Regenerate whenever it changes; never hand-edit.",
+  "catalogVersion": 1,
+  "currency": "USD",
+  "defaultPlan": "free",
+  "plans": [
+    {
+      "id": "free",
+      "name": "Free",
+      "priceCents": 0,
+      "currency": "USD",
+      "maxSites": 1,
+      "moduleCount": 7,
+      "limits": {
+        "maxProducts": 100,
+        "maxOrders": 500,
+        "maxCustomers": 100,
+        "maxExportsPerMonth": 0,
+        "maxImportsPerMonth": 0
+      }
+    },
+    {
+      "id": "starter",
+      "name": "Starter",
+      "priceCents": 1900,
+      "currency": "USD",
+      "maxSites": 1,
+      "moduleCount": 27,
+      "limits": {
+        "maxProducts": 300,
+        "maxOrders": 1500,
+        "maxCustomers": 300,
+        "maxExportsPerMonth": 0,
+        "maxImportsPerMonth": 0
+      }
+    },
+    {
+      "id": "professional",
+      "name": "Professional",
+      "priceCents": 4900,
+      "currency": "USD",
+      "maxSites": 1,
+      "moduleCount": 48,
+      "limits": {
+        "maxProducts": 1000,
+        "maxOrders": 5000,
+        "maxCustomers": 1000,
+        "maxExportsPerMonth": 10,
+        "maxImportsPerMonth": 10
+      }
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "priceCents": 9900,
+      "currency": "USD",
+      "maxSites": 3,
+      "moduleCount": 68,
+      "limits": {
+        "maxProducts": -1,
+        "maxOrders": -1,
+        "maxCustomers": -1,
+        "maxExportsPerMonth": 100,
+        "maxImportsPerMonth": 100
+      }
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "priceCents": 29900,
+      "currency": "USD",
+      "maxSites": -1,
+      "moduleCount": 78,
+      "limits": {
+        "maxProducts": -1,
+        "maxOrders": -1,
+        "maxCustomers": -1,
+        "maxExportsPerMonth": -1,
+        "maxImportsPerMonth": -1
+      }
+    }
+  ]
+}

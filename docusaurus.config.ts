@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // ---------------------------------------------------------------------------
 // Empora for WooCommerce — Documentation site config
 // Author: Ahsan Mahmood (https://aoneahsan.com)
-// Product: https://empora.aoneahsan.com  ·  Free plugin: https://wordpress.org/plugins/empora-for-woocommerce/
+// Product: https://empora.aoneahsan.com  ·  Docs: https://empora-docs.aoneahsan.com
 // ---------------------------------------------------------------------------
 
 const SITE_URL = 'https://empora-docs.aoneahsan.com';
@@ -44,6 +44,16 @@ const config: Config = {
       attributes: { name: 'theme-color', content: '#4F46E5' },
     },
     {
+      // Feed autodiscovery — how readers and aggregators find the changelog.
+      tagName: 'link',
+      attributes: {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: 'Empora for WooCommerce — releases',
+        href: `${SITE_URL}/changelog/rss.xml`,
+      },
+    },
+    {
       tagName: 'script',
       attributes: { type: 'application/ld+json' },
       innerHTML: JSON.stringify({
@@ -52,7 +62,7 @@ const config: Config = {
         name: 'Empora for WooCommerce Documentation',
         url: SITE_URL,
         description:
-          'Documentation for Empora for WooCommerce, a comprehensive WooCommerce toolkit with a free core (product filters, reviews, wishlist, compare, social, SEO, basic dynamic pricing) and optional premium modules (advanced shipping, payments, taxes, inventory, bulk edit, import/export, reports, subscriptions, gift cards, and more).',
+          'Documentation for Empora for WooCommerce: installation, module reference for all 78 modules, plans, guides, troubleshooting and API reference. Free core of 7 modules plus premium modules unlocked by a license.',
         inLanguage: 'en',
         publisher: {
           '@type': 'Person',
@@ -81,21 +91,19 @@ const config: Config = {
           '@type': 'Offer',
           price: '0',
           priceCurrency: 'USD',
-          description: 'Free core modules; premium modules require a paid license.',
+          availability: 'https://schema.org/InStock',
+          description:
+            'The free core (7 modules) requires no license. Paid plans — Starter, Professional, Business and Enterprise — unlock the remaining modules; self-serve purchase is not available yet, so a paid plan is arranged by contacting the author.',
         },
         url: 'https://empora.aoneahsan.com',
-        downloadUrl: 'https://wordpress.org/plugins/empora-for-woocommerce/',
-        sameAs: [
-          'https://empora.aoneahsan.com',
-          'https://wordpress.org/plugins/empora-for-woocommerce/',
-        ],
+        sameAs: ['https://empora.aoneahsan.com'],
         author: {
           '@type': 'Person',
           name: 'Ahsan Mahmood',
           url: 'https://aoneahsan.com',
         },
         description:
-          'A comprehensive WooCommerce plugin: free core (filters, reviews, wishlist, compare, social, SEO, basic dynamic pricing) plus optional premium modules unlocked by a paid license. HPOS-compatible. Requires WordPress 6.0+, WooCommerce 8.0+, PHP 8.1+.',
+          'A WooCommerce plugin providing 78 modules: a free core of 7 modules (filters, reviews, wishlist, compare, social, SEO, dynamic pricing) plus premium modules unlocked by a paid license. HPOS-compatible. Requires WordPress 6.2+, WooCommerce 8.0+, PHP 8.1+.',
         softwareVersion: '1.0.0',
       }),
     },
@@ -130,10 +138,89 @@ const config: Config = {
   markdown: {
     mermaid: true,
     hooks: {
-      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownLinks: 'throw',
     },
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      // Local, build-time search index. No API key, no third-party service, so
+      // the build never depends on a secret.
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        indexDocs: true,
+        indexBlog: true,
+        indexPages: true,
+        docsRouteBasePath: '/',
+        // Both are needed: the plugin resolves the on-disk dir separately from
+        // the route, and defaults blogDir to 'blog', which does not exist here.
+        blogDir: 'changelog',
+        blogRouteBasePath: '/changelog',
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        searchBarShortcutHint: false,
+      },
+    ],
+  ],
+
+  plugins: [
+    /**
+     * Docusaurus's feed generator omits `<atom:link rel="self">`, which RSS
+     * validators require and which is the element most feeds are missing. It is
+     * a channel-level element with no config hook, so it is injected into the
+     * built file here. `<guid>` also gains an explicit `isPermaLink` — the RSS
+     * default, stated rather than implied.
+     */
+    function feedSelfLinkPlugin() {
+      return {
+        name: 'feed-self-link',
+        async postBuild({ outDir, siteConfig }: { outDir: string; siteConfig: { url: string } }) {
+          const fs = await import('node:fs/promises');
+          const path = await import('node:path');
+          const feedPath = path.join(outDir, 'changelog', 'rss.xml');
+
+          // Docusaurus runs every plugin's postBuild concurrently (Promise.all),
+          // so this races the blog plugin that writes the feed. Wait for it
+          // rather than assuming an order that does not exist.
+          const deadline = Date.now() + 30_000;
+          let xml: string | null = null;
+          while (Date.now() < deadline) {
+            try {
+              xml = await fs.readFile(feedPath, 'utf8');
+              break;
+            } catch {
+              await new Promise((r) => setTimeout(r, 100));
+            }
+          }
+          if (xml === null) {
+            throw new Error(
+              `feed-self-link: no feed appeared at ${feedPath} within 30s. The changelog blog must be enabled with feedOptions.`,
+            );
+          }
+
+          if (xml.includes('rel="self"')) return;
+
+          const patched = xml
+            .replace(
+              '<rss version="2.0"',
+              '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"',
+            )
+            .replace(
+              '<channel>',
+              `<channel>
+        <atom:link href="${siteConfig.url}/changelog/rss.xml" rel="self" type="application/rss+xml"/>`,
+            )
+            .replace(/<guid>/g, '<guid isPermaLink="true">');
+
+          if (!patched.includes('rel="self"')) {
+            throw new Error('feed-self-link: failed to inject the self link — the feed markup changed.');
+          }
+          await fs.writeFile(feedPath, patched, 'utf8');
+        },
+      };
+    },
+  ],
 
   presets: [
     [
@@ -141,23 +228,43 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // `docs/` is BOTH the published content dir and the home of the
-          // fixed-path internal file docs/MANUAL-TASKS.md. Keep the path (the
-          // global rule fixes it) but never publish it — this repo is public.
-          // NOTE: `exclude` REPLACES the plugin defaults, so they are restated.
-          exclude: [
-            '**/_*.{js,jsx,ts,tsx,md,mdx}',
-            '**/_*/**',
-            '**/*.test.{js,jsx,ts,tsx}',
-            '**/__tests__/**',
-            'MANUAL-TASKS.md',
-          ],
+          // Published pages live in `content/`, NOT in `docs/`. This repo is
+          // public and `docs/` holds the internal fixed-path file
+          // docs/MANUAL-TASKS.md, which the global rule pins there. Keeping the
+          // two directories separate means the internal file is not in the
+          // published tree at all, so no `exclude` entry has to hold the line —
+          // and a future config change cannot accidentally publish it.
+          path: 'content',
           routeBasePath: '/',
           editUrl: 'https://github.com/aoneahsan/empora-for-woocommerce-docs/edit/main/',
           showLastUpdateTime: true,
           breadcrumbs: true,
         },
-        blog: false,
+        blog: {
+          // The changelog is a blog in Docusaurus terms; that is what generates
+          // /changelog/rss.xml and /changelog/atom.xml.
+          path: 'changelog',
+          routeBasePath: 'changelog',
+          blogTitle: 'Empora changelog',
+          blogDescription:
+            'Release notes for Empora for WooCommerce — every version, what changed, and what it affects.',
+          blogSidebarTitle: 'Releases',
+          blogSidebarCount: 'ALL',
+          showReadingTime: false,
+          onUntruncatedBlogPosts: 'ignore',
+          feedOptions: {
+            type: 'all',
+            title: 'Empora for WooCommerce — releases',
+            description:
+              'Release notes for Empora for WooCommerce, the all-in-one WooCommerce plugin.',
+            copyright: `Copyright © ${new Date().getFullYear()} Ahsan Mahmood.`,
+            language: 'en',
+            createFeedItems: async (params) => {
+              const { blogPosts, defaultCreateFeedItems, ...rest } = params;
+              return defaultCreateFeedItems({ blogPosts, ...rest });
+            },
+          },
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -233,13 +340,18 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://empora.aoneahsan.com',
-          label: 'Website',
-          position: 'right',
+          to: '/pricing',
+          label: 'Plans',
+          position: 'left',
         },
         {
-          href: 'https://wordpress.org/plugins/empora-for-woocommerce/',
-          label: 'WordPress.org',
+          to: '/changelog',
+          label: 'Changelog',
+          position: 'left',
+        },
+        {
+          href: 'https://empora.aoneahsan.com',
+          label: 'Website',
           position: 'right',
         },
         {
@@ -258,16 +370,28 @@ const config: Config = {
             { label: 'Introduction', to: '/intro' },
             { label: 'Installation', to: '/getting-started/installation' },
             { label: 'Quick Start', to: '/getting-started/quick-start' },
-            { label: 'Modules', to: '/modules/overview' },
+            { label: 'Module reference', to: '/modules/reference' },
+            { label: 'Plans', to: '/pricing' },
           ],
         },
         {
           title: 'Product',
           items: [
             { label: 'Website', href: 'https://empora.aoneahsan.com' },
-            { label: 'Pricing', href: 'https://empora.aoneahsan.com/pricing' },
-            { label: 'Free plugin (WordPress.org)', href: 'https://wordpress.org/plugins/empora-for-woocommerce/' },
-            { label: 'Support', href: 'https://empora.aoneahsan.com/support' },
+            { label: 'Changelog', to: '/changelog' },
+            { label: 'Support & contact', to: '/support' },
+            { label: 'FAQ', to: '/faq' },
+          ],
+        },
+        {
+          title: 'Discover',
+          items: [
+            { label: 'Sitemap', to: '/sitemap' },
+            // Absolute: these are static files in build/, not Docusaurus routes,
+            // so a root-relative href trips the broken-link checker.
+            { label: 'sitemap.xml', href: `${SITE_URL}/sitemap.xml` },
+            { label: 'RSS feed', href: `${SITE_URL}/changelog/rss.xml` },
+            { label: 'llms.txt', href: `${SITE_URL}/llms.txt` },
           ],
         },
         {

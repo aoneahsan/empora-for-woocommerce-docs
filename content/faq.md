@@ -49,7 +49,7 @@ The free build updates through WordPress.org. The premium build uses a bundled u
 
 ### Where do I get support?
 
-Free: the [WordPress.org support forum](https://wordpress.org/support/plugin/empora-for-woocommerce/). Premium and general contact: [empora.aoneahsan.com/support](https://empora.aoneahsan.com/support).
+Every plan, free included, uses the same channel — see [Support & contact](/support) for what to include so your report can be answered in one reply.
 
 ### Is the free core really free forever?
 

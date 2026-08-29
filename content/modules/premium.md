@@ -13,7 +13,18 @@ sidebar_position: 3
 
 # Premium Modules
 
-Premium modules require an active license whose plan includes them. Enable each one under **Empora → Modules** after [activating your license](/getting-started/activating-your-license).
+Premium modules require an active license whose plan includes them. Enable each one under **Empora → Modules**
+after [activating your license](/getting-started/activating-your-license).
+
+This page describes the headline premium modules in prose. For the **complete list of all 78 modules**, which
+plan each one belongs to, and whether it ships in 1.0, use the
+**[module reference](/modules/reference)** — that page is generated from the plugin's own manifest, so it is
+the authoritative list.
+
+:::note Three modules do not ship in 1.0
+`inventory`, `livechat` and `store_credit` are in the catalogue but cannot be enabled in version 1.0. They are
+marked in the [module reference](/modules/reference).
+:::
 
 The headline premium modules:
 
@@ -30,6 +41,13 @@ Additional payment gateways and **Buy-Now-Pay-Later (BNPL)** integrations, with 
 Automated tax calculation and reporting helpers (basic and advanced), reducing manual tax table upkeep.
 
 ## Inventory
+
+:::caution Not available in 1.0
+**Advanced Inventory Management** (`inventory`) is in the catalogue but does not register in version 1.0 and
+cannot be enabled. It is described here because it is part of the Professional plan's module set; treat it as
+planned rather than shipping. Back-in-Stock Notifications and Waitlist, which cover the alerting side, are
+available now.
+:::
 
 Advanced stock management: low-stock alerts, multi-warehouse stock, and tighter control over how stock is tracked and displayed.
 
@@ -63,7 +81,7 @@ Extended analytics beyond WooCommerce's defaults: orders-by-day, top products, r
 |---|---|
 | **Gift Cards** | Sell and redeem store gift cards. |
 | **Rewards Points** | Points-based loyalty. |
-| **Store Credit / Wallet** | Account balance customers can spend. |
+| **Wallet / Store Credit** (`wallet`) | Account balance customers can spend. |
 | **Smart Coupons** | Advanced coupon logic. |
 | **Waitlist / Stock Alerts** | Back-in-stock notifications. |
 | **Abandoned Cart** | Recover incomplete checkouts. |

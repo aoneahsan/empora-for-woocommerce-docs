@@ -6,7 +6,15 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
 
 ## What this is
 
-- Docusaurus 3 + React 19 + TypeScript. `docs/` holds markdown (routeBasePath `/`); `src/pages/index.tsx` is the home page.
+- Docusaurus 3 + React 19 + TypeScript. **`content/` holds the published markdown** (routeBasePath `/`);
+  `src/pages/index.tsx` is the home page; `changelog/` holds release posts (the blog plugin, which is what
+  generates the RSS feed).
+- 🔴 **`docs/` is NOT published.** It holds only the internal fixed-path `docs/MANUAL-TASKS.md`. The
+  published content dir is `content/`, so nothing in `docs/` can reach the public site — this repo is
+  public and that separation is the safeguard. Never point `docs.path` back at `docs/`.
+- `src/data/*.json` is generated from the product repo's module manifest and plan catalog; the module
+  reference and pricing tables render from it. Never hand-edit those files or type a module or price into
+  a page — regenerate instead, or the docs and the software drift.
 - Live domain: `empora-docs.aoneahsan.com`. Product: `empora.aoneahsan.com`. Plugin: WordPress.org.
 - Dual-hosting: `firebase.json` + `.firebaserc` (Firebase project `empora-for-woocommerce-docs`) AND `.github/workflows/deploy-pages.yml` (GitHub Pages). `static/CNAME` = `empora-docs.aoneahsan.com`. Pick ONE live host.
 
@@ -57,6 +65,6 @@ proceeding skill-less. (Owner directive 2026-07-11; full text in `~/.claude/CLAU
    `~/.claude/plans/`; multi-phase features keep a resumable tracker (`docs/features/<slug>/00-tracker.json`),
    resumed rather than re-planned from zero.
 
-Global records (rules, policy, audit reports) live in the `ahsan-notebook` repo at
-`static/assets/claude-code/`; the `~/.claude/…` paths are symlinks into it. Full text: `~/.claude/CLAUDE.md`.
+Global records (rules, policy, audit reports) are auto-loaded from `~/.claude/rules/`; full text:
+`~/.claude/CLAUDE.md`. This repo is PUBLIC — never name a private repo, host, or internal tool in it.
 (Owner directives 2026-07-11 / 2026-07-14; fleet-rolled 2026-07-16.)

@@ -21,7 +21,10 @@ yarn typecheck    # tsc --noEmit
 ## Structure
 
 ```
-docs/                 Markdown content (routeBasePath '/')
+content/              Published markdown content (routeBasePath '/')
+changelog/            Release notes (blog plugin; generates the RSS feed)
+docs/                 Internal only — MANUAL-TASKS.md; NOT published
+src/data/             Generated module + plan data the reference pages render from
   intro.md
   getting-started/
   modules/

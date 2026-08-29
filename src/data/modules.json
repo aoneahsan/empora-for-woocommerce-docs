@@ -1,0 +1,799 @@
+{
+  "$schema": "Derived, public-safe snapshot. Do not hand-edit.",
+  "source": "Generated from the Empora plugin module manifest and plan catalog. Regenerate whenever either changes; never hand-edit.",
+  "manifestVersion": 1,
+  "manifestGeneratedAt": "2026-08-29",
+  "categories": {
+    "discovery": "Storefront & Discovery",
+    "pricing": "Pricing & Promotions",
+    "checkout": "Cart, Checkout & Orders",
+    "catalog": "Product Configuration",
+    "shipping": "Shipping & Fulfilment",
+    "marketing": "Marketing & Loyalty",
+    "ops": "Inventory & Operations",
+    "integrations": "Integrations & Payments"
+  },
+  "moduleCount": 78,
+  "modules": [
+    {
+      "key": "abandoned_cart",
+      "entitlement": "abandoned_cart",
+      "title": "Abandoned Cart Recovery",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "checkout",
+      "adminTab": "abandoned-cart",
+      "available": true
+    },
+    {
+      "key": "inventory",
+      "entitlement": "inventory",
+      "title": "Advanced Inventory Management",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "ops",
+      "adminTab": "inventory",
+      "available": false
+    },
+    {
+      "key": "filters-advanced",
+      "entitlement": "filters-advanced",
+      "title": "Advanced Product Filters",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "reporting",
+      "entitlement": "reporting",
+      "title": "Advanced Reports & Analytics",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "ops",
+      "adminTab": "reporting",
+      "available": true
+    },
+    {
+      "key": "advanced_shipping",
+      "entitlement": "advanced_shipping",
+      "title": "Advanced Shipping Rules",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "shipping",
+      "adminTab": "advanced-shipping",
+      "available": true
+    },
+    {
+      "key": "tax-advanced",
+      "entitlement": "tax-advanced",
+      "title": "Advanced Tax Calculator",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "ops",
+      "adminTab": "tax",
+      "available": true
+    },
+    {
+      "key": "affiliates-advanced",
+      "entitlement": "affiliates-advanced",
+      "title": "Affiliates (Advanced)",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": "affiliates",
+      "available": true
+    },
+    {
+      "key": "search",
+      "entitlement": "search",
+      "title": "AJAX Live Search",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": "search",
+      "available": true
+    },
+    {
+      "key": "auctions",
+      "entitlement": "auctions",
+      "title": "Auctions",
+      "tier": "premium",
+      "plan": "business",
+      "category": "pricing",
+      "adminTab": "auctions",
+      "available": true
+    },
+    {
+      "key": "stock_alerts",
+      "entitlement": "stock_alerts",
+      "title": "Back-in-Stock Notifications",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "ops",
+      "adminTab": "stock-alerts",
+      "available": true
+    },
+    {
+      "key": "barcode",
+      "entitlement": "barcode",
+      "title": "Barcode & SKU Management",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "ops",
+      "adminTab": "barcode",
+      "available": true
+    },
+    {
+      "key": "bookings",
+      "entitlement": "bookings",
+      "title": "Bookings & Rentals",
+      "tier": "premium",
+      "plan": "business",
+      "category": "catalog",
+      "adminTab": "bookings",
+      "available": true
+    },
+    {
+      "key": "bulk_edit",
+      "entitlement": "bulk_edit",
+      "title": "Bulk Edit Products",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "ops",
+      "adminTab": "bulk-edit",
+      "available": true
+    },
+    {
+      "key": "catalog_mode",
+      "entitlement": "catalog_mode",
+      "title": "Catalog Mode & Quote Request",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "pricing",
+      "adminTab": "catalog-mode",
+      "available": true
+    },
+    {
+      "key": "composites-advanced",
+      "entitlement": "composites-advanced",
+      "title": "Composite Products (Advanced)",
+      "tier": "premium",
+      "plan": "business",
+      "category": "catalog",
+      "adminTab": "composite",
+      "available": true
+    },
+    {
+      "key": "shipping-rules",
+      "entitlement": "shipping-rules",
+      "title": "Conditional Shipping Rules",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "shipping",
+      "adminTab": "shipping-rules",
+      "available": true
+    },
+    {
+      "key": "checkout",
+      "entitlement": "checkout",
+      "title": "Custom Checkout Fields",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "checkout",
+      "adminTab": "checkout",
+      "available": true
+    },
+    {
+      "key": "custom-fields",
+      "entitlement": "custom-fields",
+      "title": "Custom Product Fields",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "catalog",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "delivery",
+      "entitlement": "delivery",
+      "title": "Delivery Date & Time Slots",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "checkout",
+      "adminTab": "delivery",
+      "available": true
+    },
+    {
+      "key": "digital_downloads",
+      "entitlement": "digital_downloads",
+      "title": "Digital Downloads Enhanced",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "catalog",
+      "adminTab": "downloads",
+      "available": true
+    },
+    {
+      "key": "dropshipping",
+      "entitlement": "dropshipping",
+      "title": "Dropshipping Automation",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "shipping",
+      "adminTab": "dropshipping",
+      "available": true
+    },
+    {
+      "key": "dynamic_pricing",
+      "entitlement": "dynamic_pricing",
+      "title": "Dynamic Pricing",
+      "tier": "free",
+      "plan": "free",
+      "category": "pricing",
+      "adminTab": "dynamic-pricing",
+      "available": true
+    },
+    {
+      "key": "dynamic-pricing-rules",
+      "entitlement": "dynamic-pricing-rules",
+      "title": "Dynamic Pricing Rules",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "pricing",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "email_automation",
+      "entitlement": "email_automation",
+      "title": "Email & Automations",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": "email-automation",
+      "available": true
+    },
+    {
+      "key": "variations-enhanced",
+      "entitlement": "variations-enhanced",
+      "title": "Enhanced Product Variations",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "catalog",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "gift_cards",
+      "entitlement": "vouchers",
+      "title": "Gift Cards & Store Credit",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": "gift-cards",
+      "available": true
+    },
+    {
+      "key": "gift-cards-advanced",
+      "entitlement": "gift-cards-advanced",
+      "title": "Gift Cards & Vouchers",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "google_listings_ads",
+      "entitlement": "google_listings_ads",
+      "title": "Google Listings & Ads",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "integrations",
+      "adminTab": "google-listings-ads",
+      "available": true
+    },
+    {
+      "key": "google-shopping-feed",
+      "entitlement": "google-shopping-feed",
+      "title": "Google Shopping Feed",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "integrations",
+      "adminTab": "google-shopping-feed",
+      "available": true
+    },
+    {
+      "key": "instagram-shop-advanced",
+      "entitlement": "instagram-shop-advanced",
+      "title": "Instagram Shop Integration (Advanced)",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "integrations",
+      "adminTab": "instagram",
+      "available": true
+    },
+    {
+      "key": "klaviyo",
+      "entitlement": "klaviyo",
+      "title": "Klaviyo Integration",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "integrations",
+      "adminTab": "klaviyo",
+      "available": true
+    },
+    {
+      "key": "livechat",
+      "entitlement": "livechat",
+      "title": "Live Chat & Customer Support",
+      "tier": "premium",
+      "plan": "business",
+      "category": "integrations",
+      "adminTab": "livechat",
+      "available": false
+    },
+    {
+      "key": "membership",
+      "entitlement": "membership",
+      "title": "Membership & Access Control",
+      "tier": "premium",
+      "plan": "business",
+      "category": "catalog",
+      "adminTab": "membership",
+      "available": true
+    },
+    {
+      "key": "quantity-rules",
+      "entitlement": "quantity-rules",
+      "title": "Min/Max Quantity Rules",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "pricing",
+      "adminTab": "quantity-rules",
+      "available": true
+    },
+    {
+      "key": "multi_currency",
+      "entitlement": "multi_currency",
+      "title": "Multi-Currency",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "pricing",
+      "adminTab": "multi-currency",
+      "available": true
+    },
+    {
+      "key": "multi-step-checkout",
+      "entitlement": "multi-step-checkout",
+      "title": "Multi-Step Checkout",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "checkout",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "payments_hub",
+      "entitlement": "payments_hub",
+      "title": "Payments Hub",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "integrations",
+      "adminTab": "payments-hub",
+      "available": true
+    },
+    {
+      "key": "invoicing",
+      "entitlement": "invoicing",
+      "title": "PDF Invoices & Packing Slips",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "checkout",
+      "adminTab": "invoicing",
+      "available": true
+    },
+    {
+      "key": "popups",
+      "entitlement": "popups",
+      "title": "Popups & Exit-Intent Builder",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": "popups",
+      "available": true
+    },
+    {
+      "key": "pre-orders-advanced",
+      "entitlement": "pre-orders-advanced",
+      "title": "Pre-Orders (Advanced)",
+      "tier": "premium",
+      "plan": "business",
+      "category": "checkout",
+      "adminTab": "pre-orders",
+      "available": true
+    },
+    {
+      "key": "addons",
+      "entitlement": "addons",
+      "title": "Product Add-Ons",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "catalog",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "badges",
+      "entitlement": "badges",
+      "title": "Product Badges & Labels",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": "badges",
+      "available": true
+    },
+    {
+      "key": "bundles",
+      "entitlement": "bundles",
+      "title": "Product Bundles",
+      "tier": "premium",
+      "plan": "business",
+      "category": "catalog",
+      "adminTab": "bundles",
+      "available": true
+    },
+    {
+      "key": "bundles-enhanced",
+      "entitlement": "bundles-enhanced",
+      "title": "Product Bundles (Enhanced)",
+      "tier": "premium",
+      "plan": "business",
+      "category": "catalog",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "compare",
+      "entitlement": "compare",
+      "title": "Product Compare",
+      "tier": "free",
+      "plan": "free",
+      "category": "discovery",
+      "adminTab": "compare",
+      "available": true
+    },
+    {
+      "key": "product_filters",
+      "entitlement": "product_filters",
+      "title": "Product Filters",
+      "tier": "free",
+      "plan": "free",
+      "category": "discovery",
+      "adminTab": "product-filters",
+      "available": true
+    },
+    {
+      "key": "gallery",
+      "entitlement": "gallery",
+      "title": "Product Gallery",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": "gallery",
+      "available": true
+    },
+    {
+      "key": "import_export",
+      "entitlement": "import_export",
+      "title": "Product Import/Export",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "ops",
+      "adminTab": "import-export",
+      "available": true
+    },
+    {
+      "key": "product_options",
+      "entitlement": "product_options",
+      "title": "Product Options",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "catalog",
+      "adminTab": "product-options",
+      "available": true
+    },
+    {
+      "key": "qa",
+      "entitlement": "qa",
+      "title": "Product Questions & Answers",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": "product-qa",
+      "available": true
+    },
+    {
+      "key": "recommendations",
+      "entitlement": "recommendations",
+      "title": "Product Recommendations",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "rentals",
+      "entitlement": "rentals",
+      "title": "Product Rentals",
+      "tier": "premium",
+      "plan": "business",
+      "category": "catalog",
+      "adminTab": "rentals",
+      "available": true
+    },
+    {
+      "key": "waitlist",
+      "entitlement": "waitlist",
+      "title": "Product Waitlist",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "ops",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "recently-viewed",
+      "entitlement": "recently-viewed",
+      "title": "Recently Viewed Products",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": "recently-viewed",
+      "available": true
+    },
+    {
+      "key": "referral-program",
+      "entitlement": "referral-program",
+      "title": "Referral Program",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": "referrals",
+      "available": true
+    },
+    {
+      "key": "quotes",
+      "entitlement": "quotes",
+      "title": "Request a Quote",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "pricing",
+      "adminTab": "quotes",
+      "available": true
+    },
+    {
+      "key": "returns-advanced",
+      "entitlement": "returns-advanced",
+      "title": "Returns & Refunds (Advanced)",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "checkout",
+      "adminTab": "rma",
+      "available": true
+    },
+    {
+      "key": "reviews",
+      "entitlement": "reviews",
+      "title": "Reviews Enhancement",
+      "tier": "free",
+      "plan": "free",
+      "category": "discovery",
+      "adminTab": "reviews",
+      "available": true
+    },
+    {
+      "key": "rewards_points",
+      "entitlement": "rewards_points",
+      "title": "Rewards & Points",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": "rewards-points",
+      "available": true
+    },
+    {
+      "key": "upsells",
+      "entitlement": "upsells",
+      "title": "Sales Funnels & Upsells",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": "upsells",
+      "available": true
+    },
+    {
+      "key": "seo",
+      "entitlement": "seo",
+      "title": "SEO & Schema Markup",
+      "tier": "free",
+      "plan": "free",
+      "category": "discovery",
+      "adminTab": "seo",
+      "available": true
+    },
+    {
+      "key": "shipment_tracking",
+      "entitlement": "shipment_tracking",
+      "title": "Shipment Tracking",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "shipping",
+      "adminTab": "shipment-tracking",
+      "available": true
+    },
+    {
+      "key": "size-guide",
+      "entitlement": "size-guide",
+      "title": "Size Guide & Measurement",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": "size-guide",
+      "available": true
+    },
+    {
+      "key": "smart-coupons-advanced",
+      "entitlement": "smart-coupons-advanced",
+      "title": "Smart Coupons Advanced",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": "smart-coupons",
+      "available": true
+    },
+    {
+      "key": "smart-search",
+      "entitlement": "smart-search",
+      "title": "Smart Product Search",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "discovery",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "sms-advanced",
+      "entitlement": "sms-advanced",
+      "title": "SMS Marketing & Notifications",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "marketing",
+      "adminTab": "sms",
+      "available": true
+    },
+    {
+      "key": "social_login",
+      "entitlement": "social_login",
+      "title": "Social Login",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "marketing",
+      "adminTab": "social-login",
+      "available": true
+    },
+    {
+      "key": "social-advanced",
+      "entitlement": "social-advanced",
+      "title": "Social Media Integration (Advanced)",
+      "tier": "free",
+      "plan": "free",
+      "category": "marketing",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "square",
+      "entitlement": "square",
+      "title": "Square Payments + Sync",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "integrations",
+      "adminTab": "square",
+      "available": true
+    },
+    {
+      "key": "store_credit",
+      "entitlement": "store_credit",
+      "title": "Store Credit & Wallet",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": "store-credit",
+      "available": false
+    },
+    {
+      "key": "store_locator",
+      "entitlement": "store_locator",
+      "title": "Store Locator",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "ops",
+      "adminTab": "store-locator",
+      "available": true
+    },
+    {
+      "key": "subscriptions",
+      "entitlement": "subscriptions",
+      "title": "Subscriptions",
+      "tier": "premium",
+      "plan": "business",
+      "category": "catalog",
+      "adminTab": "subscriptions",
+      "available": true
+    },
+    {
+      "key": "table-rate-shipping",
+      "entitlement": "table-rate-shipping",
+      "title": "Table Rate Shipping",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "shipping",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "vendor_management",
+      "entitlement": "vendor_management",
+      "title": "Vendor Management",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "ops",
+      "adminTab": "vendors",
+      "available": true
+    },
+    {
+      "key": "wallet",
+      "entitlement": "wallet",
+      "title": "Wallet / Store Credit",
+      "tier": "premium",
+      "plan": "business",
+      "category": "marketing",
+      "adminTab": null,
+      "available": true
+    },
+    {
+      "key": "whatsapp-advanced",
+      "entitlement": "whatsapp-advanced",
+      "title": "WhatsApp Cloud Messaging",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "marketing",
+      "adminTab": "whatsapp",
+      "available": true
+    },
+    {
+      "key": "wholesale",
+      "entitlement": "wholesale",
+      "title": "Wholesale",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "pricing",
+      "adminTab": "wholesale",
+      "available": true
+    },
+    {
+      "key": "wishlist",
+      "entitlement": "wishlist",
+      "title": "Wishlist",
+      "tier": "free",
+      "plan": "free",
+      "category": "discovery",
+      "adminTab": "wishlist",
+      "available": true
+    }
+  ]
+}

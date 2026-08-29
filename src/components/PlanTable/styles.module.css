@@ -1,0 +1,19 @@
+.wrap {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.table {
+  display: table;
+  width: 100%;
+  min-width: 40rem;
+}
+
+.table th[scope='row'] {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table td {
+  text-align: center;
+}

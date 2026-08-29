@@ -15,7 +15,16 @@ sidebar_position: 1
 
 Empora is organised as independent **modules**. Each module is a self-contained feature you enable or disable on its own from **Empora → Modules**. Free-core modules work without a license; premium modules require an active license whose plan includes them.
 
-This page is the catalogue. For how enabling works, see [Configuring modules](/modules/configuring-modules).
+This page is a tour by area. The **[module reference](/modules/reference)** is the authoritative list — all 78
+modules, searchable, generated from the plugin's own manifest, showing which plan each belongs to and whether
+it ships in 1.0. For how enabling works, see [Configuring modules](/modules/configuring-modules).
+
+:::note Three modules do not ship in 1.0
+`inventory` (Advanced Inventory Management), `livechat` (Live Chat & Customer Support) and `store_credit`
+(Store Credit & Wallet) appear in the areas below because they are part of the catalogue, but they cannot be
+enabled in version 1.0. The separate `wallet` module, which also provides a spendable account balance, is
+available.
+:::
 
 ## Free core
 

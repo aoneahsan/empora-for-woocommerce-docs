@@ -13,7 +13,7 @@
 # the corresponding provider is skipped entirely, so the build never depends on
 # one. NO secret is ever committed to this repo — it is public.
 #
-# Owner-only setup (docs/MANUAL-TASKS.md): the Hostinger DNS CNAME record
+# Owner-only setup (recorded in the internal manual-tasks file): the DNS CNAME record
 # pointing this docs subdomain at aoneahsan.github.io, and repo
 # Settings → Pages → custom domain + Enforce HTTPS.
 # ──────────────────────────────────────────────────────────────────────────
