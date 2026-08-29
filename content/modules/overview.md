@@ -52,7 +52,7 @@ Bundles, Composite products, Product Options, Variations (enhanced), Galleries, 
 
 ### Pricing & promotions
 
-Advanced Dynamic Pricing rules, Quantity Rules, Smart Coupons, Store Credit, Wallet, Rewards Points, Gift Cards, Wholesale, Bundle pricing.
+Advanced Dynamic Pricing rules, Quantity Rules, Smart Coupons, Wallet, Rewards Points, Gift Cards, Wholesale, Bundle pricing. (Store Credit is in the catalogue but does not register in 1.0 — see below.)
 
 ### Conversion & retention
 

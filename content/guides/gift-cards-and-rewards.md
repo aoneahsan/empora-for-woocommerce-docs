@@ -1,11 +1,11 @@
 ---
 id: gift-cards-and-rewards
 title: Gift Cards & Rewards
-description: Set up Empora's premium Gift Cards, Rewards Points, and Store Credit / Wallet modules for WooCommerce to drive loyalty and repeat purchases.
+description: Set up Empora's premium Gift Cards, Rewards Points and Wallet modules for WooCommerce to drive loyalty and repeat purchases.
 keywords:
   - woocommerce gift cards
   - woocommerce rewards points
-  - woocommerce store credit
+  - woocommerce customer wallet
   - woocommerce loyalty
 sidebar_position: 4
 ---
@@ -34,22 +34,24 @@ Points-based loyalty: customers earn points for actions (purchases, reviews, sig
 
 Tune earn/redeem rates so the program is attractive but margin-safe. Start conservative; you can always increase generosity.
 
-## Store Credit / Wallet
+## Wallet
 
-An account balance customers can top up and spend.
+An account balance customers can top up and spend. The **Wallet** module lets customers
+pre-load funds, see the balance in their account, and spend it at checkout.
 
-- **Store Credit** is often issued for returns/refunds (pairs with the **Returns/RMA** module).
-- **Wallet** lets customers pre-load funds and check out faster.
-
-Enable the one that matches your model; both surface a balance in the customer account and apply at checkout.
-
+:::note Store Credit is not available in 1.0
+The separate **Store Credit** module is in the catalogue but does not register in this release,
+so there is nothing to enable and no setting to configure — see the [note on version 1.0](/intro).
+Where this guide previously asked you to choose between Store Credit and Wallet, **Wallet is the
+one that ships**; it covers the same ground, including a balance issued for a return.
+:::
 ## Combining them
 
 A mature loyalty stack:
 
 - **Rewards Points** for everyday earning.
 - **Gift Cards** for gifting and acquisition.
-- **Store Credit/Wallet** for returns and pre-paid balances.
+- **Wallet** for returns and pre-paid balances.
 - **Email Automation** to remind customers of their balances and points.
 
 ## Related

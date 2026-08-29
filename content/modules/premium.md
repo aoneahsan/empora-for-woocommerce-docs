@@ -81,7 +81,7 @@ Extended analytics beyond WooCommerce's defaults: orders-by-day, top products, r
 |---|---|
 | **Gift Cards** | Sell and redeem store gift cards. |
 | **Rewards Points** | Points-based loyalty. |
-| **Wallet / Store Credit** (`wallet`) | Account balance customers can spend. |
+| **Wallet** (`wallet`) | Account balance customers can top up and spend at checkout. The separate `store_credit` module does not register in 1.0; Wallet is the one that ships. |
 | **Smart Coupons** | Advanced coupon logic. |
 | **Waitlist / Stock Alerts** | Back-in-stock notifications. |
 | **Abandoned Cart** | Recover incomplete checkouts. |
