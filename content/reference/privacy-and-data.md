@@ -29,8 +29,9 @@ Customer personal data, order details, your product catalogue, and store setting
 ## 2. File / media uploads (premium features only)
 
 - **Endpoint:** `https://fileshub.zaions.com`
-- **What:** FilesHub, a file-storage and transactional-email service operated by Zaions, used to hold
-  media a premium module generates or that an admin uploads.
+- **What:** FilesHub — a **sister product operated by Zaions**, the same organisation that
+  publishes Empora, not a third-party vendor. It holds media a premium module generates or that
+  an admin uploads, and sends the plugin transactional email.
 - **When:** only when an admin uses a feature that uploads media — PDF invoices, gift-card images, or
   import/export attachments. Nothing is uploaded in the free core, and nothing is uploaded in the
   background.
