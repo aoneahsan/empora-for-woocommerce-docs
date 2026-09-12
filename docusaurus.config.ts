@@ -166,6 +166,88 @@ const config: Config = {
 
   plugins: [
     /**
+     * Module-reference parity.
+     *
+     * Every module in the manifest must have a reference page, and every
+     * reference page must correspond to a module in the manifest. The two
+     * drift silently otherwise: a module added to the plugin gets no page,
+     * and a page whose module was renamed becomes unreachable from the
+     * generated table while still being built and indexed.
+     *
+     * This runs in `loadContent`, so `yarn build` fails before anything is
+     * rendered. It needs no test runner: the docs site has no test
+     * infrastructure, and adding one for a single filesystem assertion would
+     * cost more than it returns.
+     *
+     * The slug rule is the one already used by the 78 pages: the manifest key
+     * with underscores replaced by hyphens.
+     */
+    function moduleReferenceParityPlugin() {
+      return {
+        name: 'module-reference-parity',
+        async loadContent() {
+          const fs = await import('node:fs/promises');
+          const path = await import('node:path');
+
+          const manifestPath = path.resolve('./src/data/modules.json');
+          const referenceDir = path.resolve('./content/modules/reference');
+
+          const manifest = JSON.parse(await fs.readFile(manifestPath, 'utf8')) as {
+            modules: { key: string }[];
+          };
+
+          const slugFor = (key: string): string => key.replace(/_/g, '-');
+
+          const expected = new Map<string, string>(); // slug -> module key
+          for (const mod of manifest.modules) {
+            expected.set(slugFor(mod.key), mod.key);
+          }
+
+          const present = new Set(
+            (await fs.readdir(referenceDir))
+              .filter((f) => f.endsWith('.md'))
+              .map((f) => f.replace(/\.md$/, '')),
+          );
+
+          const missingPages: string[] = [];
+          for (const [slug, key] of expected) {
+            if (!present.has(slug)) {
+              missingPages.push(`${key} -> content/modules/reference/${slug}.md`);
+            }
+          }
+
+          const orphanPages: string[] = [];
+          for (const slug of present) {
+            if (!expected.has(slug)) {
+              orphanPages.push(`content/modules/reference/${slug}.md`);
+            }
+          }
+
+          if (missingPages.length > 0 || orphanPages.length > 0) {
+            const lines = [
+              'module-reference-parity: the module manifest and the reference pages disagree.',
+              `  manifest modules: ${expected.size}`,
+              `  reference pages:  ${present.size}`,
+            ];
+            if (missingPages.length > 0) {
+              lines.push(
+                `  ${missingPages.length} module(s) with no reference page:`,
+                ...missingPages.map((m) => `    - ${m}`),
+              );
+            }
+            if (orphanPages.length > 0) {
+              lines.push(
+                `  ${orphanPages.length} reference page(s) with no module in the manifest:`,
+                ...orphanPages.map((m) => `    - ${m}`),
+              );
+            }
+            throw new Error(lines.join('\n'));
+          }
+        },
+      };
+    },
+
+    /**
      * Docusaurus's feed generator omits `<atom:link rel="self">`, which RSS
      * validators require and which is the element most feeds are missing. It is
      * a channel-level element with no config hook, so it is injected into the
