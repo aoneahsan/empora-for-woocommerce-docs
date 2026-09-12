@@ -16,17 +16,16 @@ This is the documentation site (https://empora-docs.aoneahsan.com). Product site
 - Version 1.0 ships with NO payment provider, so there is no self-serve checkout. The paid plans are real and
   the software enforces their limits, but a plan is arranged by contacting the author. The product does have
   paid tiers; the purchase path is simply not open yet.
-- Three of the 78 modules do not register in 1.0 and cannot be enabled: `inventory`, `livechat`, `store_credit`.
-  The other 75 are available.
+- All 78 modules register in 1.0 and can be switched on. Which ones a site may enable is decided by its plan.
 - Installation is by uploading the plugin ZIP; there is no WordPress.org listing yet.
 
 ## Plans
 
 Five tiers. Each includes every module in the tiers below it.
 
-- Free — $0/month, 1 site, 7 modules. Caps: 100 products, 500 orders, 100 customers, no import/export.
-- Starter — $19/month, 1 site, 27 modules. Caps: 300 products, 1,500 orders, 300 customers, no import/export.
-- Professional — $49/month, 1 site, 48 modules. Caps: 1,000 products, 5,000 orders, 10 imports + 10 exports/month.
+- Free — $0/month, 1 site, 7 modules. Unlimited products, orders and customers; no import/export.
+- Starter — $19/month, 1 site, 27 modules. Unlimited products, orders and customers; no import/export.
+- Professional — $49/month, 1 site, 48 modules. Unlimited products, orders and customers; 10 imports + 10 exports/month.
 - Business — $99/month, 3 sites, 68 modules. Unlimited products, orders and customers; 100 imports + exports/month.
 - Enterprise — $299/month, unlimited sites, all 78 modules, unlimited everything.
 

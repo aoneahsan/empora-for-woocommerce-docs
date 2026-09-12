@@ -23,7 +23,7 @@ const config: Config = {
   projectName: 'empora-for-woocommerce-docs',
 
   onBrokenLinks: 'throw',
-  onBrokenAnchors: 'warn',
+  onBrokenAnchors: 'throw',
 
   // SEO + AI-citability head tags injected into <head> of every page.
   headTags: [

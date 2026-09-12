@@ -14,4 +14,4 @@ Product: https://empora.aoneahsan.com
 
 /* SITE */
 Built with: Docusaurus 3, React, TypeScript
-Hosting: Firebase Hosting + GitHub Pages
+Hosting: GitHub Pages

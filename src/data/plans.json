@@ -13,9 +13,9 @@
       "maxSites": 1,
       "moduleCount": 7,
       "limits": {
-        "maxProducts": 100,
-        "maxOrders": 500,
-        "maxCustomers": 100,
+        "maxProducts": -1,
+        "maxOrders": -1,
+        "maxCustomers": -1,
         "maxExportsPerMonth": 0,
         "maxImportsPerMonth": 0
       }
@@ -28,9 +28,9 @@
       "maxSites": 1,
       "moduleCount": 27,
       "limits": {
-        "maxProducts": 300,
-        "maxOrders": 1500,
-        "maxCustomers": 300,
+        "maxProducts": -1,
+        "maxOrders": -1,
+        "maxCustomers": -1,
         "maxExportsPerMonth": 0,
         "maxImportsPerMonth": 0
       }
@@ -43,9 +43,9 @@
       "maxSites": 1,
       "moduleCount": 48,
       "limits": {
-        "maxProducts": 1000,
-        "maxOrders": 5000,
-        "maxCustomers": 1000,
+        "maxProducts": -1,
+        "maxOrders": -1,
+        "maxCustomers": -1,
         "maxExportsPerMonth": 10,
         "maxImportsPerMonth": 10
       }

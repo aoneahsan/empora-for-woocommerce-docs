@@ -122,7 +122,7 @@ All three are Action Scheduler recurring actions in the `aiowc` group, scheduled
 
 ## Entitlement limits
 
-The entitlement is a single on/off grant: without `abandoned_cart` the module cannot be enabled, and while it is absent none of the above loads. The licence carries no per-record quota for this module — cart, email and coupon volumes are bounded only by the settings above.
+The entitlement is a single on/off grant: without `abandoned_cart` the module stays locked, and while it is absent none of the above loads. The licence carries no per-record quota for this module — cart, email and coupon volumes are bounded only by the settings above.
 
 ## Health check
 

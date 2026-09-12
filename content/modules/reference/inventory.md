@@ -1,55 +1,40 @@
 ---
 id: inventory
 title: "Advanced Inventory Management"
-description: "Multi-location stock, transfers and an audit log. This module is in the catalogue but does not register in 1.0 and cannot be enabled."
+description: "Count stock per location rather than per product, move it between locations with tracked transfers, and keep an audit log of every change."
 keywords:
   - woocommerce multi location stock
   - inventory transfers
   - stock audit log
-  - not in 1.0
+  - low stock alerts
 format: md
 ---
-:::warning This module does not ship in 1.0
-`inventory` (Advanced Inventory Management) is part of the catalogue but does not run in 1.0: it is
-not registered, so it cannot be enabled and nothing described below is active on a live site. The
-page records what the code is written to do, so the module can be assessed and finished. See the
-[module reference](/modules/reference).
-:::
+## Overview
 
-## Not available in this release
+Advanced Inventory Management counts stock per location rather than only per product. A store holding stock in
+more than one place — a shop and a warehouse, several branches — gets a stock figure per location, transfers
+that move stock between them with their own lifecycle, an audit log recording every change with its reason,
+and a daily low-stock alert email.
 
-**This module does not load.** The canonical module manifest marks it `register: false` with the status `unregistered`, so bootstrap never instantiates the module class. Nothing described on this page is active on a live site:
+It is a premium module. Enable it from **Empora → Modules** once your license includes `inventory`; enabling
+it creates its three tables and seeds its settings.
 
-- No REST routes are registered, so every `/aiowc/v1/inventory/...` request returns a 404.
-- No WooCommerce hooks are attached, so stock changes and order transitions are not recorded.
-- No background jobs are scheduled.
-- The database tables are never created, because the code that creates them runs when the module is enabled and the module cannot be enabled.
-- It does not appear on the Modules screen, so there is no switch to turn it on.
+## Availability
 
-The plugin's admin navigation still carries an **Inventory** tab under **Operations**, and that screen renders its five sub-tabs. Every request those tabs make will fail while the module is unregistered. This is recorded in the manifest as a known issue: "advertised (admin page) but never registered".
+| Item            | Value                                                 |
+| --------------- | ----------------------------------------------------- |
+| Module key      | `inventory`                                           |
+| Tier            | Premium                                               |
+| Entitlement key | `inventory`                                           |
+| Admin tab       | `inventory`, under **Operations**                     |
+| Enabled option  | `aiowc_module_enabled_inventory` (off until enabled)  |
+| REST namespace  | `aiowc/v1`                                            |
 
-The rest of this page describes what the code in `includes/Modules/Inventory/` is written to do, so the module can be assessed and finished. Read it as a description of unreleased code, not as a setup guide.
+## Settings
 
-## Intended purpose
-
-Multi-location stock: stock counted per location rather than only per product, transfers of stock between locations with their own lifecycle, an audit log of every change with its reason, and a low-stock alert email.
-
-It is aimed at stores holding stock in more than one place — a shop and a warehouse, several branches — where WooCommerce's single stock figure per product is not enough.
-
-## Manifest row
-
-| Item            | Value                                                      |
-| --------------- | ---------------------------------------------------------- |
-| Module key      | `inventory`                                                |
-| Tier            | Premium                                                    |
-| Entitlement key | `inventory`                                                |
-| Admin tab       | `inventory`, under **Operations**                          |
-| Registered      | **No** — `register: false`, `status: "unregistered"`       |
-| REST namespace  | `aiowc/v1` (declared in code, never registered at runtime) |
-
-## Settings the code defines
-
-Intended to live in the bundled option row `aiowc_iv_settings`, with a rename step from an older prefix and a lazy migration on first read.
+Stored in the bundled option row `aiowc_iv_settings`. The prefix was renamed from an older one that collided
+with the Invoicing module's storage; existing installs have their per-key options copied across on the first
+request after upgrade.
 
 | Stored key                | Default          | Meaning                                                                |
 | ------------------------- | ---------------- | ---------------------------------------------------------------------- |
@@ -64,13 +49,13 @@ Intended to live in the bundled option row `aiowc_iv_settings`, with a rename st
 | `enable_auto_sync`        | `true`           | Let the sync job run.                                                  |
 | `sync_interval`           | `hourly`         | `hourly`, `twicedaily` or `daily`; anything else falls back to hourly. |
 
-## Admin screen the code ships
+## Admin screen
 
-The **Inventory** tab holds five sub-tabs, with the active one held in the URL: **Overview**, **Locations**, **Audit Logs**, **Transfers** and **Settings**. All five are built and wired to the routes below — they are simply calling routes that do not exist while the module is unregistered.
+The **Inventory** tab holds five sub-tabs, with the active one held in the URL: **Overview**, **Locations**, **Audit Logs**, **Transfers** and **Settings**. All five call the routes below.
 
-## REST routes the code declares
+## REST API endpoints
 
-Declared in `InventoryRest` and listed in the REST contract file, but never registered at runtime. Each is gated on `manage_woocommerce`. Unlike the shared permission callback used elsewhere in the plugin, this module's check verifies the capability alone and does not verify a REST nonce for cookie-authenticated requests. These routes also return their payload directly rather than wrapped in the shared response envelope.
+Registered by `InventoryRest` on `rest_api_init` and listed in the REST contract file. Each is gated on the shared `manage_woocommerce` permission check, which also verifies the REST nonce on cookie-authenticated requests. Unlike most of the plugin, these routes return their payload directly rather than wrapped in the shared response envelope — see [Known gaps](#known-gaps).
 
 | Method | Path                                       | Purpose                                                                                                     | Required args                                                  |
 | ------ | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -95,9 +80,9 @@ Declared in `InventoryRest` and listed in the REST contract file, but never regi
 
 A transfer moves through `pending`, `in_transit`, `completed` and `cancelled`; only a pending or in-transit transfer may be cancelled.
 
-## WooCommerce hooks the code declares
+## WooCommerce integration
 
-None of these are attached while the module is unregistered.
+Attached by `registerHooks()` when the module is enabled and the license grants it.
 
 | Hook                                                                    | Intent                                               |
 | ----------------------------------------------------------------------- | ---------------------------------------------------- |
@@ -111,7 +96,9 @@ None of these are attached while the module is unregistered.
 | `manage_product_posts_columns` and `manage_product_posts_custom_column` | Add a stock column to the products list.             |
 | `wp_enqueue_scripts`                                                    | Load the stock display assets.                       |
 
-## Tables the code would create
+## Database schema
+
+Created by `Schema/DatabaseSchema.php` when the module is enabled.
 
 | Table                               | Holds                                                                         |
 | ----------------------------------- | ----------------------------------------------------------------------------- |
@@ -119,7 +106,9 @@ None of these are attached while the module is unregistered.
 | `{prefix}aiowc_inventory_logs`      | Stock changes with product, location, change type and reason.                 |
 | `{prefix}aiowc_inventory_transfers` | Transfers between locations with their status.                                |
 
-## Background jobs the code declares
+## Background jobs
+
+Registered when the module is enabled and unscheduled when it is disabled.
 
 | Hook                               | Schedule             | Intent                                                                                                                        |
 | ---------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -129,8 +118,10 @@ None of these are attached while the module is unregistered.
 
 ## Entitlement limits
 
-`inventory` is a premium entitlement, but the gate is not what is stopping the module: it is unregistered in the manifest, so the entitlement is never consulted. Nothing in the code applies a licence-side quota to locations, transfers or log rows.
+The entitlement is a single on/off grant: without `inventory` the module stays locked, and while it is absent none of the above loads. Nothing in the code applies a license-side quota to locations, transfers or log rows.
 
-## What would be needed to release it
+## Known gaps
 
-Flipping `register` to `true` in the manifest is the mechanical part. Before that is worth doing, the routes need the same nonce verification the rest of the plugin's manage routes use, and the module needs the end-to-end check its admin screen has never been able to run.
+The module's REST routes answer with the payload alone, where the rest of the plugin wraps a response in a shared envelope. A client reading these endpoints should expect the bare body.
+
+Disabling the module unschedules its jobs but leaves its three tables and their rows in place, so stock history survives a module being switched off and on again.

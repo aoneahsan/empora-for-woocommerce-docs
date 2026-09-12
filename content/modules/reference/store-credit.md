@@ -1,62 +1,79 @@
 ---
 id: store-credit
 title: "Store Credit & Wallet"
-description: "A customer credit balance. This module is in the catalogue but does not register in 1.0 and cannot be enabled; the Wallet module ships instead."
+description: "A balance the store issues — goodwill, compensation or a returns credit — with a ledger recording the balance each movement produced, spent at checkout before the customer's own wallet money."
 keywords:
   - woocommerce store credit
   - customer balance
-  - not in 1.0
-  - wallet alternative
+  - credit ledger
+  - goodwill credit
 format: md
 ---
-:::warning This module does not ship in 1.0
-`store_credit` (Store Credit & Wallet) is part of the catalogue but does not run in 1.0: it is not
-registered, so it cannot be enabled and nothing described below is active on a live site. The
-separate [Wallet](/modules/reference/wallet) module covers the same ground and is available. See the
-[module reference](/modules/reference).
+## Overview
+
+Store Credit holds a per-customer balance the **store** issued: goodwill, compensation, a promotion, or the
+value of a return. Beside it sits an append-only transaction ledger. Credit is added or deducted through one
+service that writes the transaction and the resulting balance together, so every movement carries the balance
+it produced.
+
+It is a premium module. Enable it from **Empora → Modules** once your license includes `store_credit`;
+enabling it creates its two tables, writes the default settings and schedules the expiry job.
+
+## Availability
+
+| Item            | Value                                                   |
+| --------------- | ------------------------------------------------------- |
+| Module key      | `store_credit`                                          |
+| Tier            | Premium                                                 |
+| Entitlement key | `store_credit`                                          |
+| Admin tab       | `store-credit`, under **Pricing & Promotions**          |
+| Enabled option  | `aiowc_module_enabled_store_credit` (off until enabled) |
+| REST namespace  | `aiowc/v1`                                              |
+
+## Store Credit and Wallet are two ledgers
+
+Both modules ship, and a store can run either or both.
+
+- **Wallet** holds money the **customer** paid in — a top-up they made themselves.
+- **Store Credit** holds value the **store** issued. The shopper never paid for it.
+
+They keep their own tables and their own ledgers, because they are not the same money and an accountant needs
+to tell them apart. What they share is the moment of spending: checkout shows the customer **one combined
+balance**, and the order needs one decision about where the money came from.
+
+:::note Issued credit is spent first
+When a customer pays with their balance, Store Credit is drawn down before Wallet. Issued credit is the
+store's own liability and often carries an expiry; wallet money is the customer's and does not. Spending the
+customer's own money while issued credit sits expiring would be the wrong way round.
 :::
 
-## Not available in this release
+Partial application is a normal outcome, not a failure: a customer with 5.00 of credit against a 30.00 order
+pays the remaining 25.00 by the usual method. Neither ledger can go below zero — each debit is capped at that
+ledger's own balance.
 
-**This module does not load.** Its manifest row carries `register: false` and `status: "unregistered"`, so `ModuleRegistry::registerFromManifest()` skips it: the class is never constructed, `registerHooks()` is never called, and nothing it contains reaches a running site.
+Because either module may be switched off, every balance read is guarded twice: the module must be present
+**and** enabled. A missing ledger contributes zero rather than failing. See
+[Wallet](/modules/reference/wallet) for the other half.
 
-In practice that means:
+## What the module does
 
-- Its REST routes are **not registered**. Every path under `/aiowc/v1/store-credit/` answers `404` on a live install.
-- Its front-end hooks do not run — no balance banner, no My Account page, no checkout credit option.
-- Its tables are never created, because `onEnable()` is unreachable.
-- It cannot be switched on from the Modules screen, because it is not in the registry to be switched on.
+`StoreCreditService` implements: read a wallet, read a balance, add credit, deduct credit, apply credit to an
+order, refund credit against an order, an administrator adjustment recorded with the acting admin's id,
+expiry processing, transaction history, and a checkout calculation that works out how much of an order total
+the customer's credit may cover.
 
-The **Store Credit** admin tab is still present in the admin app and still calls those routes, which is the defect the August audit recorded as _"advertised (admin page) but never registered"_. Opening the tab produces request failures rather than data.
+## Settings
 
-**Use the [Wallet](/modules/reference/wallet) module instead.** It is registered, it covers the same ground — a per-customer balance, top-ups, spending at checkout, expiry — and it is what the release ships for stored value.
+Stored in the bundled option row `aiowc_storecredit_settings` and written when the module is enabled: a
+checkout switch, a minimum amount to apply, a maximum percentage of an order that credit may cover, account
+and header display switches, an expiry window in days, partial payment, a balance email, and whether a
+negative balance is allowed.
 
-Everything below describes code that exists in the repository. It is a record of what the module would do if it were registered, not a description of behaviour available today, and it is deliberately not written as a setup guide.
+## REST API endpoints
 
-## Manifest row
+Registered by `StoreCreditRest::register_routes()` on `rest_api_init`. The customer routes read the signed-in customer's own balance; the rest require an administrator.
 
-| Item            | Value                                              |
-| --------------- | -------------------------------------------------- |
-| Module key      | `store_credit`                                     |
-| Tier            | Premium                                            |
-| Entitlement key | `store_credit`                                     |
-| Registers       | **No** — `register: false`, `status: unregistered` |
-| Admin tab       | `store-credit`, under **Pricing & Promotions**     |
-| Recorded issue  | "advertised (admin page) but never registered"     |
-
-## What the code would do
-
-The module holds a per-customer credit balance and an append-only transaction ledger beside it. Credit is added or deducted through a service that writes the transaction and the resulting balance together, so every movement carries the balance it produced.
-
-`StoreCreditService` implements: read a wallet, read a balance, add credit, deduct credit, apply credit to an order, refund credit against an order, an administrator adjustment recorded with the acting admin's id, expiry processing, transaction history, and a checkout calculation that works out how much of an order total the customer's credit may cover.
-
-Settings exist in the source as a `DEFAULTS` array — a checkout switch, a minimum amount to apply, a maximum percentage of an order that credit may cover, account and header display switches, an expiry window in days, partial payment, a balance email, and whether a negative balance is allowed. None of them are written anywhere today, because the code that seeds them does not run.
-
-## Routes that exist in the source but are not served
-
-These are declared by `StoreCreditRest::register_routes()`. They are listed for completeness; on a running site they are not reachable.
-
-| Method             | Path                                | Would do                                               |
+| Method             | Path                                | Purpose                                                |
 | ------------------ | ----------------------------------- | ------------------------------------------------------ |
 | GET                | `/store-credit/wallet`              | The signed-in customer's balance.                      |
 | GET                | `/store-credit/transactions`        | The signed-in customer's ledger.                       |
@@ -71,21 +88,33 @@ These are declared by `StoreCreditRest::register_routes()`. They are listed for 
 | GET                | `/store-credit/settings`            | Read the settings.                                     |
 | PUT / PATCH / POST | `/store-credit/settings`            | Update the settings.                                   |
 
-## Tables that would be created
+## Database schema
 
-| Table                               | Would hold                                                                                 |
+Created by `Schema/DatabaseSchema.php` when the module is enabled.
+
+| Table                               | Holds                                                                                      |
 | ----------------------------------- | ------------------------------------------------------------------------------------------ |
 | `{prefix}aiowc_store_credit`        | One row per customer: balance, lifetime credit and debit, currency, active flag.           |
 | `{prefix}aiowc_credit_transactions` | Every movement: amount, type, reference, resulting balance, description, admin id, expiry. |
 
-Neither table is created on a current install.
+## WooCommerce integration
 
-## Front-end integration that would apply
+`CreditDisplayHandler` adds a balance banner to the cart and checkout, a **Store Credit** page in My Account, a credit option in the checkout order review, the balance in order emails, and the credit used on the order details page. Each group is behind its own display setting.
 
-`CreditDisplayHandler` would add a balance banner to the cart and checkout, a **Store Credit** page in My Account, a credit option in the checkout order review, the balance in order emails, and the credit used on the order details page. `CreditExpiryJob` (`aiowc_store_credit_expiry`) would expire credit on a schedule.
+| Hook                                          | Adds                                   |
+| --------------------------------------------- | -------------------------------------- |
+| `woocommerce_before_cart`                     | Balance banner on the cart             |
+| `woocommerce_before_checkout_form`            | Balance banner on checkout             |
+| `woocommerce_account_menu_items`              | **Store Credit** entry in My Account   |
+| `woocommerce_account_store-credit_endpoint`   | The My Account credit page             |
+| `woocommerce_review_order_before_payment`     | The credit option in the order review  |
+| `woocommerce_email_order_meta`                | Credit used, in order emails           |
+| `woocommerce_order_details_after_order_table` | Credit used, on the order details page |
 
-None of these hooks are attached today.
+## Background jobs
 
-## Relationship to Wallet
+`CreditExpiryJob` (`aiowc_store_credit_expiry`) expires credit on a schedule, and is unscheduled when the module is disabled.
 
-[Wallet](/modules/reference/wallet) is the registered module covering stored value in this release. The two overlap heavily — both keep a per-customer balance with a transaction ledger, apply it at checkout and expire it on a schedule — and only Wallet actually loads. Nothing migrates data between them, because Store Credit has never written any.
+## Entitlement limits
+
+The entitlement is a single on/off grant: without `store_credit` the module stays locked, and while it is absent none of the above loads. No per-customer or per-balance quota is applied by the license.

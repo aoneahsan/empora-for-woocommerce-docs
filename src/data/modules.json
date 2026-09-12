@@ -2,7 +2,7 @@
   "$schema": "Derived, public-safe snapshot. Do not hand-edit.",
   "source": "Generated from the Empora plugin module manifest and plan catalog. Regenerate whenever either changes; never hand-edit.",
   "manifestVersion": 1,
-  "manifestGeneratedAt": "2026-08-29",
+  "manifestGeneratedAt": "2026-08-31",
   "categories": {
     "discovery": "Storefront & Discovery",
     "pricing": "Pricing & Promotions",
@@ -33,7 +33,7 @@
       "plan": "professional",
       "category": "ops",
       "adminTab": "inventory",
-      "available": false
+      "available": true
     },
     {
       "key": "filters-advanced",
@@ -333,7 +333,7 @@
       "plan": "business",
       "category": "integrations",
       "adminTab": "livechat",
-      "available": false
+      "available": true
     },
     {
       "key": "membership",
@@ -713,7 +713,7 @@
       "plan": "business",
       "category": "marketing",
       "adminTab": "store-credit",
-      "available": false
+      "available": true
     },
     {
       "key": "store_locator",

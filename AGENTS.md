@@ -1,8 +1,8 @@
 # AGENTS.md — Empora for WooCommerce Docs
 
-Last updated: 2026-08-30
+Last updated: 2026-09-12
 
-Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo is the SEPARATE, **PUBLIC** docs repo for the (private) app repo `aoneahsan/all-in-one-woocommerce`.
+Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo is the SEPARATE, **PUBLIC** docs repo; the product itself lives in a separate private repository, which is never named here.
 
 ## What this is
 
@@ -15,8 +15,12 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
 - `src/data/*.json` is generated from the product repo's module manifest and plan catalog; the module
   reference and pricing tables render from it. Never hand-edit those files or type a module or price into
   a page — regenerate instead, or the docs and the software drift.
-- Live domain: `empora-docs.aoneahsan.com`. Product: `empora.aoneahsan.com`. Plugin: WordPress.org.
-- Dual-hosting: `firebase.json` + `.firebaserc` (Firebase project `empora-for-woocommerce-docs`) AND `.github/workflows/deploy-pages.yml` (GitHub Pages). `static/CNAME` = `empora-docs.aoneahsan.com`. Pick ONE live host.
+- Live domain: `empora-docs.aoneahsan.com`. Product: `empora.aoneahsan.com`. The plugin is not published on
+  WordPress.org yet — do not link a listing that does not exist.
+- 🔴 **Hosting is GitHub Pages, and only GitHub Pages.** `.github/workflows/deploy-pages.yml` builds and
+  deploys on every push to `main`; `static/CNAME` = `empora-docs.aoneahsan.com` pins the domain. There is no
+  Firebase project, no `firebase.json` and no `.firebaserc` — a docs site never gets one. Do not add a second
+  host.
 
 ## Rules
 
@@ -33,9 +37,14 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
 - **PUBLIC repo — NO secrets.** Never commit `.env`, keys, tokens, or service accounts. `.gitignore` ignores env files; keep it that way.
 - Local installs use **yarn** only (never npm/pnpm). `yarn.lock` is the only lock file.
 - **Never run dev/preview servers** as a task side effect; verify with one-shot `yarn build` + `yarn typecheck`.
-- Content must be **accurate to the real plugin** — free core (7 modules) vs premium (license-gated); HPOS-compatible; WP 6.0+, WooCommerce 8.0+, PHP 8.1+. No fabricated features, stats, or claims.
+- Content must be **accurate to the real plugin** — 78 modules, all of which register and can be enabled;
+  free core (7 modules) vs premium (71, license-gated); HPOS-compatible; WP 6.2+, WooCommerce 8.0+, PHP 8.1+.
+  No fabricated features, stats, or claims. Never state or imply that a module in the manifest cannot be
+  enabled.
 - SEO floor must stay intact: robots.txt AI-bot allowlist, sitemap.xml, llms.txt, per-page meta/OG, JSON-LD. Keep `lastmod` fresh.
-- Deploy is **USER-ONLY** (needs Firebase project / Pages enablement + DNS).
+- **Pushing `main` here is pre-authorised** — this is an ordinary public docs site for an own product, so it
+  is committed and pushed without asking. The push triggers the Pages deploy; there is no separate deploy
+  step. DNS and the Pages custom-domain setting remain owner-only and belong in `docs/MANUAL-TASKS.md`.
 
 ## Verify
 
@@ -73,7 +82,8 @@ proceeding skill-less. (Owner directive 2026-07-11; full text in `~/.claude/CLAU
 2. **Skills always:** before any task, scan the available-skills list and invoke EVERY relevant skill; if a needed
    skill is missing, download/enable/install it (or use the nearest installed equivalent and say so) — never
    proceed skill-less.
-3. **Model workflow:** PLAN and REVIEW on **Fable 5**; EXECUTE the approved plan on **Opus 4.8**. Plans in
+3. **Model workflow:** the planning/execution split and the minimum model version are defined once, globally
+   — follow `~/.claude/rules/01-authorizations.md` rather than any version pinned in this file. Plans live in
    `~/.claude/plans/`; multi-phase features keep a resumable tracker (`docs/features/<slug>/00-tracker.json`),
    resumed rather than re-planned from zero.
 

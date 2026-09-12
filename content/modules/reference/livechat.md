@@ -1,58 +1,36 @@
 ---
 id: livechat
 title: "Live Chat & Customer Support"
-description: "Support conversations handled inside WordPress. This module is in the catalogue but does not register in 1.0 and cannot be enabled."
+description: "Handle support conversations inside WordPress: a storefront chat widget, an agent roster, session assignment and transfer, and message polling with no external service."
 keywords:
   - woocommerce live chat
   - customer support
   - support conversations
-  - not in 1.0
+  - chat agents
 format: md
 ---
-:::warning This module does not ship in 1.0
-`livechat` (Live Chat & Customer Support) is part of the catalogue but does not run in 1.0: it is
-not registered, so it cannot be enabled and nothing described below is active on a live site. The
-page records what the code is written to do, so the module can be assessed and finished. See the
-[module reference](/modules/reference).
-:::
+## Overview
+
+Live Chat handles customer support conversations inside WordPress rather than through a third-party chat
+service. Visitors open a chat from a storefront widget; staff answer it from the plugin's admin screen.
+Messages are delivered by polling, not by a websocket, so no external realtime service is involved and
+nothing about a conversation leaves the site.
+
+It is a premium module. Enable it from **Empora → Modules** once your license includes `livechat`; enabling
+it creates its three tables and writes the default settings.
 
 ## Availability
 
-The plugin's module manifest declares this module with `register: false` and
-`status: "unregistered"`. `ModuleRegistry::registerFromManifest()` skips every manifest row whose
-`register` flag is falsy, so `LiveChatModule` is never instantiated. Nothing downstream of that runs:
+| Item            | Value                                                |
+| --------------- | ---------------------------------------------------- |
+| Module key      | `livechat`                                           |
+| Tier            | Premium                                              |
+| Entitlement key | `livechat`                                           |
+| Admin tab       | `livechat`, under **Operations**                     |
+| Enabled option  | `aiowc_module_enabled_livechat` (off until enabled)  |
+| REST namespace  | `aiowc/v1`                                           |
 
-- `registerHooks()` is never called, so no REST route in the `aiowc/v1/livechat/*` namespace is registered
-  and every request to one returns a 404.
-- The chat widget is never printed on the storefront, because the `wp_footer` hook is never added.
-- The two Action Scheduler jobs are never scheduled.
-- `activate()` never runs, so the three database tables are never created.
-- `registerSettings()` never runs, so the `aiowc_lc_*` options are never registered and never receive
-  their defaults.
-
-The plugin's admin navigation still lists a **Live Chat** tab, under the _Operations_ group in the admin app. That screen is built and calls the REST endpoints below, so it
-loads against a namespace that does not exist. This is recorded in the manifest as
-`advertised (admin page) but never registered`.
-
-The rest of this page describes what the code would do if the module were registered. Treat it as a
-description of unshipped work, not as a setup guide — the steps cannot be followed in this release.
-
-## Goal
-
-Handle customer support conversations inside WordPress rather than through a third-party chat service.
-Visitors open a chat from a storefront widget; staff answer it from the plugin's admin screen. Messages
-are delivered by polling, not by a websocket, so no external realtime service is involved.
-
-## Tier and entitlement
-
-| Field           | Value      |
-| --------------- | ---------- |
-| Tier            | Premium    |
-| Entitlement key | `livechat` |
-| Admin tab       | `livechat` |
-| Module key      | `livechat` |
-
-## Intended features
+## What it does
 
 Taken from the module class and its services:
 
@@ -96,10 +74,8 @@ Enablement is separate from these settings: like every module, Live Chat reads
 
 ## Admin screen
 
-Admin tab `livechat`. The screen carries
-four tabs — a live console for pending and accepted sessions, History, Agents and Settings — and calls
-the endpoints below. Because the module does not register, those
-calls have no server side in this release.
+Admin tab `livechat`. The screen carries four tabs — a live console for pending and accepted sessions,
+History, Agents and Settings — and calls the endpoints below.
 
 ## Database schema
 
@@ -114,8 +90,8 @@ version option. Three tables, each carrying the WordPress table prefix:
 
 ## REST endpoints
 
-Namespace `aiowc/v1`. Taken from the plugin's REST contract file. All of these return a bare
-response body rather than the shared envelope. **None of them are reachable in this release.**
+Namespace `aiowc/v1`. Taken from the plugin's REST contract file. All of these return a bare response body
+rather than the shared envelope, so a client reading them should expect the payload alone.
 
 ### Visitor endpoints
 

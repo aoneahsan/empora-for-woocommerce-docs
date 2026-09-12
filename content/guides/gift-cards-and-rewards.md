@@ -39,11 +39,10 @@ Tune earn/redeem rates so the program is attractive but margin-safe. Start conse
 An account balance customers can top up and spend. The **Wallet** module lets customers
 pre-load funds, see the balance in their account, and spend it at checkout.
 
-:::note Store Credit is not available in 1.0
-The separate **Store Credit** module is in the catalogue but does not register in this release,
-so there is nothing to enable and no setting to configure — see the [note on version 1.0](/intro).
-Where this guide previously asked you to choose between Store Credit and Wallet, **Wallet is the
-one that ships**; it covers the same ground, including a balance issued for a return.
+:::note Wallet and Store Credit are two ledgers
+**Wallet** holds money the customer paid in. The separate **Store Credit** module holds value the
+store issued — goodwill, compensation, a returns credit. Both ship, and checkout shows one combined
+balance, spending the issued credit first. See [Store Credit](/modules/reference/store-credit).
 :::
 ## Combining them
 

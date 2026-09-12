@@ -40,23 +40,26 @@ Hooks register only when `aiowc_module_enabled_referral-program` is true and the
 5. The daily rewards job issues rewards for eligible referrals, subject to `min_order_total` and
    `require_approval`.
 
-## Rewards — what is and is not wired
+## Rewards — how a payout is delivered
 
-`Service/RewardService.php` writes a reward row, marks the referral `paid`, and then fires an action for
-the payout:
+`Service/RewardService.php` writes a reward row, attempts delivery, and moves the reward to `issued` and the
+referral to `paid` **only when a listener confirms the reward actually landed**. Each reward type fires an
+action for third-party listeners, then reads a filter that reports whether delivery succeeded:
 
-| `reward_type`  | Action fired                   | Listener in the plugin |
-| -------------- | ------------------------------ | ---------------------- |
-| `store_credit` | `aiowc_award_store_credit`     | **None**               |
-| `coupon`       | `aiowc_create_coupon_for_user` | **None**               |
-| `cash`         | No action is fired             | —                      |
+| `reward_type`  | Action fired                   | Delivery filter                          | Answered by                           |
+| -------------- | ------------------------------ | ---------------------------------------- | ------------------------------------- |
+| `store_credit` | `aiowc_award_store_credit`     | `aiowc_referral_store_credit_delivered`  | The **Wallet** module, when enabled   |
+| `coupon`       | `aiowc_create_coupon_for_user` | `aiowc_referral_coupon_delivered`        | The Referral Program module itself    |
+| `cash`         | No action is fired             | —                                        | Nothing — see below                   |
 
-Nothing in this release listens to either action, and the Store Credit module is not registered. The
-consequence is concrete: the reward is recorded in the plugin's own table and the referral is marked
-paid, but no store credit is granted and no coupon is created. A site can supply its own listener for
-either action; without one, the payout is a record only.
+A `store_credit` reward is credited to the customer's wallet, so it needs the Wallet module enabled. With
+Wallet switched off nothing answers the filter, delivery is not confirmed, and the reward stays `pending`
+rather than being marked paid. A site can supply its own listener for either filter.
 
-`redeemReward()` likewise only moves a reward row from `issued` to `redeemed`.
+`cash` is deliberately absent: there is no automated payout, so the reward stays `pending` and the referral
+stays where it was until a human records the payment.
+
+`redeemReward()` only moves a reward row from `issued` to `redeemed`.
 
 ## Settings
 

@@ -49,8 +49,8 @@ You only ever install the **plugin**. The site and API are hosted services that 
 
 Empora 1.0 ships **without a payment provider**, so there is no online checkout yet. The plans are real and
 the software enforces their limits, but buying one is arranged by [contacting the author](/support) rather
-than paying on the site. Three of the 78 modules — `inventory`, `livechat` and `store_credit` — are in the
-catalogue but do not run in 1.0; they are marked as such in the [module reference](/modules/reference).
+than paying on the site. All 78 modules register and can be switched on in 1.0; which of them your license
+unlocks is decided by your plan, and every one is listed in the [module reference](/modules/reference).
 
 The free core is unaffected by any of that: seven modules, no license, no account, no payment.
 

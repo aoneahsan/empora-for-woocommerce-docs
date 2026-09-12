@@ -15,7 +15,7 @@ The Wallet module gives every customer a balance they can top up, spend at check
 
 A customer tops up by paying a WooCommerce order the module creates for the purpose; when that order completes, the credit lands. At checkout they can tick a box to pay with their balance, and a refund can optionally be returned as credit rather than to the original payment method.
 
-It is for stores running prepaid balances, deposit schemes or goodwill credit. It is the registered module for stored value in this release — the separate [Store Credit](/modules/reference/store-credit) module is present in the repository but does not load.
+It is for stores running prepaid balances or deposit schemes. Wallet holds money the customer paid in; the separate [Store Credit](/modules/reference/store-credit) module holds value the store issued, such as goodwill or a returns credit. Both ship, they keep separate ledgers, and checkout shows one combined balance — spending the issued credit first.
 
 ## Availability
 

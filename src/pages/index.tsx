@@ -100,7 +100,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title} — the complete WooCommerce toolkit`}
-      description="Documentation for Empora for WooCommerce: install the free plugin, activate a premium license, and configure 90+ modules covering filters, reviews, wishlist, shipping, payments, gift cards, subscriptions, and more."
+      description="Documentation for Empora for WooCommerce: install the free plugin, activate a premium license, and configure 78 modules covering filters, reviews, wishlist, shipping, payments, gift cards, subscriptions, and more."
     >
       <HomepageHeader />
       <main>

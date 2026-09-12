@@ -16,7 +16,7 @@ describe the same thing when it ships.
 
 ## What 1.0.0 contains
 
-**78 modules**, each independently switchable, of which 75 register and are usable in this version.
+**78 modules**, each independently switchable, all of which register and are usable in this version.
 Seven of them are the free core and need no license: Product Filters, Reviews Enhancement, Wishlist,
 Product Compare, Social Media Integration, SEO & Schema Markup, and Dynamic Pricing. The rest are
 unlocked by a plan. The full list, with the plan each module belongs to, is the
@@ -38,8 +38,6 @@ Being specific about this matters more than the feature list:
 
 - **No self-serve purchase.** No payment provider ships in 1.0, so there is no checkout. Paid plans are
   arranged by [contacting the author](/support). The plans themselves are real and enforced.
-- **Three modules do not register:** `inventory`, `livechat` and `store_credit`. They are in the catalogue
-  and marked **Not in 1.0** in the module reference. They cannot be enabled in this version.
 - **No WordPress.org listing yet.** Installation is by uploading the plugin ZIP — see
   [Installation](/getting-started/installation).
 

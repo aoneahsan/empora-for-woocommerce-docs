@@ -38,7 +38,7 @@ You install only the **plugin**. The **web app** and **API** are hosted services
 
 The plugin (`empora-for-woocommerce`) is organised around a **module registry**:
 
-- Each feature lives in its own module directory under `includes/Modules/` (90+ modules).
+- Each feature lives in its own module directory under `includes/Modules/` (78 modules).
 - A module implements a common interface (`ModuleInterface` / `AbstractModule`) and is registered with the `ModuleRegistry`.
 - Enabling a module (from the Modules grid) registers its hooks, REST routes, and front-end behaviour; disabling it unregisters them — cleanly, without deleting data.
 - Settings for every module are stored behind one option (`aiowc_module_settings`).

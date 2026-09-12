@@ -4,8 +4,7 @@ Public documentation site for **Empora for WooCommerce** (formerly All-In-One Wo
 
 - **Live docs:** https://empora-docs.aoneahsan.com
 - **Product site:** https://empora.aoneahsan.com
-- **Free plugin:** https://wordpress.org/plugins/empora-for-woocommerce/
-- **App source (private):** github.com/aoneahsan/all-in-one-woocommerce
+- **Free plugin:** not published on WordPress.org yet — version 1.0 is installed by uploading the plugin ZIP.
 
 ## Local development
 
@@ -37,18 +36,14 @@ docusaurus.config.ts  Site config + SEO/JSON-LD head tags
 sidebars.ts           Sidebar layout
 ```
 
-## Deployment (dual-hosting — USER-ONLY)
+## Deployment
 
-This repo ships **two** ready hosting configs targeting `empora-docs.aoneahsan.com` (see `static/CNAME`). Make **one** live and point DNS at it.
+**GitHub Pages, and nothing else.** `.github/workflows/deploy-pages.yml` builds the site and deploys it on
+every push to `main`; `static/CNAME` pins `empora-docs.aoneahsan.com`. There is no separate deploy command
+to run — pushing `main` is the deploy.
 
-1. **Firebase Hosting** — `firebase.json` + `.firebaserc` (project `empora-for-woocommerce-docs`):
-   ```bash
-   yarn build
-   npx -y firebase-tools@latest deploy --only hosting --project empora-for-woocommerce-docs
-   ```
-2. **GitHub Pages** — `.github/workflows/deploy-pages.yml`. Enable in repo **Settings → Pages → Source: GitHub Actions**; it builds and deploys on push to `main`.
-
-Both are user-only steps (need a Firebase project / Pages enablement + DNS). The agent writes the config; the human deploys.
+One-time repository settings, and the DNS record behind the custom domain, are the maintainer's to set:
+**Settings → Pages → Source: GitHub Actions**, then the CNAME record in DNS.
 
 ## SEO
 
