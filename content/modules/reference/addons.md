@@ -152,6 +152,17 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- **`allow_file_upload` hides the field; it does not close the route.** The upload endpoint does not consult the setting, so a request posted directly to `/addons/upload` is still accepted with the setting off. The route is not open — a signed-in caller needs a valid nonce and a signed-out one passes the public write check — but the setting is a storefront control rather than a server-side gate.
 - There is no bulk action on the add-on list; add-ons are created, edited and deleted one at a time.
+- The add-on REST routes are registered whether or not `enable_addons` is on, so the two public read
+  routes (`for-product`, `calculate-price`) still answer when the module's own switch is off. The admin
+  routes must stay registered for the switch to be turnable back on; the public pair answering is an
+  inconsistency rather than an exposure, since they read add-on definitions and nothing private.
 - The cleanup job's 7-day retention is a constant in the job, not a setting.
+
+## Changed on 2026-09-13
+
+This page previously recorded that **`allow_file_upload` hid the field without closing the route**, so a
+request posted directly to `/addons/upload` was accepted with the setting off. The setting is now checked
+in the route's permission callback, which refuses with `addon_upload_disabled` before any file is read or
+stored — so it fails closed, and hiding the input is no longer the only thing standing between the
+setting and an upload.

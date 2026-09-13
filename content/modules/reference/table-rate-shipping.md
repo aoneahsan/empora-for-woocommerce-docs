@@ -71,17 +71,21 @@ Each band row belongs to one table rate:
 
 ## CSV import
 
-`POST /shipping/import-rates` takes a CSV body and replaces the bands for one table rate.
+`POST /shipping/import-rates` takes a CSV body and **adds and updates** the bands for one table rate. It deletes nothing unless `replace_existing` is sent true.
 
-The **first row is always skipped**, whatever it contains — the importer treats it as a header without checking it, so a file whose first line is real data loses that line. Columns are read **by position**, not by name, in this order:
+**A header row is detected from its own contents, not assumed.** A row counts as a header when at least one cell names a known column *and* no cell is numeric — the second condition is what protects a real band, since `min`, `max` and `cost` always hold numbers. When a header is present, columns are mapped **by name**, so reordering them is safe and an unrecognised column is ignored without shifting the others. Common aliases are accepted (`min_value`, `per_item_cost`, `country_code`, `zip`), so the module's own column names round-trip.
+
+With no header, columns are read by position in this order:
 
 ```text
 min, max, cost, per_item, country, state, postcode, label
 ```
 
-An empty cell becomes an empty value rather than a zero, except `cost` and `per_item`, which fall back to `0`. Blank lines are skipped. The import is validated before anything is written: if any row fails validation the whole import is rejected, reporting `imported_count: 0` and one error per bad row with its line number.
+An empty cell becomes an empty value rather than a zero, except `cost` and `per_item`, which fall back to `0`. Blank lines are skipped. A header carrying no cost column is refused rather than importing zeroes.
 
-🔴 **A successful import replaces every band on that table rate.** The write deletes all existing rows for the rate first and then inserts the file's rows, so importing a partial CSV discards the bands it does not contain. Import the complete card, not a correction to it.
+**Valid rows import; invalid rows are reported and skipped**, each error naming its line in the file, and counted in `skipped_count`. The response also carries `updated_count`, `header_detected` and `replaced`.
+
+🔴 **`replace_existing: true` deletes every existing band on that rate first.** That is how the admin editor saves a whole card, and it is available to the import, but it is no longer what an import does by omission. One safety rule applies to it: **a replace over a file containing any invalid row writes nothing at all**, because applying the readable half would delete the bands the damaged half was meant to carry.
 
 ## Admin screen
 
@@ -138,7 +142,15 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- **The CSV header row is skipped unconditionally**, so a file that starts with data rather than a header silently loses its first row. There is no header validation and no warning.
-- CSV columns are matched by position, so a file whose columns are in a different order imports wrong values without complaint, provided each one passes validation for the field it landed in.
-- An import replaces every band on the rate rather than merging, and there is no confirmation step and no undo.
 - There is no export, so a rate card that was imported cannot be downloaded back out.
+- A `replace_existing` import still has no confirmation step and no undo. It is opt-in rather than the default, which is the safeguard; there is no second one.
+
+## Changed on 2026-09-13
+
+Three CSV-import behaviours this page previously recorded are fixed. All three could corrupt or destroy a
+merchant's rate card without reporting anything:
+
+- **The first row is no longer skipped unconditionally.** A header is detected from its contents, so a file starting with real data keeps that row instead of silently losing it.
+- **Columns are mapped by name when a header is present**, so a reordered file no longer imports each value into the wrong field while passing validation.
+- 🔴 **An import no longer replaces every band by default.** It adds and updates; deleting the card requires `replace_existing: true` explicitly. Importing a partial CSV used to discard every band it did not contain.
+- A bad row no longer rejects the whole file: valid rows import and each invalid row is reported with its line number.

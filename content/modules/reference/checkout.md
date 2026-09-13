@@ -146,4 +146,15 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 - No layout is active by default, so the layout feature does nothing until one is explicitly chosen — which is easy to read as the feature not working.
 - There is no filter for field types or validation rules, so anything the module does not already implement requires modifying it.
 - **Deleting a field deletes the values collected under it**, including those belonging to completed orders, so what a past customer entered is lost with the definition. There is no confirmation of that consequence and no export first.
-- **Deleting an order does not remove its checkout field values.** The repository has a delete-by-order method, but nothing calls it and the cleanup job only removes values orphaned by a deleted *field*, so values belonging to deleted orders accumulate indefinitely. That is worth knowing where a data-retention policy applies.
+- Trashing an order does **not** remove its checkout field values; permanently deleting it does. That is
+  deliberate — a trashed order can be restored, and these values cannot be recovered once deleted, so
+  removing them on trash would destroy data the store still believes it has. Emptying the trash deletes
+  them.
+
+## Changed on 2026-09-13
+
+This page previously recorded that **deleting an order did not remove its checkout field values** — the
+repository had a delete-by-order method with no caller, and the cleanup job only removed values orphaned
+by a deleted *field*, which is a different question. Permanent order deletion now removes them, for
+orders in `wp_posts` and orders in the HPOS tables alike. It is named rather than silently dropped
+because this page published it, and because it changes what a data-retention answer should say.

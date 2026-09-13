@@ -142,7 +142,8 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- 🔴 **The Content API access token is stored as an ordinary module setting**, in the same options row as the feed name and the default brand, and read back as a plain string. The sibling [Google Listings & Ads](/modules/reference/google-listings-ads) module keeps its OAuth tokens in a dedicated **encrypted** store. If a store is going to hold a Google API credential in WordPress, that module's handling is the safer of the two.
+- The Content API access token is **encrypted at rest** (AES-256-GCM, keyed from the site's `AUTH_KEY`) and is never returned by a settings read — it answers as an `access_token_set` boolean instead. A token written by an earlier build in the clear is migrated to the encrypted form the first time it is read. A token that cannot be decrypted, because the site was re-keyed, is refused rather than used: sync reports missing credentials instead of sending a corrupt bearer token.
+- 🔴 The encryption is keyed from `AUTH_KEY`. **Changing that constant makes the stored token unreadable** and it must be pasted in again.
 - There is no OAuth flow here: `access_token` has to be obtained elsewhere and pasted in, and nothing refreshes it — so API sync stops when the token expires, and the failure appears as a sync error rather than as an expiry notice.
 - **A second, overlapping module also pushes products to Google** — [Google Listings & Ads](/modules/reference/google-listings-ads). Running both means two sets of product mappings and two sync schedules against the same Merchant Center account. A store should pick one.
 - No feed or sync events are fired, so failures are only visible by reading the logs.

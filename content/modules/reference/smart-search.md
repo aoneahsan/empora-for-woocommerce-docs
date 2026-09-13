@@ -92,8 +92,10 @@ All routes are on `aiowc/v1` and answer with the `{ success, data, message }` en
 | POST   | `/smart-search/suggestions`       | Add a suggestion (`text`).                        | `manage_woocommerce` | `text`        |
 | DELETE | `/smart-search/suggestions/{id}`  | Remove a suggestion.                              | `manage_woocommerce` | `id`          |
 | GET    | `/smart-search/analytics`         | Queries, counts and click-through.                | `manage_woocommerce` | –             |
+| GET    | `/smart-search/settings`          | The nine settings above.                          | `manage_woocommerce` | –             |
+| PATCH  | `/smart-search/settings`          | Update any subset of them.                        | `manage_woocommerce` | –             |
 
-There is no settings route. The module's nine settings are not readable or writable over REST — unlike most modules here, which expose a `/settings` pair.
+The settings pair was added on 2026-09-13; before that the nine settings could not be read or written over REST at all. A write updates only the keys it sends, and values are clamped to their documented bounds — `max_suggestions` to 50, `autocomplete_delay` to a floor of 50 ms — so an out-of-range value is corrected rather than rejected. Sending an empty `input_selector` restores the default rather than storing a selector that would match nothing.
 
 ## WooCommerce integration
 
@@ -145,8 +147,13 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- **`input_selector` must match the theme's search input, and nothing verifies that it does.** With the wrong selector the module attaches to nothing and autocomplete simply never appears, with no error anywhere — the most likely reason this module looks like it is not working.
-- **The nine settings have no REST route**, so they cannot be read or written programmatically the way other modules' settings can.
+- The nine settings are reachable over REST at `GET`/`PATCH /smart-search/settings`, but **no admin screen edits them yet** — they are set programmatically or left at their defaults.
 - **Two search modules ship and both maintain their own data.** This one and [AJAX Live Search](/modules/reference/search) each keep a separate query log and rebuild job. Running both indexes the catalogue twice and splits the record of what customers searched for. A store should pick one — and the other module additionally offers synonyms, click tracking and an index-weight column.
 - **Three modules hook `pre_get_posts` to change the product query** — this one, [Product Filters](/modules/reference/product-filters) and [Advanced Product Filters](/modules/reference/filters-advanced). Running more than one means several modules rewriting the same query.
 - Search queries are stored with a session id and, for signed-in customers, a user id, retained 90 days by default. That belongs in the store's privacy notice.
+
+## Changed on 2026-09-13
+
+- 🔴 **Autocomplete never worked on any theme, for a reason this page did not name.** The frontend was pointed at `aiowc/v1/search/autocomplete` and `.../search/results`, and neither route exists — this module registers `/smart-search/autocomplete` and `/smart-search/results`. Every request 404'd regardless of the theme or the selector. That is now fixed, and it, rather than `input_selector`, is the likely reason the module looked dead.
+- **`input_selector` no longer fails silently.** There is a documented fallback chain, and a console warning naming which case applied — invalid CSS, a fallback substituted, or nothing matched at all. The warning is shown only to `WP_DEBUG` sites and users who can manage WooCommerce, so it reaches whoever can fix it and never a shopper. Every fallback requires `name="s"`, the WordPress search query var, so the chain cannot bind to an unrelated input.
+- **The nine settings gained a REST route.** They previously had none and could not be read or written programmatically at all.

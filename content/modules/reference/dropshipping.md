@@ -151,7 +151,8 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- 🔴 **Supplier API keys and secrets are stored as plain columns** in the suppliers table, alongside the supplier's address and phone number. Anyone with database access, a database backup, or an export of that table has those credentials. Treat supplier API credentials as you would any other production secret when planning backups and access.
+- Supplier API keys and secrets are **encrypted at rest** (AES-256-GCM, keyed from the site's `AUTH_KEY`). They are never returned by the REST API — a supplier reads back as `api_key_set` / `api_secret_set` booleans instead — and submitting a blank value keeps the stored one rather than wiping it. A credential that cannot be decrypted, because the site was re-keyed or the row was tampered with, is refused rather than used, and the supplier reports as having no API integration.
+- 🔴 The encryption is keyed from `AUTH_KEY`. **Changing that constant makes every stored supplier credential unreadable**, and they must be re-entered. That is the same trade the license credential already makes, and it is the reason a site's salts should be treated as part of its backup rather than rotated casually.
 - **No marketplace integration ships.** The module is generic supplier management: there is no AliExpress, Spocket or CJ importer, and no product import at all. Products are created in WooCommerce as usual and then mapped to a supplier.
 - **Customer data is sent to suppliers** when an order is forwarded — a shipping address at minimum, since the supplier posts the parcel. That is a transfer of personal data to a third party and belongs in the store's privacy notice.
 - No lifecycle hooks are fired, so an integration cannot observe forwarding or tracking without polling the tables.

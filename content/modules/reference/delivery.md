@@ -143,9 +143,27 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- 🔴 **The slot generator never runs.** `SlotGeneratorJob` is a complete job — it would create a default set of slot templates for each configured delivery day, and delete past blackout dates — and the module registers a listener for its hook, but nothing ever schedules it. Enabling the module schedules only the cleanup and reminder jobs. In practice this means **a store must create its slot templates by hand**, through the admin screen or the REST routes, before any delivery date can be offered. The settings `slot_duration_minutes` and `max_orders_per_slot` exist to feed that generator, so they have no effect until slots are created manually, where their values are typed in directly instead.
-- Because past blackout dates are deleted only by that same unscheduled job, old blackout rows are never cleaned up.
-- **`lead_days` and `max_days_ahead` shape the calendar but are not re-checked on submission.** A selection is accepted as long as the date is not in the past and the slot has capacity, so a date inside the lead time or beyond the booking window is accepted if it reaches the validator.
-- `GET /delivery/slots/{date}` answers for any date whose weekday has a slot template, without consulting `delivery_days`, while the calendar and next-available-date lookups do consult it. The two can therefore disagree about whether a given day is deliverable.
 - `enable_date_picker` and `enable_time_slots` govern the checkout fields only; the REST routes answer regardless of either setting.
-- Delivery dates are handled in UTC rather than the store's timezone.
+- The admin reschedule route (`PUT`/`PATCH /delivery/orders/{id}`) deliberately does **not** enforce `lead_days` or `max_days_ahead`. Moving an order inside the lead time is legitimate operations work for a store manager, so the window is enforced where a customer submits, not where staff correct.
+
+## Changed on 2026-09-13
+
+Five gaps this page previously listed are closed. They are named rather than silently dropped, because
+this page published them and the correction is worth being able to find:
+
+- **The slot generator now runs.** `SlotGeneratorJob` is scheduled when the module is enabled and
+  unscheduled when it is disabled, beside the cleanup and reminder jobs. `slot_duration_minutes` and
+  `max_orders_per_slot` now feed it, instead of only being typed in by hand. Past blackout dates are
+  cleaned up by that same job, so those rows no longer accumulate.
+- **`lead_days` and `max_days_ahead` are re-checked when a date is submitted**, with distinct messages
+  for a date that is too soon and one that is too far ahead. The check also runs at the point a slot is
+  assigned, which is where the classic checkout POST arrives — the date picker's bounds are an
+  affordance, not a boundary.
+- **`GET /delivery/slots/{date}` now consults `delivery_days`**, matching the calendar and
+  next-available-date lookups, so the two can no longer disagree about whether a day is deliverable.
+  The setting had four separate decoders and one path that never read it; there is now a single reader.
+- **Delivery dates are resolved in the store's timezone**, not UTC. Stored `created_at` / `updated_at`
+  columns remain UTC, which is unchanged and correct — the conversion happens where a calendar date is
+  decided.
+- One behaviour change worth naming: `getNextAvailableDate()` now stops at `max_days_ahead` rather than
+  scanning one day short of it, which is what the advertised range always claimed.

@@ -143,7 +143,10 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 ## Known gaps
 
 - **Two modules filter `woocommerce_product_get_price`** — this one and the free [Dynamic Pricing](/modules/reference/dynamic-pricing). With both enabled, both adjust the same price and neither knows about the other, so the result depends on filter order. A store should run one or the other.
-- **The price cache is time-based, not event-based.** Editing a rule does not invalidate it, so a price change can take up to `cache_duration` — an hour by default — to appear. There is an invalidation method, but no admin control that calls it.
-- The update route registers only `PUT`, where comparable modules also accept `PATCH` and `POST`. A client written against the others will not work here without changing the verb.
 - There is no preview or test tool; the effect of a rule is confirmed by looking at a product.
 - `badge_text` supports only the `{amount}` placeholder, so a badge cannot quote the quantity or the tier that produced the saving.
+
+## Changed on 2026-09-13
+
+- 🔴 **Editing a rule now takes effect immediately.** The price cache was time-based only, so a change could take up to `cache_duration` — an hour by default — to appear. Creating, updating or deleting a rule now invalidates the cache, with the TTL kept as a backstop. There was a second layer to this: the invalidation method itself was a no-op on any object cache without group flushing, because it deleted a key nothing ever wrote. It now bumps a generation folded into the cache key, which works on every cache backend.
+- **The update route accepts `PATCH` and `POST` as well as `PUT`**, matching comparable modules. A client written against those now works here unchanged.

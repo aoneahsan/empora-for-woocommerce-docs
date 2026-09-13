@@ -170,7 +170,9 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- 🔴 **Every bid stores the bidder's IP address and user agent.** That is defensible for an auction — it is the record that makes shill bidding and disputes investigable — but it is personal data collected on every bid, it has no retention setting of its own, and it must appear in the store's privacy notice. The log retention filter covers the log table, not the bids table.
+- **Every bid stores the bidder's IP address and user agent.** That is defensible for an auction — it is the record that makes shill bidding and disputes investigable — and it must appear in the store's privacy notice. Since 2026-09-13 it is bounded: the cleanup job nulls `ip_address` and `user_agent` on bids older than `aiowc_auction_bid_retention_days`, which defaults to whatever `aiowc_auction_log_retention_days` resolves to, so a store has one retention knob unless it deliberately wants two.
+- 🔴 **The bid row itself is kept, and only the two identifying columns are cleared.** The row is the auction's record of a completed sale; deleting it would rewrite a settled result.
+- 🔴 **The closing job runs every minute, and WP-Cron only fires on a page request.** On a quiet store the sweep runs when the next visitor arrives, so an auction can accept bids past its end time. A store selling by auction needs a real system cron plus `DISABLE_WP_CRON`; this is a deployment requirement, not a setting.
 - **The closing job runs every minute and the module's correctness depends on it.** On a site where WP-Cron only fires on page visits, a quiet period means auctions close late. A real system cron is effectively required.
 - The module has no settings constant, so the defaults for a new auction are not stated in one place in the code.
 - A sealed auction's bids are hidden from customers, but they are readable by any administrator through the bids routes while the auction is still running.
