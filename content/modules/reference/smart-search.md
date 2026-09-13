@@ -78,7 +78,7 @@ A cache row holds a query, its results and an expiry, plus a **hit count** that 
 
 ## Admin screen
 
-The **Smart Search** tab manages the suggestion list — adding and removing entries — and presents the search analytics.
+The **Smart Search** tab has three sections: **Suggestions** manages the suggestion list, adding and removing entries; **Analytics** presents the search record; and **Settings** edits all nine settings above, including `input_selector`. Each is URL-preserved, so a refresh returns to the same one.
 
 ## REST API endpoints
 
@@ -147,7 +147,7 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- The nine settings are reachable over REST at `GET`/`PATCH /smart-search/settings`, but **no admin screen edits them yet** — they are set programmatically or left at their defaults.
+- `analytics_retention` cannot be set to `0`. The trending job documents `0` as "keep the full search history" and implements it, but the route's minimum is `1`, so the escape hatch is unreachable from any admin screen. The tab offers 1–3650 days.
 - **Two search modules ship and both maintain their own data.** This one and [AJAX Live Search](/modules/reference/search) each keep a separate query log and rebuild job. Running both indexes the catalogue twice and splits the record of what customers searched for. A store should pick one — and the other module additionally offers synonyms, click tracking and an index-weight column.
 - **Three modules hook `pre_get_posts` to change the product query** — this one, [Product Filters](/modules/reference/product-filters) and [Advanced Product Filters](/modules/reference/filters-advanced). Running more than one means several modules rewriting the same query.
 - Search queries are stored with a session id and, for signed-in customers, a user id, retained 90 days by default. That belongs in the store's privacy notice.
@@ -156,4 +156,4 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 - 🔴 **Autocomplete never worked on any theme, for a reason this page did not name.** The frontend was pointed at `aiowc/v1/search/autocomplete` and `.../search/results`, and neither route exists — this module registers `/smart-search/autocomplete` and `/smart-search/results`. Every request 404'd regardless of the theme or the selector. That is now fixed, and it, rather than `input_selector`, is the likely reason the module looked dead.
 - **`input_selector` no longer fails silently.** There is a documented fallback chain, and a console warning naming which case applied — invalid CSS, a fallback substituted, or nothing matched at all. The warning is shown only to `WP_DEBUG` sites and users who can manage WooCommerce, so it reaches whoever can fix it and never a shopper. Every fallback requires `name="s"`, the WordPress search query var, so the chain cannot bind to an unrelated input.
-- **The nine settings gained a REST route.** They previously had none and could not be read or written programmatically at all.
+- **The nine settings gained a REST route, and then an admin screen.** They previously had none and could not be read or written at all. There is now a **Settings** tab on the Smart Search page, URL-preserved like the other two. It re-seeds itself from the stored response after saving, so a clamped value — or the default restored in place of a cleared `input_selector` — is what you see afterwards rather than what you typed.

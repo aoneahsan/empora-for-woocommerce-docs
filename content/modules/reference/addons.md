@@ -153,10 +153,10 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 ## Known gaps
 
 - There is no bulk action on the add-on list; add-ons are created, edited and deleted one at a time.
-- The add-on REST routes are registered whether or not `enable_addons` is on, so the two public read
-  routes (`for-product`, `calculate-price`) still answer when the module's own switch is off. The admin
-  routes must stay registered for the switch to be turnable back on; the public pair answering is an
-  inconsistency rather than an exposure, since they read add-on definitions and nothing private.
+- The add-on REST routes are registered whether or not `enable_addons` is on, but the two **public** read
+  routes (`for-product`, `calculate-price`) now refuse with `addons_disabled` while the switch is off. The
+  **admin** routes stay reachable on purpose — they are how the module is turned back on, and a switch that
+  disabled its own off-switch could not be undone.
 - The cleanup job's 7-day retention is a constant in the job, not a setting.
 
 ## Changed on 2026-09-13
@@ -166,3 +166,8 @@ request posted directly to `/addons/upload` was accepted with the setting off. T
 in the route's permission callback, which refuses with `addon_upload_disabled` before any file is read or
 stored — so it fails closed, and hiding the input is no longer the only thing standing between the
 setting and an upload.
+
+An earlier version of this page, published the same day, then recorded that the two public read routes kept
+answering while `enable_addons` was off. They now refuse with `addons_disabled`, for the same reason: a
+module's own switch should govern what the server answers, not only what the storefront draws. The admin
+routes are deliberately exempt.
