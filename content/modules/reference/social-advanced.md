@@ -48,7 +48,9 @@ Stored in the bundled option row `aiowc_soc_settings`; legacy per-key options `a
 
 The share-button and social-login settings are read once, when hooks are registered: turning either off means the matching handler is never constructed on that request.
 
-**There is no settings route and no settings form.** The module registers seven REST routes and none of them reads or writes these values, so they can currently only be changed in the database.
+**There is a settings route, but no settings form yet.** `GET` and `PATCH`/`POST`/`PUT` on `/social/settings` read and write every value above, administrator-only. 🔴 **The read redacts the credentials** — `facebook_access_token` and `pinterest_feed_key` are accepted on a write and never returned by a read. What is missing is an admin screen that calls the route, so today these are set programmatically rather than from a form.
+
+⚠️ An earlier version of this page said there was no settings route at all and that the values could only be changed in the database. That stopped being true when the route was added, and the page did not catch up.
 
 ## Admin screen
 

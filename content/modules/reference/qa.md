@@ -53,8 +53,13 @@ Read through `ModuleSettings` with the `aiowc_qa_` prefix; defaults are `QaModul
 | `enable_shortcode`      | `true`  | Whether `[aiowc_qa]` is registered at all          | Yes — checked before `add_shortcode`                                       |
 | `enable_voting`         | `true`  | Intended to switch voting off                      | **No** — the key is declared but never read, so voting is always available |
 
-There is no REST endpoint for these settings. The module registers no settings route, so the values can
-only be changed through the options they are stored in.
+The settings are editable from the **Settings** tab on the Product Q&A screen, over `GET` and
+`PATCH`/`POST`/`PUT` on `/qa/settings` (administrator-only). ⚠️ An earlier version of this page said there
+was no endpoint and that the values could only be changed through the option row; that route was added on
+2026-09-14.
+
+🔴 **A route is not the same as an effect.** `enable_voting` above is still declared and never read, so
+turning it off in the new form changes the stored value and not the behaviour. That is tracked separately.
 
 ## Admin screen
 

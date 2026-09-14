@@ -32,13 +32,17 @@ It is for configurable goods: a bike built from a frame, wheels and a saddle, a 
 
 Stored in the bundled option row `aiowc_cp_settings`.
 
-| Stored key            | Default | Meaning                                  |
-| --------------------- | ------- | ---------------------------------------- |
-| `enable_composites`   | `true`  | Stored flag for the composite builder.   |
-| `allow_save_configs`  | `true`  | Stored flag for saving a configuration.  |
-| `allow_share_configs` | `true`  | Stored flag for sharing a configuration. |
+| Stored key          | Default | Meaning                                |
+| ------------------- | ------- | -------------------------------------- |
+| `enable_composites` | `true`  | Stored flag for the composite builder. |
 
-All three are read and written through the shared settings helper, but no code path currently reads them: the builder renders, and the save and share routes answer, regardless of their values. There is also no settings REST route for this module, so the values can only be changed in the database.
+It is editable from the **Settings** tab over `GET`/`PATCH /composites/settings` since 2026-09-14.
+
+⚠️ **This page previously listed three settings and said none of them had a route.** Both halves were
+wrong. There is one setting, not three — `allow_save_configs` and `allow_share_configs` are declared
+nowhere in the module and referenced by no code, so they were almost certainly removed in the 2026-09-02
+sweep that cleared 51 inert settings, and this page kept describing them. Documenting a setting a store
+cannot find is worse than documenting none.
 
 ## Pricing modes
 

@@ -106,7 +106,7 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 ## Known gaps
 
 - **The settings prefix collides with Wishlist.** Both modules declare `SETTINGS_PREFIX = 'aiowc_wl_'` and both persist to `aiowc_wl_settings`. Waitlist only seeds its defaults when that row is empty, so if Wishlist is enabled first the row already exists and Waitlist's keys are never written — its service then falls back to its own hardcoded defaults and the admin cannot change them.
-- **No settings route and no settings screen.** The six settings have no endpoint and no form, so they can only be changed in the database.
+- ~~No settings route and no settings screen.~~ **Fixed 2026-09-14:** the settings are editable from the **Settings** tab over `GET`/`PATCH /waitlist/settings`. 🔴 The prefix collision above still applies — a form cannot help if Wishlist owns the row the values are written to.
 - `priority_window_hours` is seeded and never read.
 - The notifications table has an `opened_at` column, but nothing writes it — there is no open tracking.
 - The delayed path schedules the hourly job's hook as a one-off, so it notifies every product that is back in stock, not only the one that triggered it.
