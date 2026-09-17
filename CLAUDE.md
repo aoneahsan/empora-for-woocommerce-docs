@@ -58,35 +58,18 @@ yarn typecheck   # tsc --noEmit
 
 Long-tail SEO batches tracked in `tracking/empora-for-woocommerce-docs-content-tracker.json` (per the global SEO playbook `~/.claude/rules/seo-aeo-ranking.md`).
 
-## Sync rule
+## Fleet law and the guide pair
 
-Every rule here is mirrored in `AGENTS.md`. Update both together.
+Global rules auto-load from `~/.claude/rules/` — never copied here, and never restated on this public
+surface. The three sections that used to repeat them (sync rule, sub-agents, model workflow) were removed on
+2026-09-17; their verbatim text lives in the private product repo's `docs/PROJECT-RULES.md`. This file and
+`AGENTS.md` are one pair, identical apart from the first line; edit both in the same change.
 
-## Sub-agents & Skills — Main-Context-First (IRON-SOLID)
-
-Default/built-in sub-agents (`general-purpose`, `Explore`, `Plan`, `claude`, `fork`, …) do NOT have
-access to `/skills`, so delegating to them silently SKIPS the skills RULE #0 requires. Do all
-skill-relevant work in the **MAIN context**; use a sub-agent ONLY when a **custom** agent exists in
-`.claude/agents/` for that job; a default `Explore`/`Plan` agent is allowed ONLY for read-only,
-no-skill search/exploration. When a relevant skill is missing, **install/enable it** rather than
-proceeding skill-less. (Owner directive 2026-07-11; full text in `~/.claude/CLAUDE.md`.)
-
-<!-- RULE:main-context-model-workflow v2026-07-16 -->
-
-## Main-Context + Skills + Model Workflow (IRON-SOLID — CRITICAL)
-
-1. **NO default/built-in sub-agents** (`general-purpose`, `Explore`, `Plan`, `claude`, `fork`, …) for ANY work in
-   this project — they cannot invoke /skills, which RULE #0 makes mandatory. Do ALL work (planning, implementation,
-   review, exploration) in the MAIN context. A sub-agent is allowed ONLY when a CUSTOM agent exists in
-   `.claude/agents/` for that exact job.
-2. **Skills always:** before any task, scan the available-skills list and invoke EVERY relevant skill; if a needed
-   skill is missing, download/enable/install it (or use the nearest installed equivalent and say so) — never
-   proceed skill-less.
-3. **Model workflow:** the planning/execution split and the minimum model version are defined once, globally
-   — follow `~/.claude/rules/01-authorizations.md` rather than any version pinned in this file. Plans live in
-   `~/.claude/plans/`; multi-phase features keep a resumable tracker (`docs/features/<slug>/00-tracker.json`),
-   resumed rather than re-planned from zero.
-
-Global records (rules, policy, audit reports) are auto-loaded from `~/.claude/rules/`; full text:
-`~/.claude/CLAUDE.md`. This repo is PUBLIC — never name a private repo, host, or internal tool in it.
-(Owner directives 2026-07-11 / 2026-07-14; fleet-rolled 2026-07-16.)
+| Context budget | Value |
+| --- | --- |
+| Last optimized | 2026-09-17 |
+| Next routine optimization eligible | 2026-10-17 |
+| Guide bytes | 4,677 B |
+| Covered subtree | this repo's root pair (it has no nested guides) |
+| Method | Three fleet-law restatements replaced by one pointer; nothing project-specific removed |
+| Fleet record | `D:/work/my-work/docs/tracking/project-context-budget-tracker.json` |
