@@ -35,7 +35,16 @@ Enabling the module creates the three tables below and schedules the cleanup job
 
 ## Settings
 
-**This module has no settings row.** It declares no `SETTINGS_PREFIX` and no defaults, so there is nothing at `aiowc_as_settings` or any equivalent. Its configuration lives in two other places:
+The module-wide settings are one bundle in the option `aiowc_ash_settings`, seeded on first load:
+
+| Key                    | Default            | What it does                                                                                                         |
+| ---------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `conflict_strategy`    | `highest_priority` | How several matching rules are reconciled — one of the five strategies below.                                        |
+| `usage_retention_days` | `365`              | How long usage rows are kept, 7–3650 days. The retention filter below still applies on top.                           |
+
+They are edited on the **Settings** tab of the admin screen, or through `/shipping-rules/settings`.
+
+Everything else lives in two other places:
 
 - **Each rule** is a database row, created and edited through the admin screen or the REST routes.
 - **The shipping method instance** is configured per shipping zone in **WooCommerce → Settings → Shipping**, with four fields: the method title, tax status, a fallback rate used when no rule matches, and a read-only summary of the rules in play.
@@ -72,7 +81,7 @@ The operators are `=`, `!=`, `>`, `>=`, `<`, `<=`, `between`, `contains`, `not_c
 
 ## Resolving several matching rules
 
-`ConflictResolver` applies one of five strategies, defaulting to highest priority:
+`ConflictResolver` applies the strategy stored in `conflict_strategy`, defaulting to highest priority:
 
 | Strategy           | Result                                                     |
 | ------------------ | ------------------------------------------------------------ |
@@ -86,10 +95,11 @@ An exclusive rule short-circuits all of this: when any matching rule is marked e
 
 ## Admin screen
 
-The **Advanced Shipping** tab carries two tabs and a test tool.
+The **Advanced Shipping** tab carries three tabs and a test tool.
 
 - **Overview** counts the rules, the active ones and the calculations performed.
 - **Rules** is the paged rule list — create, edit, duplicate and delete, plus a bulk action and per-rule statistics. A new rule is started by picking its rate type from a menu, so the form opens already shaped for a flat, percentage, per-item, per-weight, tiered or free rate.
+- **Settings** edits the two settings above — the conflict strategy and the usage-history retention.
 - **Shipping Calculator Test** posts a sample cart — total, quantity, weight, country, state, postcode and zone — to `/shipping-rules/test` and shows what the rules would charge for it, without placing an order.
 
 ## REST API endpoints
@@ -108,6 +118,8 @@ All routes are on `aiowc/v1`, answer with the `{ success, data, message }` envel
 | POST              | `/shipping-rules/bulk`          | Apply an action to several rules at once.                | `action`, `ids` |
 | GET               | `/shipping-rules/overview`      | The counts shown on the overview tab.                    | –               |
 | POST              | `/shipping-rules/test`          | Price a sample cart against the rules.                   | –               |
+| GET               | `/shipping-rules/settings`      | The settings bundle, coerced and bounded.                | –               |
+| POST / PUT / PATCH | `/shipping-rules/settings`     | Write only the keys sent; answers with what was stored.  | –               |
 
 The three separate write verbs on `/shipping-rules/{id}` all reach the same update callback, so a client may use whichever it prefers.
 
@@ -141,7 +153,7 @@ The rules table is named `aiowc_advanced_shipping_rules` rather than `aiowc_ship
 
 This job runs on **Action Scheduler**, not WP-Cron, and is scheduled into the `aiowc-advanced-shipping` group. When Action Scheduler is unavailable the scheduling call returns without doing anything, so the job simply does not run — nothing errors.
 
-Usage rows are kept for **365 days** by default, filterable through `aiowc_advanced_shipping_usage_retention_days`.
+Usage rows are kept for `usage_retention_days` (**365** by default), then passed through the `aiowc_advanced_shipping_usage_retention_days` filter.
 
 ## Action hooks for integrators
 
@@ -163,6 +175,5 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- **The resolution strategy is not exposed as a setting.** `ConflictResolver` accepts one and defaults to highest priority, but with no settings row there is no stored value and no admin control for it — changing it means calling the resolver from code.
 - The rate cache is cleared on a schedule rather than on a rule edit, so a rate may be served from cache until the daily job runs.
 - The cleanup job depends on Action Scheduler, which WooCommerce ships; on a site where it is absent the job never runs and expired rules are never marked, with no warning raised by the health check.

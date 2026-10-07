@@ -62,6 +62,34 @@ order, refund credit against an order, an administrator adjustment recorded with
 expiry processing, transaction history, and a checkout calculation that works out how much of an order total
 the customer's credit may cover.
 
+## The one store-credit ledger
+
+Store Credit owns store credit for the whole plugin. [Smart Coupons Advanced](/modules/reference/smart-coupons-advanced)
+and [Gift Cards & Store Credit](/modules/reference/gift-cards) used to keep their own store-credit balances;
+they now read and write this ledger through `StoreCreditLedger`:
+
+| Operation                      | Does                                                   |
+| ------------------------------ | ------------------------------------------------------ |
+| `credit(user, amount, key, …)` | Adds value. A retry under the same key writes nothing. |
+| `debit(user, amount, key, …)`  | Spends value. Same rule.                               |
+| `balance(user)`                | What the customer holds now.                           |
+
+The **idempotency key** comes from the event that caused the write (for example
+`smart_coupons:redeem:order:123`). It is checked before the write and enforced by a unique index, so a hook
+that fires twice, a retried job or a migration run twice records the money once.
+
+The ledger is **ready** once this module has been switched on at the current version and its tables carry the
+key column. From then on the other two modules use it even if Store Credit is later switched off, so balances
+already moved here are never spent twice. Their old balances move in once — a customer's when their balance
+is first read, the rest in bounded batches on admin page loads. The old rows are zeroed with a recorded debit,
+never deleted; a gift card in a currency other than the store's is not moved and stays a spendable card.
+
+:::note If Store Credit was never switched on
+Smart Coupons Advanced and Gift Cards keep their own records. The balances stay spendable but are not
+combined, and each module shows an admin notice on the Empora screen and the dashboard saying so. Switching
+Store Credit on moves them into this ledger.
+:::
+
 ## Settings
 
 Stored in the bundled option row `aiowc_storecredit_settings` and written when the module is enabled: a
@@ -95,7 +123,7 @@ Created by `Schema/DatabaseSchema.php` when the module is enabled.
 | Table                               | Holds                                                                                      |
 | ----------------------------------- | ------------------------------------------------------------------------------------------ |
 | `{prefix}aiowc_store_credit`        | One row per customer: balance, lifetime credit and debit, currency, active flag.           |
-| `{prefix}aiowc_credit_transactions` | Every movement: amount, type, reference, resulting balance, description, admin id, expiry. |
+| `{prefix}aiowc_credit_transactions` | Every movement: amount, type, reference, resulting balance, description, admin id, expiry, idempotency key (unique). |
 
 ## WooCommerce integration
 

@@ -34,7 +34,7 @@ Hooks register only when `aiowc_module_enabled_recently-viewed` is true and the 
   recorded through a REST call.
 - Signed-in users are tracked by user ID. Guests are tracked by an anonymous session ID held in the
   `aiowc_rv_sid` cookie, and only when `anonymous_tracking` is on.
-- The list renders after the single product template, and anywhere through a shortcode.
+- The list renders after the single product template, on the My Account dashboard when `show_on_account` is on, and anywhere through the `empora/recently-viewed` block or the shortcode.
 - The visitor can clear their own list.
 - The shop can see the most-viewed products over a period.
 - A daily job prunes view rows older than 90 days. The retention window is a constant in
@@ -42,7 +42,7 @@ Hooks register only when `aiowc_module_enabled_recently-viewed` is true and the 
 
 ## Settings
 
-Unlike most modules, all five values are stored together in **one array option**, `aiowc_rv_settings`,
+Unlike most modules, all four values are stored together in **one array option**, `aiowc_rv_settings`,
 read through `RecentlyViewedModule::getAllSettings()` and merged over `DEFAULTS`. An update only accepts
 keys that exist in `DEFAULTS` and casts each to the type of its default.
 
@@ -51,11 +51,10 @@ keys that exist in `DEFAULTS` and casts each to the type of its default.
 | `enable_tracking`    | `true`  | Master switch for recording and displaying views  | Yes — both the tracking and display services                                            |
 | `max_products`       | `10`    | How many products the list shows                  | Yes — the display service, with a floor of 1                                            |
 | `anonymous_tracking` | `true`  | Whether guests are tracked by cookie              | Yes — the display service falls back to the cookie list only when on                    |
-| `show_on_account`    | `true`  | Intended to place the list on the My Account page | **No** — the key is declared but never read as a condition, and no account hook exists  |
-| `show_on_homepage`   | `true`  | Intended to place the list on the homepage        | **No** — the key is declared but never read as a condition, and no homepage hook exists |
+| `show_on_account`    | `true`  | Show the list on the My Account dashboard         | Yes — hooks `woocommerce_account_dashboard`                                             |
 
-The list appears in exactly two places: after the single product template, and wherever the shortcode is
-placed.
+The list appears after the single product template, on the My Account dashboard, and wherever the block or
+shortcode is placed.
 
 ## Admin screen
 
@@ -96,7 +95,13 @@ Namespace `aiowc/v1`. All responses use the shared envelope.
 | ------------------------- | -------------------------------- |
 | `[aiowc_recently_viewed]` | Renders the recently viewed list |
 
-No block is registered, and the module hooks no order, cart or email action.
+### Block
+
+`empora/recently-viewed` (**Recently Viewed Products**, in the WooCommerce block category) is server-rendered
+through the shortcode's own renderer, so the editor preview and the storefront show the same list. Its one
+attribute, `count`, defaults to 4 and is clamped to 1–12. The shortcode is kept.
+
+The module hooks no order, cart or email action.
 
 ## Background jobs
 

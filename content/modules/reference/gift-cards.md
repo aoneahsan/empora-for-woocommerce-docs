@@ -15,9 +15,19 @@ Gift Cards & Store Credit adds a **gift card product type** to WooCommerce. Buyi
 
 The card is a real ledger, not a coupon: every redemption writes a transaction recording the amount, the balance before and after, and the order it belonged to. Partial redemption leaves the remainder on the card, and the card carries its own currency with the exchange rate locked at issue, so a card bought in one currency keeps its value when spent in another.
 
-The same table also holds **store credit** — a card of type `store_credit`, issued by an administrator rather than purchased.
+The same table can also hold **store credit** — a card of type `store_credit`, issued by an administrator rather than purchased. The [Store Credit](/modules/reference/store-credit) module owns store credit, so this applies only while its ledger is not ready; see *Store credit and the ledger* below.
 
 It is for stores selling gift cards and issuing credit against a customer's account.
+
+## Store credit and the ledger
+
+Once the Store Credit ledger is ready (Store Credit switched on at the current version), this module's store credit goes through `StoreCreditLedger` under idempotency keys prefixed `gift_cards:`:
+
+- **New store credit** — the `/store-credit/issue` route, or a refund taken as store credit — is a ledger credit, not a new card.
+- **An existing `store_credit` card** moves into the ledger the first time its owner's balance is read, the first time its code is tried at checkout, or by a bounded batch on admin page loads (option `aiowc_gc_ledger_migration_version`). The ledger gets a keyed credit; the card records an `adjustment` debit, so its own history shows where the money went. The card, its code and its transactions stay.
+- A card in a currency other than the store's is **not** moved; it stays a spendable card.
+
+If Store Credit has never been switched on, this module keeps issuing and redeeming store-credit cards as before, the balances are not combined with any other module's, and an admin notice on the Empora screen and the dashboard says so.
 
 ## Availability
 
@@ -173,5 +183,5 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 - **The QR code fallback calls a third-party Google endpoint with the redemption URL in the query string**, because no QR library ships with the plugin. Install `chillerlan/php-qrcode` or `endroid/qr-code` to generate the image locally.
 - **The entitlement key is `vouchers` while the module key is `gift_cards`**, which is a genuine trap when reading a licence or wiring an integration.
-- **Store credit exists in three unrelated places across the plugin**: here as a card of type `store_credit`, in the [Store Credit](/modules/reference/store-credit) module's own ledger, and again in [Smart Coupons Advanced](/modules/reference/smart-coupons-advanced), whose table name differs from Store Credit's only by a plural. Nothing reconciles them, so a store should decide which one it is using.
+- Until Store Credit is switched on, store-credit cards here stay separate from [Smart Coupons Advanced](/modules/reference/smart-coupons-advanced) balances; the admin notice is the only signal.
 - Settings are not declared as defaults on the module, so there is no single place in the code that states what the module's settings are and what they default to.

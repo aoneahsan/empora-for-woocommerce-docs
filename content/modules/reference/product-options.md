@@ -34,7 +34,14 @@ Enabling the module creates the three tables below and schedules the file cleanu
 
 ## Settings
 
-**This module has no settings row.** It declares no settings prefix and no defaults, so there is nothing at `aiowc_po_settings` or any equivalent. Everything is configured per option set, and the two numeric upload limits are filters rather than stored settings — see *Uploads* below.
+Two store-wide upload settings live in one bundle in the option `aiowc_popt_settings`, seeded on first load:
+
+| Key                 | Default | What it does                                                                                            |
+| ------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `max_upload_mb`     | `5`     | The largest file a shopper may upload, 1–50 MB. A field's own `max_size` rule still applies inside it.  |
+| `allow_pdf_uploads` | `true`  | Whether PDF is on the accepted list alongside the image types.                                          |
+
+They are edited on the **Settings** tab of the admin screen, or through `/product-options/settings`. Everything else is configured per option set — see *Uploads* below for how the two filters sit on top.
 
 ## Option sets
 
@@ -79,13 +86,13 @@ A formula may use the placeholders `{base_price}`, `{value}` and `{qty}`, and th
 
 ## Uploads
 
-A file field posts to `/product-options/upload`. Uploads accept `image/jpeg`, `image/png`, `image/gif`, `image/webp` and `application/pdf`, up to **5 MB**. Both limits are filters rather than settings — `aiowc_product_options_allowed_mime_types` and `aiowc_product_options_max_upload_bytes` — so changing either needs a snippet, not an admin control.
+A file field posts to `/product-options/upload`. Uploads accept `image/jpeg`, `image/png`, `image/gif` and `image/webp`, plus `application/pdf` while `allow_pdf_uploads` is on, up to `max_upload_mb` (**5 MB** by default). The resulting list and byte limit are then passed through `aiowc_product_options_allowed_mime_types` and `aiowc_product_options_max_upload_bytes`, so a snippet can still adjust either.
 
 An uploaded file is recorded against the visitor's session with an expiry, and claimed by an order when checkout completes. Files that are never claimed are removed by the cleanup job.
 
 ## Admin screen
 
-The **Product Options** tab lists the option sets and creates, edits, duplicates and deletes them, edits each set's fields and conditional logic, and manages the assignments that decide which products a set reaches.
+The **Product Options** tab lists the option sets and creates, edits, duplicates and deletes them, edits each set's fields and conditional logic, and manages the assignments that decide which products a set reaches. A **Settings** tab edits the upload size limit and whether PDFs are accepted.
 
 ## REST API endpoints
 
@@ -105,6 +112,8 @@ All routes are on `aiowc/v1` and answer with the `{ success, data, message }` en
 | GET               | `/product-options/products/{id}/option-sets`      | The sets that apply to one product.           | Public, rate-limited | `id`                   |
 | POST              | `/product-options/upload`                         | Upload a file for a file field.               | Upload check         | –                      |
 | DELETE            | `/product-options/upload/{fileId}`                | Discard an upload before checkout.            | Upload check         | `fileId`               |
+| GET               | `/product-options/settings`                       | The settings bundle, coerced and bounded.     | `manage_woocommerce` | –                      |
+| POST / PUT / PATCH | `/product-options/settings`                      | Write only the keys sent; answers with what was stored. | `manage_woocommerce` | –            |
 
 ## WooCommerce integration
 
@@ -142,7 +151,7 @@ The `fields` and `conditional_logic` columns are MySQL `JSON`, so this module ne
 
 | Hook                                        | Purpose                                                        |
 | ------------------------------------------- | ---------------------------------------------------------------- |
-| `aiowc_product_options_max_upload_bytes`    | Filter — the upload size limit. Default 5 MB.                   |
+| `aiowc_product_options_max_upload_bytes`    | Filter — the upload size limit in bytes, after `max_upload_mb`. |
 | `aiowc_product_options_allowed_mime_types`  | Filter — the accepted MIME types.                               |
 | `aiowc_product_options_set_created`         | An option set is created.                                       |
 | `aiowc_product_options_set_updated`         | An option set is updated.                                       |
@@ -166,6 +175,6 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 ## Known gaps
 
 - **A new option set is created as a draft**, and a draft set is not applied on the storefront. Creating a set and assigning it is not sufficient; it must also be made active, which is easy to miss.
-- The upload size and MIME allowlist are filters with no admin control, so changing them requires code.
-- With no settings row there is no storefront kill switch: the module is either on, with all its hooks, or disabled entirely.
+- Image types other than the four listed can be added only through the MIME filter; the settings switch PDF alone.
+- The settings carry no storefront kill switch: the module is either on, with all its hooks, or disabled entirely.
 - Two modules can attach inputs to the same product — this one and [Product Add-Ons](/modules/reference/addons) — and they keep separate tables, separate admin screens and separate order line data. Nothing reconciles them or warns that both are active.

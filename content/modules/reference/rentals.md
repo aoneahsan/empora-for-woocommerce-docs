@@ -83,8 +83,32 @@ Per-product values override the module defaults, so a valuable item can take a l
 | `rental_price`                          | The hire charge.                                                     |
 | `deposit_amount`, `deposit_status`      | The deposit and whether it is held, returned or kept.                |
 | `late_fee`, `damage_fee`                | Charges added after the fact.                                        |
+| `late_fee_order_id`, `damage_fee_order_id` | The WooCommerce order that charges each fee, once created.   |
+| `legacy_reservation_id`                 | The Bookings reservation a row was copied from, if any (unique). |
 | `pickup_location`, `return_location`    | Where the item is collected and returned — which may differ.         |
 | `notes`                                 | Anything recorded against the hire.                                  |
+
+## Charging late and damage fees
+
+When a return is recorded through `/rentals/{id}/return`, each non-zero fee becomes its **own new WooCommerce order**, linked to the rental and to the order the rental came from:
+
+- one fee line named for the charge, with the customer, addresses and currency copied from the original order;
+- order meta `_aiowc_rental_id`, `_aiowc_rental_original_order_id` and `_aiowc_rental_fee_kind`, plus an order note on both orders;
+- status **pending payment**, and WooCommerce's own customer invoice email is sent, which carries the pay-for-order link.
+
+The original order's totals are not changed. Each fee is created at most once per rental: the rental's `late_fee_order_id` / `damage_fee_order_id` column is claimed before the order is written, so a return processed twice, or two racing requests, produce one order per fee. A rental with no order or customer keeps the fee on the rental row only, and the route says so. The return route answers with `feeOrders`, the outcome per fee kind.
+
+Fees are **not taxed by default**. A store that must tax them returns a tax status from the `aiowc_rental_fee_tax_status` filter (`'none'` by default; it receives the fee kind and the rental).
+
+The module charges through WooCommerce orders only. It registers no payment gateway of its own, and the [Square](/modules/reference/square) module does not either.
+
+## Rentals copied from Bookings
+
+Product Rentals owns rentals. Rental reservations that the [Bookings & Rentals](/modules/reference/bookings) module recorded in `aiowc_rental_reservations` are copied in, one bounded batch per admin page load, until the run is complete:
+
+- each reservation becomes one `aiowc_rentals` row, its product taken from the reservation's inventory item and its order and customer from the booking; one still reserved or checked out also blocks its dates in the calendar;
+- `aiowc_rental_inventory` rows are not copied — this module reads capacity from the product's own stock — but their count is recorded in the run summary (option `aiowc_rentals_legacy_migration`) so the store can check stock;
+- the legacy tables are read, never altered, dropped or truncated, and `legacy_reservation_id` makes a second run copy nothing.
 
 ## The availability calendar
 
@@ -135,7 +159,7 @@ The module registers **no shortcode** and adds no product type: any product beco
 
 | Table                             | Holds                                                                                         |
 | --------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `{prefix}aiowc_rentals`           | The hires: order and item, product, customer, quantity, the period as booked and as returned, status, price, deposit and its status, late and damage fees, pickup and return locations, notes. |
+| `{prefix}aiowc_rentals`           | The hires: order and item, product, customer, quantity, the period as booked and as returned, status, price, deposit and its status, late and damage fees and the orders charging them, pickup and return locations, notes, and the legacy reservation id. |
 | `{prefix}aiowc_rental_periods`    | Per-product pricing: period type, price, duration bounds, deposit and late fee as percentage or fixed. |
 | `{prefix}aiowc_rental_calendar`   | One row per reserved day: the product, the rental, the date, the quantity reserved and the block type. |
 
@@ -154,6 +178,7 @@ Both run on WP-Cron. The overdue job is offset three hours from the module being
 | -------------------------------- | ----------------------------------------------- |
 | `aiowc_rental_overdue`           | A rental passes its return date.               |
 | `aiowc_rental_return_reminder`   | A return reminder is due.                      |
+| `aiowc_rental_fee_tax_status`    | Filter — the tax status of a fee line. Default `none`. |
 | `aiowc_track_event`              | The module is enabled or disabled.             |
 
 ## Entitlement limits
@@ -166,8 +191,7 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- **Rentals are implemented twice.** This standalone module and the [Bookings & Rentals](/modules/reference/bookings) module, which owns `aiowc_rental_inventory` and `aiowc_rental_reservations`, are separate implementations with separate data and separate screens. A store should choose one.
-- 🔴 **Late and damage fees are calculated and recorded, but never charged.** The late fee is worked out when the return is recorded — from the product's rental period, or from `late_fee_daily_percent` if the period has none — and written to the rental row. **Nothing creates an order, adds a fee to one, or takes payment.** Collecting the money is a manual step, and the same is true of `damage_fee`.
+- The late fee is worked out when the return is recorded — from the product's rental period, or from `late_fee_daily_percent` if the period has none. A fee order waits for the customer to pay it; the module does not take payment by itself.
 - Likewise `deposit_status` records what should happen to a deposit — held, returned or kept — but the module does not move money to make it so.
 - Because the fee is computed at return time, a rental that is overdue and **not yet returned** shows a `late_fee` of zero. The running total a customer owes is not visible until the item comes back.
 - The availability calendar is one row per reserved day, so a long hire of a popular product produces a lot of rows and there is no archival job for past dates.

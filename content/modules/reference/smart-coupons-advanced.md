@@ -68,7 +68,11 @@ A credit row carries a balance, a source (`admin` by default), the order it came
 
 With `reward_percent` above zero, a completed order issues credit worth that percentage of the order back to the customer, expiring after `credit_expiry_days`.
 
-🔴 **This is the plugin's second store-credit ledger.** Its tables are `aiowc_store_credits` and `aiowc_store_credit_transactions`; the separate [Store Credit](/modules/reference/store-credit) module owns `aiowc_store_credit` and `aiowc_credit_transactions`. **The names differ only by a plural**, the two are not connected, and a balance in one is invisible to the other. See the limits below.
+🔴 **Balances live in the Store Credit ledger.** [Store Credit](/modules/reference/store-credit) owns store credit. Once its ledger is ready (Store Credit switched on at the current version), every balance this module reads or writes goes through `StoreCreditLedger` under idempotency keys prefixed `smart_coupons:`, and checkout spends that one balance.
+
+This module's own `aiowc_store_credits` rows move into the ledger once: a customer's rows when their balance is first read, and the rest in batches of 100 on admin page loads until done (option `aiowc_sc_ledger_migration_version`). A moved row keeps its id and history; its balance goes to zero with a `debit` transaction reading "Moved to the Store Credit ledger". Nothing is deleted.
+
+If Store Credit has never been switched on, this module keeps using its own tables, the balances stay spendable but are not combined with any other, and an admin notice on the Empora screen and the dashboard says so.
 
 ## Admin screen
 
@@ -142,7 +146,7 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- 🔴 **Store credit is implemented three times across the plugin and the implementations do not talk to each other.** Here (`aiowc_store_credits`), in the [Store Credit](/modules/reference/store-credit) module (`aiowc_store_credit` — differing by one letter), and in [Gift Cards & Store Credit](/modules/reference/gift-cards) as a card of type `store_credit`. A customer can hold a balance in more than one, checkout will not combine them, and no screen shows the total. A store should decide which one it uses and leave the other modules off.
+- Until Store Credit is switched on, this module's balances stay separate from Gift Cards' store-credit cards; the admin notice is the only signal.
 - `reward_percent` defaults to `0.0`, so the order-reward feature appears to do nothing until a store notices the setting.
 - No lifecycle hooks are fired, so an integration cannot observe a coupon auto-applying or credit being issued.
 - Analytics are per coupon; there is no store-wide view of what the auto-apply feature has cost.

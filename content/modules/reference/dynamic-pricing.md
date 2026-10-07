@@ -34,7 +34,14 @@ Enabling the module creates the two tables below and schedules the cleanup job.
 
 ## Settings
 
-**This module has no settings row.** It declares no settings prefix and no defaults. Everything is expressed per rule, which is why the rule row carries its own exclusivity, sale-item and usage-limit fields rather than reading them from a shared setting.
+Two module-wide settings live in one bundle in the option `aiowc_dyp_settings`, seeded on first load:
+
+| Key                    | Default            | What it does                                                                                              |
+| ---------------------- | ------------------ | --------------------------------------------------------------------------------------------------------- |
+| `conflict_strategy`    | `highest_priority` | How several matching rules are reconciled: `highest_priority`, `first`, `best_discount` or `stack_all`.   |
+| `usage_retention_days` | `90`               | How long usage rows are kept, 7–3650 days, then passed through `aiowc_dynamic_pricing_usage_retention_days`. |
+
+They are edited on the **Settings** tab of the admin screen, or through `/dynamic-pricing/settings`. Everything else is expressed per rule, which is why the rule row carries its own exclusivity, sale-item and usage-limit fields.
 
 ## Rule types
 
@@ -74,11 +81,11 @@ A gift rule adds its product to the cart. The module owns that line: it override
 
 ## Conflicts between rules
 
-Several rules can match one product or cart. An exclusive rule wins alone; otherwise stacking is decided by the module's conflict resolver, and whether two particular rules may stack is passed through the `aiowc_dynamic_pricing_can_stack_rules` filter. A condition type the module does not recognise is passed to `aiowc_dynamic_pricing_evaluate_condition`, so a store can add its own without modifying the module.
+Several rules can match one product or cart. An exclusive rule wins alone; otherwise the conflict resolver applies the stored `conflict_strategy`, and whether two particular rules may stack is passed through the `aiowc_dynamic_pricing_can_stack_rules` filter. A condition type the module does not recognise is passed to `aiowc_dynamic_pricing_evaluate_condition`, so a store can add its own without modifying the module.
 
 ## Admin screen
 
-The **Dynamic Pricing** tab lists the rules with an overview of how many exist and how often they have applied, creates and edits them, duplicates one, deletes in bulk, and shows per-rule statistics. A **preview** endpoint prices a hypothetical rule before it is saved.
+The **Dynamic Pricing** tab lists the rules with an overview of how many exist and how often they have applied, creates and edits them, duplicates one, deletes in bulk, and shows per-rule statistics. A **preview** endpoint prices a hypothetical rule before it is saved. A **Settings** tab edits the conflict strategy and the usage-history retention.
 
 ## REST API endpoints
 
@@ -96,6 +103,8 @@ All routes are on `aiowc/v1`, answer with the `{ success, data, message }` envel
 | POST              | `/dynamic-pricing/bulk`                | Apply an action to several rules at once.         | `action`, `ids`    |
 | GET               | `/dynamic-pricing/overview`            | The counts shown on the overview.                 | –                  |
 | POST              | `/dynamic-pricing/preview`             | Price a rule without saving it.                   | `rule_type`        |
+| GET               | `/dynamic-pricing/settings`            | The settings bundle, coerced and bounded.         | –                  |
+| POST / PUT / PATCH | `/dynamic-pricing/settings`           | Write only the keys sent; answers with what was stored. | –            |
 
 Every route is administrator-only; the storefront gets its prices through WooCommerce's filters rather than by calling the API.
 
@@ -137,6 +146,7 @@ The job runs on Action Scheduler.
 | --------------------------------------------- | ------------------------------------------------------------------ |
 | `aiowc_dynamic_pricing_evaluate_condition`    | Filter — evaluate a condition type the module does not know.      |
 | `aiowc_dynamic_pricing_can_stack_rules`       | Filter — decide whether two matching rules may be combined.       |
+| `aiowc_dynamic_pricing_usage_retention_days`  | Filter — how long usage rows are kept.                            |
 | `aiowc_track_event`                           | The module is enabled or disabled.                                |
 | `aiowc_capture_error`                         | An error is caught while evaluating or applying a rule.           |
 
@@ -151,6 +161,6 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 ## Known gaps
 
 - **Two modules filter `woocommerce_product_get_price`** — this one and the premium [Dynamic Pricing Rules](/modules/reference/dynamic-pricing-rules). With both enabled, both adjust the same price and neither knows about the other, so the resulting price depends on filter order rather than on either module's conflict resolution. A store should run one or the other.
-- With no settings row there is no storefront kill switch: the module is either on with all of its hooks, or disabled entirely.
+- The settings carry no storefront kill switch: the module is either on with all of its hooks, or disabled entirely.
 - Rules are expired by a background job rather than checked at read time, so a rule can apply briefly past its end date until the job next runs.
 - The preview endpoint prices a rule in isolation; it does not show how the rule would interact with the others already active.

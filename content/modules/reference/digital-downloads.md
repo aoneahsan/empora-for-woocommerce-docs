@@ -42,8 +42,23 @@ Stored in the bundled option row `aiowc_dd_settings`; legacy per-key options `ai
 | `cleanupDays`           | `cleanup_days`            | `90`    | Age at which log rows are deleted.                                                                            |
 | `linkTokenLength`       | `link_token_length`       | `32`    | Length of the generated token.                                                                                |
 | `forceDownload`         | `force_download`          | `true`  | Stream the file through WooCommerce's forced-download path where the file is local; otherwise redirect to it. |
+| `enableSecureLinks`     | `enable_secure_links`     | `true`  | Point My Account and order emails at the token URL. Off hands back WooCommerce's own URLs; links already issued keep working. |
+| `redirectAfterDownload` | `redirect_after_download` | `false` | Serve an interstitial page that starts the download, then sends the customer to `redirect_url`.               |
+| `redirectUrl`           | `redirect_url`            | `''`    | Where the interstitial sends the customer. Checked with `wp_validate_redirect()` on save and on every use.    |
+| `enablePdfWatermark`    | `enable_pdf_watermark`    | `false` | Stamp `watermark_text` on every page of a PDF download. **Premium edition only** — see below.                 |
+| `watermarkText`         | `watermark_text`          | `Licensed to {customer_email} - order {order_number} - {date}` | The stamped text; placeholders `{customer_email}`, `{order_number}`, `{date}`, cut at 200 characters. |
 
-Five further settings are stored and returned by the settings routes but are not read anywhere in the module, so changing them has no effect in this release: `enable_secure_links`, `enable_pdf_watermark`, `watermark_text`, `redirect_after_download` and `redirect_url`.
+The settings read also returns two read-only facts for the admin screen: `watermarkAvailable` (whether this build carries the PDF toolchain) and `watermarkFallbacks` (downloads served without a watermark, option `aiowc_dd_watermark_fallbacks`).
+
+### Redirect after download
+
+A response cannot both send a file and navigate, so with `redirect_after_download` on the token URL first serves a small page. It starts the real download in a hidden frame, then moves to `redirect_url` after about four seconds; both steps are also plain links, so nothing depends on scripts. The real download URL carries a nonce bound to the link's token, and the serving path refuses the token without it while the feature is on, so the page cannot be skipped. The page is not counted as a download; the download it starts is, once. An address that fails `wp_validate_redirect()` (not this site or a host in `allowed_redirect_hosts`) is not used.
+
+### PDF watermarking (premium edition)
+
+Watermarking uses FPDI + FPDF (`setasign/fpdi`), which ship only in the premium build. The free core build leaves them out, and its admin screen hides the setting and says watermarking is part of the premium edition. When it is on, a download of a **local** `.pdf` is served as a stamped **copy** built in memory; the original file is only read, and remote files are served unstamped.
+
+🔴 **Limit:** the open-source FPDI parser cannot read a PDF whose cross-reference table is a compressed stream (common since PDF 1.5), nor an encrypted or damaged file. Such a file is served **without a watermark** — the download never fails — the failure is logged, and the admin screen shows how many downloads were served this way, with the advice to save the file as PDF 1.4. Removing the limit needs setasign's commercial PDF-Parser add-on.
 
 ## How a download works
 
@@ -59,7 +74,7 @@ Delivery uses `WC_Download_Handler::download_file_force()` for a local file when
 
 ## Admin screen
 
-The **Downloads** tab lists active download permissions — customer, product, downloads left and access expiry — with a refresh control. It reads `GET /downloads/permissions` and directs the user to the order edit screen to change a permission.
+The **Downloads** tab lists active download permissions — customer, product, downloads left and access expiry — with a refresh control. It reads `GET /downloads/permissions` and directs the user to the order edit screen to change a permission. A settings card below it edits every setting above, including the redirect and, in the premium edition, the watermark.
 
 ## REST API endpoints
 

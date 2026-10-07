@@ -47,8 +47,8 @@ weight, anything below `min_score_threshold` is dropped, and the blended result 
 ## Settings
 
 Read through `ModuleSettings` with the `aiowc_rec_` prefix; defaults are
-`RecommendationsModule::DEFAULTS`. There is **no settings REST endpoint** — the module registers none, so
-these values are changed through the options they are stored in.
+`RecommendationsModule::DEFAULTS`. They are read and written through `/recommendations/settings`
+(administrator only).
 
 | Setting                  | Default | Meaning                                           | Consumed                                             |
 | ------------------------ | ------- | ------------------------------------------------- | ---------------------------------------------------- |
@@ -61,8 +61,7 @@ these values are changed through the options they are stored in.
 | `interaction_days`       | `90`    | Age at which interaction rows are pruned          | Yes — passed to the cleanup job                      |
 | `show_on_product_page`   | `true`  | Whether the product-page rails render             | Yes — decides whether the hook is added at all       |
 | `show_on_cart`           | `true`  | Whether the cart cross-sells render               | Yes — decides whether the hook is added at all       |
-| `max_recommendations`    | `8`     | Intended cap on items shown                       | **No** — never read; the handlers pass a literal `8` |
-| `show_on_homepage`       | `true`  | Intended homepage placement                       | **No** — never read, and no homepage hook exists     |
+| `max_recommendations`    | `8`     | List length for the shortcodes                    | Yes — when a shortcode gives no `limit`; the product-page rail still uses `8` |
 
 ## Admin screen
 
@@ -91,6 +90,7 @@ Namespace `aiowc/v1`. All responses use the shared envelope.
 | GET    | `/recommendations/trending`     | Trending products, up to `limit`               | —                    | Rate-limited public read |
 | POST   | `/recommendations/track`        | Record an interaction of the given `type`      | `product_id`, `type` | Public write check       |
 | POST   | `/recommendations/refresh`      | Recalculate scores now                         | —                    | Manage                   |
+| GET / POST / PUT / PATCH | `/recommendations/settings` | Read and write the settings above | — | Manage |
 
 ## WooCommerce integration
 
@@ -107,7 +107,18 @@ Namespace `aiowc/v1`. All responses use the shared envelope.
 | `[aiowc_recommendations]` | Renders a recommendations rail |
 | `[aiowc_trending]`        | Renders the trending rail      |
 
-No block is registered.
+### Block
+
+`empora/recommendations` (**Product Recommendations**, in the WooCommerce block category) is server-rendered
+through the shortcodes' renderers. Attributes:
+
+| Attribute   | Default    | Meaning                                                                                          |
+| ----------- | ---------- | ------------------------------------------------------------------------------------------------ |
+| `source`    | `trending` | `trending` renders the trending rail; `product` renders recommendations related to one product. |
+| `productId` | `0`        | The product for `source: product`. `0` uses the product being viewed on a single product page.  |
+| `count`     | `4`        | How many products, clamped to 1–12.                                                              |
+
+Both shortcodes are kept.
 
 ## Background jobs
 

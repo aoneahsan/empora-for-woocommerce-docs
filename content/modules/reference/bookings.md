@@ -39,7 +39,16 @@ Enabling the module creates the tables below and schedules four jobs.
 
 ## Settings
 
-This module declares no `DEFAULTS` constant. Its configuration is per product, per resource and per availability rule rather than a set of module-wide switches.
+Four module-wide settings live in one bundle in the option `aiowc_bkg_settings`. On first load the bundle is seeded from the defaults, importing any values a store had written by hand into the old `aiowc_booking_settings` option.
+
+| Key                            | Default   | What it does                                                                                                           |
+| ------------------------------ | --------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `expire_pending_after_minutes` | `30`      | How long an unpaid pending booking holds its slot before the expiry job releases it, 0–1440. `0` switches expiry off. |
+| `send_expiry_notification`     | `false`   | Whether the customer is emailed when their pending booking expires.                                                    |
+| `reminder_hours_before`        | `[24, 2]` | When reminder emails go out, in hours before the booking — up to three values, each 1–168.                             |
+| `log_retention_days`           | `365`     | How long transition-log rows are kept, 0–3650. `0` switches log cleanup off.                                           |
+
+They are edited on the **Settings** tab of the admin screen, or through `/bookings/settings`. Everything else is configured per product, per resource and per availability rule. The Google Calendar keys are not part of the bundle — see *Calendar sync*.
 
 ## The booking
 
@@ -86,9 +95,11 @@ The module defines a calendar provider interface with two implementations: a **G
 
 🔴 **The null provider is what runs unless Google Calendar is configured.** That is a deliberate design — the module works without an external calendar, and the sync job simply has nothing to do. A booking's `external_event_id` stays empty and `calendar_synced_at` is never set.
 
+The provider choice and Google credentials are read from the old `aiowc_booking_settings` option, not the settings bundle, and no screen offers them: the Google provider has an auth URL and a callback handler, but nothing in the plugin calls either yet, so a store cannot connect a calendar from the admin.
+
 ## Admin screen
 
-The **Bookings** tab lists bookings and confirms, cancels, completes, reschedules or marks them no-show, individually or in bulk; manages resources and availability rules; shows statistics; exports bookings; and reads a booking's transition log. A **diagnostics** service backs a check of the module's own configuration.
+The **Bookings** tab lists bookings and confirms, cancels, completes, reschedules or marks them no-show, individually or in bulk; manages resources and availability rules; shows statistics; exports bookings; and reads a booking's transition log. Its **Settings** tab edits the four settings above. Its **Rentals** tab no longer manages rentals: it says that rental stock, deposits, returns and late fees belong to [Product Rentals](/modules/reference/rentals) and links there. A **diagnostics** service backs a check of the module's own configuration.
 
 ## REST API endpoints
 
@@ -108,6 +119,7 @@ All routes are on `aiowc/v1` and answer with the `{ success, data, message }` en
 | GET    | `/bookings/{id}/logs`               | Its transition history.                      |
 | POST   | `/bookings/bulk/confirm` / `/bulk/cancel` | Act on several at once.                |
 | GET    | `/bookings/export`                  | Export bookings.                             |
+| GET / POST / PUT / PATCH | `/bookings/settings`  | Read the settings bundle; write only the keys sent. |
 | GET    | `/bookings/statistics`              | Counts and totals.                           |
 | GET / POST | `/bookings/resources`           | List and create resources.                   |
 | GET / PATCH / DELETE | `/bookings/resources/{id}` | Manage one resource.                    |
@@ -158,7 +170,7 @@ The four customer routes that name a booking id run a **customer permission chec
 | `{prefix}aiowc_rental_inventory`               | Rental stock held by this module.                                                     |
 | `{prefix}aiowc_rental_reservations`            | Rental reservations held by this module.                                              |
 
-The last two matter: **this module contains its own rental implementation**, separate from the standalone [Product Rentals](/modules/reference/rentals) module. See the limits below.
+The last two are legacy. **[Product Rentals](/modules/reference/rentals) owns rentals**: this module no longer reads or writes them, and Product Rentals copies their reservations into its own tables once (see that page). The tables are kept, never altered or dropped.
 
 ## Background jobs
 
@@ -173,7 +185,7 @@ The 15-minute expiry job is what releases a slot held by an abandoned checkout, 
 
 ## Action hooks for integrators
 
-Lifecycle: `aiowc_booking_created`, `_confirmed`, `_cancelled`, `_completed`, `_rescheduled`, `_no_show`, `_expired`, `_reminder_sent`, `aiowc_rental_checked_out`.
+Lifecycle: `aiowc_booking_created`, `_confirmed`, `_cancelled`, `_completed`, `_rescheduled`, `_no_show`, `_expired`, `_reminder_sent`.
 
 Filters: `aiowc_booking_cancellation_allowed`, `aiowc_booking_max_cart_age`, `aiowc_customer_booking_actions`, and three for the reminder email's data, content and headers.
 
@@ -189,7 +201,6 @@ The module reports a warning when its tables are missing or WooCommerce is inact
 
 ## Known gaps
 
-- **Rentals are implemented twice.** This module owns `aiowc_rental_inventory` and `aiowc_rental_reservations`, while the standalone [Product Rentals](/modules/reference/rentals) module owns `aiowc_rentals`, `aiowc_rental_periods` and `aiowc_rental_calendar`. They are separate implementations with separate data and separate admin screens. A store should choose one.
 - **Calendar sync does nothing until Google Calendar is configured** — the null provider is the default, and the sync job runs hourly regardless with nothing to do.
-- The module has no settings row, so behaviour that a store might expect to configure once — a default cancellation window, a default reminder lead time — is expressed per rule, per product or through a filter instead.
+- A default cancellation window is not a setting; it is expressed per rule, per product or through `aiowc_booking_cancellation_allowed`.
 - Bookings store a customer's name, email and phone directly on the booking row, including for guest bookings, which is customer personal data outside WooCommerce's own order tables and should be accounted for in a retention policy.
