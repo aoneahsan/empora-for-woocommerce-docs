@@ -13,7 +13,7 @@
     "ops": "Inventory & Operations",
     "integrations": "Integrations & Payments"
   },
-  "moduleCount": 78,
+  "moduleCount": 82,
   "modules": [
     {
       "key": "abandoned_cart",
@@ -93,6 +93,16 @@
       "plan": "starter",
       "category": "discovery",
       "adminTab": "search",
+      "available": true
+    },
+    {
+      "key": "amazon-affiliates",
+      "entitlement": "amazon-affiliates",
+      "title": "Amazon Affiliates",
+      "tier": "premium",
+      "plan": "enterprise",
+      "category": "integrations",
+      "adminTab": null,
       "available": true
     },
     {
@@ -253,6 +263,16 @@
       "plan": "business",
       "category": "marketing",
       "adminTab": "email-automation",
+      "available": true
+    },
+    {
+      "key": "email-customizer",
+      "entitlement": "email-customizer",
+      "title": "Email Template Customizer",
+      "tier": "premium",
+      "plan": "professional",
+      "category": "marketing",
+      "adminTab": null,
       "available": true
     },
     {
@@ -466,6 +486,16 @@
       "available": true
     },
     {
+      "key": "product-designer",
+      "entitlement": "product-designer",
+      "title": "Product Designer",
+      "tier": "premium",
+      "plan": "business",
+      "category": "catalog",
+      "adminTab": null,
+      "available": true
+    },
+    {
       "key": "product_filters",
       "entitlement": "product_filters",
       "title": "Product Filters",
@@ -603,6 +633,16 @@
       "plan": "business",
       "category": "marketing",
       "adminTab": "rewards-points",
+      "available": true
+    },
+    {
+      "key": "countdown-timer",
+      "entitlement": "countdown-timer",
+      "title": "Sales Countdown Timers",
+      "tier": "premium",
+      "plan": "starter",
+      "category": "marketing",
+      "adminTab": null,
       "available": true
     },
     {

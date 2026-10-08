@@ -2,7 +2,7 @@
   "name": "empora-for-woocommerce-docs",
   "version": "0.1.0",
   "private": true,
-  "description": "Public documentation site for Empora for WooCommerce — a WooCommerce plugin with 78 modules (free core + premium). Built with Docusaurus, deployed to GitHub Pages.",
+  "description": "Public documentation site for Empora for WooCommerce — a WooCommerce plugin with 82 modules (free core + premium). Built with Docusaurus, deployed to GitHub Pages.",
   "author": {
     "name": "Ahsan Mahmood",
     "email": "aoneahsan@gmail.com",

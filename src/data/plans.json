@@ -26,7 +26,7 @@
       "priceCents": 1900,
       "currency": "USD",
       "maxSites": 1,
-      "moduleCount": 27,
+      "moduleCount": 28,
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,
@@ -41,7 +41,7 @@
       "priceCents": 4900,
       "currency": "USD",
       "maxSites": 1,
-      "moduleCount": 48,
+      "moduleCount": 50,
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,
@@ -56,7 +56,7 @@
       "priceCents": 9900,
       "currency": "USD",
       "maxSites": 3,
-      "moduleCount": 68,
+      "moduleCount": 71,
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,
@@ -71,7 +71,7 @@
       "priceCents": 29900,
       "currency": "USD",
       "maxSites": -1,
-      "moduleCount": 78,
+      "moduleCount": 82,
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,

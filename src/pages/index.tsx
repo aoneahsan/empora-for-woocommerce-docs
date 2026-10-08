@@ -53,7 +53,7 @@ function HomepageHeader(): ReactNode {
             Installation
           </Link>
           <Link className="button button--outline button--lg" to="/modules/reference">
-            All 78 modules
+            All 82 modules
           </Link>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title} — the complete WooCommerce toolkit`}
-      description="Documentation for Empora for WooCommerce: install the free plugin, activate a premium license, and configure 78 modules covering filters, reviews, wishlist, shipping, payments, gift cards, subscriptions, and more."
+      description="Documentation for Empora for WooCommerce: install the free plugin, activate a premium license, and configure 82 modules covering filters, reviews, wishlist, shipping, payments, gift cards, subscriptions, and more."
     >
       <HomepageHeader />
       <main>

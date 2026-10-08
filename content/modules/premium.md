@@ -16,7 +16,7 @@ sidebar_position: 3
 Premium modules require an active license whose plan includes them. Enable each one under **Empora → Modules**
 after [activating your license](/getting-started/activating-your-license).
 
-This page describes the headline premium modules in prose. For the **complete list of all 78 modules** and
+This page describes the headline premium modules in prose. For the **complete list of all 82 modules** and
 which plan each one belongs to, use the **[module reference](/modules/reference)** — that page is generated
 from the plugin's own manifest, so it is the authoritative list.
 

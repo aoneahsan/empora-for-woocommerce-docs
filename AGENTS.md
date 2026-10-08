@@ -37,8 +37,8 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
 - **PUBLIC repo — NO secrets.** Never commit `.env`, keys, tokens, or service accounts. `.gitignore` ignores env files; keep it that way.
 - Local installs use **yarn** only (never npm/pnpm). `yarn.lock` is the only lock file.
 - **Never run dev/preview servers** as a task side effect; verify with one-shot `yarn build` + `yarn typecheck`.
-- Content must be **accurate to the real plugin** — 78 modules, all of which register and can be enabled;
-  free core (7 modules) vs premium (71, license-gated); HPOS-compatible; WP 6.2+, WooCommerce 8.0+, PHP 8.1+.
+- Content must be **accurate to the real plugin** — 82 modules, all of which register and can be enabled;
+  free core (7 modules) vs premium (75, license-gated); HPOS-compatible; WP 6.2+, WooCommerce 8.0+, PHP 8.1+.
   No fabricated features, stats, or claims. Never state or imply that a module in the manifest cannot be
   enabled.
 - SEO floor must stay intact: robots.txt AI-bot allowlist, sitemap.xml, llms.txt, per-page meta/OG, JSON-LD. Keep `lastmod` fresh.

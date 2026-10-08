@@ -100,4 +100,4 @@ removes data.
 
 - [Quick start](/getting-started/quick-start) — your first module, configured, in five minutes.
 - [Activate your license](/getting-started/activating-your-license) — unlock the premium modules.
-- [Module reference](/modules/reference) — all 78 modules and the plan each needs.
+- [Module reference](/modules/reference) — all 82 modules and the plan each needs.

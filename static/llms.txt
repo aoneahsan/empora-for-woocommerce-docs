@@ -1,8 +1,8 @@
 # Empora for WooCommerce — Documentation
 
 > Empora for WooCommerce (formerly All-In-One WooCommerce) is a WordPress plugin for WooCommerce stores.
-> It ships 78 independently switchable modules. Seven are free and need no license: product filters,
-> reviews, wishlist, compare, social, SEO and dynamic pricing. The remaining 71 are unlocked by a paid
+> It ships 82 independently switchable modules. Seven are free and need no license: product filters,
+> reviews, wishlist, compare, social, SEO and dynamic pricing. The remaining 75 are unlocked by a paid
 > plan and cover advanced shipping, payments, taxes, bulk edit, import/export, reports, subscriptions,
 > bookings, gift cards, rewards points, multi-currency, email automation, shipment tracking, and
 > integrations such as Square, Google Listings & Ads and Klaviyo. HPOS-compatible. Requires WordPress
@@ -16,7 +16,7 @@ This is the documentation site (https://empora-docs.aoneahsan.com). Product site
 - Version 1.0 ships with NO payment provider, so there is no self-serve checkout. The paid plans are real and
   the software enforces their limits, but a plan is arranged by contacting the author. The product does have
   paid tiers; the purchase path is simply not open yet.
-- All 78 modules register in 1.0 and can be switched on. Which ones a site may enable is decided by its plan.
+- All 82 modules register in 1.0 and can be switched on. Which ones a site may enable is decided by its plan.
 - Installation is by uploading the plugin ZIP; there is no WordPress.org listing yet.
 
 ## Plans
@@ -24,10 +24,10 @@ This is the documentation site (https://empora-docs.aoneahsan.com). Product site
 Five tiers. Each includes every module in the tiers below it.
 
 - Free — $0/month, 1 site, 7 modules. Unlimited products, orders and customers; no import/export.
-- Starter — $19/month, 1 site, 27 modules. Unlimited products, orders and customers; no import/export.
-- Professional — $49/month, 1 site, 48 modules. Unlimited products, orders and customers; 10 imports + 10 exports/month.
-- Business — $99/month, 3 sites, 68 modules. Unlimited products, orders and customers; 100 imports + exports/month.
-- Enterprise — $299/month, unlimited sites, all 78 modules, unlimited everything.
+- Starter — $19/month, 1 site, 28 modules. Unlimited products, orders and customers; no import/export.
+- Professional — $49/month, 1 site, 50 modules. Unlimited products, orders and customers; 10 imports + 10 exports/month.
+- Business — $99/month, 3 sites, 71 modules. Unlimited products, orders and customers; 100 imports + exports/month.
+- Enterprise — $299/month, unlimited sites, all 82 modules, unlimited everything.
 
 Details: https://empora-docs.aoneahsan.com/pricing
 
@@ -41,7 +41,7 @@ Details: https://empora-docs.aoneahsan.com/pricing
 ## Modules
 
 - [Modules overview](https://empora-docs.aoneahsan.com/modules/overview): How modules work.
-- [Module reference](https://empora-docs.aoneahsan.com/modules/reference): All 78 modules, searchable, with the plan each belongs to. Generated from the plugin's own manifest.
+- [Module reference](https://empora-docs.aoneahsan.com/modules/reference): All 82 modules, searchable, with the plan each belongs to. Generated from the plugin's own manifest.
 - [Free core modules](https://empora-docs.aoneahsan.com/modules/free-core): The seven modules that need no license.
 - [Premium modules](https://empora-docs.aoneahsan.com/modules/premium): The headline modules a paid plan unlocks.
 - [Configuring modules](https://empora-docs.aoneahsan.com/modules/configuring-modules): The Modules grid and unified Settings page.

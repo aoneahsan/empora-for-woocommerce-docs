@@ -62,7 +62,7 @@ const config: Config = {
         name: 'Empora for WooCommerce Documentation',
         url: SITE_URL,
         description:
-          'Documentation for Empora for WooCommerce: installation, module reference for all 78 modules, plans, guides, troubleshooting and API reference. Free core of 7 modules plus premium modules unlocked by a license.',
+          'Documentation for Empora for WooCommerce: installation, module reference for all 82 modules, plans, guides, troubleshooting and API reference. Free core of 7 modules plus premium modules unlocked by a license.',
         inLanguage: 'en',
         publisher: {
           '@type': 'Person',
@@ -103,7 +103,7 @@ const config: Config = {
           url: 'https://aoneahsan.com',
         },
         description:
-          'A WooCommerce plugin providing 78 modules: a free core of 7 modules (filters, reviews, wishlist, compare, social, SEO, dynamic pricing) plus premium modules unlocked by a paid license. HPOS-compatible. Requires WordPress 6.2+, WooCommerce 8.0+, PHP 8.1+.',
+          'A WooCommerce plugin providing 82 modules: a free core of 7 modules (filters, reviews, wishlist, compare, social, SEO, dynamic pricing) plus premium modules unlocked by a paid license. HPOS-compatible. Requires WordPress 6.2+, WooCommerce 8.0+, PHP 8.1+.',
         softwareVersion: '1.0.0',
       }),
     },
@@ -179,7 +179,7 @@ const config: Config = {
      * infrastructure, and adding one for a single filesystem assertion would
      * cost more than it returns.
      *
-     * The slug rule is the one already used by the 78 pages: the manifest key
+     * The slug rule is the one already used by the 82 pages: the manifest key
      * with underscores replaced by hyphens.
      */
     function moduleReferenceParityPlugin() {

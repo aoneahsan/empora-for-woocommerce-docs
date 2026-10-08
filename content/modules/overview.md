@@ -15,11 +15,11 @@ sidebar_position: 1
 
 Empora is organised as independent **modules**. Each module is a self-contained feature you enable or disable on its own from **Empora → Modules**. Free-core modules work without a license; premium modules require an active license whose plan includes them.
 
-This page is a tour by area. The **[module reference](/modules/reference)** is the authoritative list — all 78
+This page is a tour by area. The **[module reference](/modules/reference)** is the authoritative list — all 82
 modules, searchable, generated from the plugin's own manifest, showing which plan each belongs to. For how
 enabling works, see [Configuring modules](/modules/configuring-modules).
 
-All 78 modules register in 1.0 and can be switched on. What decides whether you can enable one is your plan:
+All 82 modules register in 1.0 and can be switched on. What decides whether you can enable one is your plan:
 the free core needs no license, and every other module belongs to a paid tier.
 
 ## Free core
@@ -77,6 +77,7 @@ them. The seven free-core modules are marked **Free**; everything else needs a p
 | Product Add-Ons | `addons` |
 | Product Bundles | `bundles` |
 | Product Bundles (Enhanced) | `bundles-enhanced` |
+| Product Designer | `product-designer` |
 | Product Options | `product_options` |
 | Product Rentals | `rentals` |
 | Subscriptions | `subscriptions` |
@@ -122,11 +123,13 @@ them. The seven free-core modules are marked **Free**; everything else needs a p
 |---|---|
 | Affiliates (Advanced) | `affiliates-advanced` |
 | Email & Automations | `email_automation` |
+| Email Template Customizer | `email-customizer` |
 | Gift Cards & Store Credit | `gift_cards` |
 | Gift Cards & Vouchers | `gift-cards-advanced` |
 | Popups & Exit-Intent Builder | `popups` |
 | Referral Program | `referral-program` |
 | Rewards & Points | `rewards_points` |
+| Sales Countdown Timers | `countdown-timer` |
 | Smart Coupons Advanced | `smart-coupons-advanced` |
 | SMS Marketing & Notifications | `sms-advanced` |
 | Social Login | `social_login` |
@@ -159,6 +162,7 @@ issued credit first. See [Wallet](/modules/reference/wallet) and
 
 | Module | Key |
 |---|---|
+| Amazon Affiliates | `amazon-affiliates` |
 | Google Listings & Ads | `google_listings_ads` |
 | Google Shopping Feed | `google-shopping-feed` |
 | Instagram Shop Integration (Advanced) | `instagram-shop-advanced` |
@@ -168,7 +172,7 @@ issued credit first. See [Wallet](/modules/reference/wallet) and
 | Square Payments + Sync | `square` |
 
 :::note
-That is the whole catalogue: 78 modules, 7 free and 71 premium. Not every module is part of every plan. The
+That is the whole catalogue: 82 modules, 7 free and 75 premium. Not every module is part of every plan. The
 authoritative list of what **your** license unlocks is always the entitlement list on **Empora → Settings →
 License**.
 :::

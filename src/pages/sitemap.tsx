@@ -57,7 +57,7 @@ const GROUPS: Group[] = [
   },
   {
     name: 'Modules',
-    blurb: 'The 78 modules: what exists, what each plan unlocks, and how to switch them on.',
+    blurb: 'The 82 modules: what exists, what each plan unlocks, and how to switch them on.',
     entries: [
       {
         to: '/modules/overview',
@@ -68,7 +68,7 @@ const GROUPS: Group[] = [
       {
         to: '/modules/reference',
         title: 'Module reference',
-        description: 'All 78 modules with search and filters, and the plan each one belongs to.',
+        description: 'All 82 modules with search and filters, and the plan each one belongs to.',
         tags: ['module list', 'reference', 'search', 'plans'],
       },
       {
