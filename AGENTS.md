@@ -1,6 +1,6 @@
 # AGENTS.md — Empora for WooCommerce Docs
 
-Last updated: 2026-09-12
+Last updated: 2026-10-14
 
 Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo is the SEPARATE, **PUBLIC** docs repo; the product itself lives in a separate private repository, which is never named here.
 
@@ -67,9 +67,9 @@ surface. The three sections that used to repeat them (sync rule, sub-agents, mod
 
 | Context budget | Value |
 | --- | --- |
-| Last optimized | 2026-09-17 |
-| Next routine optimization eligible | 2026-10-17 |
-| Guide bytes | 4,677 B |
+| Last optimized | 2026-10-14 |
+| Next routine optimization eligible | 2026-11-13 |
+| Guide bytes | 4,670 B |
 | Covered subtree | this repo's root pair (it has no nested guides) |
 | Method | Three fleet-law restatements replaced by one pointer; nothing project-specific removed |
-| Fleet record | `D:/work/my-work/docs/tracking/project-context-budget-tracker.json` |
+| Fleet record | `../../../docs/tracking/project-context-budget-tracker.json` |
