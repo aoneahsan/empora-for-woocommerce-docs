@@ -1,5 +1,7 @@
 # CLAUDE.md — Empora for WooCommerce Docs
 
+**Last Updated:** 2026-10-20
+
 Last updated: 2026-10-14
 
 Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo is the SEPARATE, **PUBLIC** docs repo; the product itself lives in a separate private repository, which is never named here.
@@ -73,3 +75,9 @@ surface. The three sections that used to repeat them (sync rule, sub-agents, mod
 | Covered subtree | this repo's root pair (it has no nested guides) |
 | Method | Three fleet-law restatements replaced by one pointer; nothing project-specific removed |
 | Fleet record | `../../../docs/tracking/project-context-budget-tracker.json` |
+
+## Stop-work Git gate
+
+<!-- RULE:stop-work-git-gate v2026-10-20 -->
+
+Before stopping, commit every legitimate change and work-progress checkpoint in this repository and each independent nested repository, fetch and merge the designated upstream, push the documented working branch, then verify an empty worktree and `0 0` ahead/behind. Never stash, discard, reset, rebase, or force-push. If synchronization is blocked, report the exact repository, branch, blocker, and next action instead of calling the work complete. The full workflow remains authoritative in `~/.claude/rules/git-workflow.md`.
