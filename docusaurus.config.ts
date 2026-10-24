@@ -28,10 +28,6 @@ const config: Config = {
   // SEO + AI-citability head tags injected into <head> of every page.
   headTags: [
     {
-      tagName: 'link',
-      attributes: { rel: 'canonical', href: `${SITE_URL}/` },
-    },
-    {
       tagName: 'meta',
       attributes: { name: 'application-name', content: 'Empora for WooCommerce Docs' },
     },
