@@ -2,7 +2,7 @@
 title: Documentation corrections — all 78 modules, and the new plan limits
 description: Three modules were documented as unavailable in 1.0 after they had already been enabled. That is corrected across the site, along with the free, Starter and Professional record limits.
 slug: documentation-corrections-2026-09-12
-authors: [aoneahsan]
+authors: [empora-team]
 tags: [documentation]
 date: 2026-09-12
 ---

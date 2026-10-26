@@ -139,6 +139,12 @@ Created by `Schema/DatabaseSchema.php` when the module is enabled.
 | `woocommerce_email_order_meta`                | Credit used, in order emails           |
 | `woocommerce_order_details_after_order_table` | Credit used, on the order details page |
 
+### Paying from store credit at checkout
+
+Store credit can pay part or all of an order on the classic checkout and on the Checkout block, together with the Wallet when both are enabled (store credit is used first). The checkout steps, the re-quote when a balance changes, and returning an overpayment are described under [Wallet → Spending at checkout](/modules/reference/wallet#spending-at-checkout).
+
+The **Store Credit** admin page keeps its "Some orders need a look" notice, now as a list with a count per row and a **Show these orders** link: returns still owed, open overpayments, and orders from earlier versions, which are left as they are.
+
 ## Background jobs
 
 `CreditExpiryJob` (`aiowc_store_credit_expiry`) expires credit on a schedule, and is unscheduled when the module is disabled.

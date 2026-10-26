@@ -66,7 +66,33 @@ A bundle's availability is derived from its contents: the module carries a stock
 
 ## Admin screen
 
-The **Bundles** tab lists the bundles and creates, edits and deletes them through a validated form — a bundle needs a name, and the discount is checked as a number within sane bounds, with the reason shown inline when it is not. Bundle items are managed per bundle, and the module's four settings are edited from the same screen.
+The **Bundles** tab lists the bundles, with each bundle's **Shown on** product pages under its name, and creates, edits and deletes them. The module's four settings are edited from the same screen.
+
+### Bundle contents
+
+The bundle dialog edits the settings above and two more sections.
+
+**Contents** is a list of up to **50 items**. For each item you set:
+
+- the product, picked by searching as you type (at most 20 results, with a line saying how many more match);
+- a variation, asked for only when the product is variable;
+- the default, minimum and maximum quantity, where minimum ≤ default ≤ maximum and a maximum of 0 means no limit;
+- an optional item discount, in the bundle's discount unit; left blank, the bundle discount applies;
+- whether the item is **optional**.
+
+A drag handle reorders the items; it also moves an item with the arrow keys and announces the move. Removing an item offers **Undo**, and a line shows the bundle price at the default quantities.
+
+**Shown on** chooses the product pages that show the bundle offer. A link adds the pages of the products already in the bundle.
+
+### Checks on Save
+
+Saving runs every check and shows a summary you can click, with a message at each field that updates as you fix it. A bundle is refused when it has:
+
+- no items, or an item whose product is deleted or unknown;
+- a variation that belongs to another product;
+- quantities in the wrong order, or a required item with a minimum of 0;
+- a percentage discount above 100%, or a fixed item discount above the item's price;
+- the **Active** switch on and no product page in **Shown on**.
 
 ## REST API endpoints
 

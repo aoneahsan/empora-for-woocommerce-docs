@@ -2,7 +2,7 @@
 title: 1.0.0 — in preparation
 description: Empora for WooCommerce 1.0.0 has not been released yet. What the first release contains, and what this changelog will carry once it ships.
 slug: 1-0-0-in-preparation
-authors: [aoneahsan]
+authors: [empora-team]
 tags: [release]
 date: 2026-08-29
 ---

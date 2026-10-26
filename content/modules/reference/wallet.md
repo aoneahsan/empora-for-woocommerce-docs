@@ -57,7 +57,18 @@ An amount below `min_top_up` produces no order at all.
 
 ## Spending at checkout
 
-When a signed-in customer has a positive balance, a **Use wallet credit** checkbox is drawn after the payment section. If it is ticked, `woocommerce_checkout_order_processed` debits the smaller of the balance and the order total.
+A signed-in customer with a positive balance can pay part or all of an order from it, on the classic checkout and on the Checkout block. Store credit and wallet money are one balance at checkout: **store credit is used first, then the wallet**. When the balance covers the whole order, no payment method is needed.
+
+- **Classic checkout:** a **Use my balance (… available)** checkbox sits before the **Place order** button, and the amounts paid from the balance are listed before the order total.
+- **Checkout block:** a **Pay with your balance** step sits between the shipping options and the payment options, and the order summary gains a **Paid from balance** group. With only Store Credit enabled, the customer enters an amount (or uses the "Use …" shortcut) and applies it; an amount above what the order allows is refused at the field.
+
+A customer who is not signed in sees "Sign in to use your balance". If the balance changes while the customer is checking out, the amount is re-quoted down, never up, and the step says so before the order is placed.
+
+The ledger writes for the debit and the order's receipt are committed together, so a replayed or failed checkout cannot spend the balance twice. See [Store Credit](/modules/reference/store-credit) for the other ledger.
+
+### Overpaid orders
+
+When an order paid partly from a balance is edited to charge less, the order screen's **Paid from balance** box shows the overpaid amount and its reason, with a **Return … to the customer's balance** button. The confirmation explains that the wallet line is returned first, then store credit, and shows the result. Afterwards the box shows **Returned so far** and adds an order note. Cancelling the order, or refunding all of it, returns the rest automatically. If a return cannot be made (for example, the Wallet module is off), the box says so and nothing changes.
 
 ## Expiry and reminders
 
