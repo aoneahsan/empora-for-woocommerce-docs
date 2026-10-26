@@ -65,15 +65,10 @@ const config: Config = {
           'Documentation for Empora for WooCommerce: installation, module reference for all 82 modules, plans, guides, troubleshooting and API reference. Free core of 7 modules plus premium modules unlocked by a license.',
         inLanguage: 'en',
         publisher: {
-          '@type': 'Person',
-          name: 'Ahsan Mahmood',
-          url: 'https://aoneahsan.com',
-          email: 'aoneahsan@gmail.com',
-          sameAs: [
-            'https://linkedin.com/in/aoneahsan',
-            'https://github.com/aoneahsan',
-            'https://www.npmjs.com/~aoneahsan',
-          ],
+          '@type': 'Organization',
+          name: 'The Empora team',
+          url: 'https://empora.aoneahsan.com',
+          email: 'hi@aoneahsan.com',
         },
       }),
     },
@@ -98,9 +93,9 @@ const config: Config = {
         url: 'https://empora.aoneahsan.com',
         sameAs: ['https://empora.aoneahsan.com'],
         author: {
-          '@type': 'Person',
-          name: 'Ahsan Mahmood',
-          url: 'https://aoneahsan.com',
+          '@type': 'Organization',
+          name: 'The Empora team',
+          url: 'https://empora.aoneahsan.com',
         },
         description:
           'A WooCommerce plugin providing 82 modules: a free core of 7 modules (filters, reviews, wishlist, compare, social, SEO, dynamic pricing) plus premium modules unlocked by a paid license. HPOS-compatible. Requires WordPress 6.2+, WooCommerce 8.0+, PHP 8.1+.',
@@ -113,17 +108,10 @@ const config: Config = {
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'Ahsan Mahmood',
-        alternateName: 'aoneahsan',
-        url: 'https://aoneahsan.com',
-        email: 'aoneahsan@gmail.com',
-        sameAs: [
-          'https://linkedin.com/in/aoneahsan',
-          'https://github.com/aoneahsan',
-          'https://www.npmjs.com/~aoneahsan',
-          'https://aoneahsan.com',
-        ],
-        founder: { '@type': 'Person', name: 'Ahsan Mahmood' },
+        name: 'The Empora team',
+        url: 'https://empora.aoneahsan.com',
+        email: 'hi@aoneahsan.com',
+        sameAs: ['https://empora.aoneahsan.com', 'https://github.com/aoneahsan/empora-for-woocommerce-docs'],
       }),
     },
   ],
@@ -165,6 +153,11 @@ const config: Config = {
   ],
 
   plugins: [
+    // The founder page became the team page (team voice, D-144); the old URL keeps working.
+    [
+      '@docusaurus/plugin-client-redirects',
+      { redirects: [{ from: '/about-the-author', to: '/about-the-team' }] },
+    ],
     /**
      * Module-reference parity.
      *
@@ -365,14 +358,14 @@ const config: Config = {
       {
         name: 'description',
         content:
-          'Documentation for Empora for WooCommerce — a comprehensive WooCommerce toolkit. Free core (filters, reviews, wishlist, compare, social, SEO, dynamic pricing) plus premium modules. Maintained by Ahsan Mahmood.',
+          'Documentation for Empora for WooCommerce — a comprehensive WooCommerce toolkit. Free core (filters, reviews, wishlist, compare, social, SEO, dynamic pricing) plus premium modules. Made by the Empora team.',
       },
       {
         name: 'keywords',
         content:
           'woocommerce plugin, woocommerce toolkit, product filters, woocommerce wishlist, woocommerce reviews, dynamic pricing, advanced shipping, woocommerce payments, gift cards, woocommerce subscriptions, woocommerce gdpr, hpos compatible, woocommerce import export, woocommerce reports, empora',
       },
-      { name: 'author', content: 'Ahsan Mahmood' },
+      { name: 'author', content: 'The Empora team' },
       { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:creator', content: '@aoneahsan' },
@@ -382,7 +375,7 @@ const config: Config = {
       { property: 'og:locale', content: 'en_US' },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
-      { property: 'article:author', content: 'Ahsan Mahmood' },
+      { property: 'article:author', content: 'The Empora team' },
     ],
     colorMode: {
       defaultMode: 'light',
@@ -477,12 +470,11 @@ const config: Config = {
           ],
         },
         {
-          title: 'Built by Ahsan Mahmood',
+          title: 'The Empora team',
           items: [
-            { label: 'aoneahsan.com', href: 'https://aoneahsan.com' },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/aoneahsan' },
-            { label: 'GitHub', href: 'https://github.com/aoneahsan' },
-            { label: 'npm packages', href: 'https://www.npmjs.com/~aoneahsan' },
+            { label: 'About the team', to: '/about-the-team' },
+            { label: 'Email the team', href: 'mailto:hi@aoneahsan.com' },
+            { label: 'empora.aoneahsan.com', href: 'https://empora.aoneahsan.com' },
           ],
         },
       ],

@@ -85,9 +85,7 @@ function AuthorStrip(): ReactNode {
     <section className={styles.authorStrip}>
       <div className="container">
         <p>
-          Built and maintained by <Link href="https://aoneahsan.com">Ahsan Mahmood</Link> —{' '}
-          <Link href="https://linkedin.com/in/aoneahsan">LinkedIn</Link> ·{' '}
-          <Link href="https://github.com/aoneahsan">GitHub</Link> ·{' '}
+          Made by <Link to="/about-the-team">the Empora team</Link> —{' '}
           <Link href="https://empora.aoneahsan.com">empora.aoneahsan.com</Link>
         </p>
       </div>

@@ -57,8 +57,8 @@ it time to be fixed before you disclose it anywhere. A security report is answer
 
 ## Response times
 
-Empora is built and maintained by one developer, [Ahsan Mahmood](/about-the-author). Replies are usually
-within a couple of working days. There is no support SLA on any plan today; if you need a contractual
+The [Empora team](/about-the-team) answers every message. Replies are usually within a couple of working
+days. There is no support SLA on any plan today; if you need a contractual
 response time, say so when you write and it can be discussed.
 
 ## Related

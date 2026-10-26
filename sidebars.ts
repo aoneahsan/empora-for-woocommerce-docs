@@ -65,7 +65,7 @@ const sidebars: SidebarsConfig = {
     'troubleshooting',
     'faq',
     'support',
-    'about-the-author',
+    'about-the-team',
   ],
 };
 
