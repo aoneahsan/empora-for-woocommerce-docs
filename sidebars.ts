@@ -15,6 +15,7 @@ const sidebars: SidebarsConfig = {
         'getting-started/installation',
         'getting-started/quick-start',
         'getting-started/activating-your-license',
+        'getting-started/ai-drafts',
       ],
     },
     {
