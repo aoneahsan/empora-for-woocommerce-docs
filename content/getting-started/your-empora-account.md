@@ -17,6 +17,7 @@ downloads, connected stores, billing and settings. You sign in with Google.
 
 ## See it before you sign in
 
+On the home page, **See how Empora works** sits beside **Get started** and **Explore features**.
 [How Empora works](https://empora.aoneahsan.com/how-empora-works) shows six screens of the account, one step
 at a time. Use the numbered dots, **Previous** and **Next**, the arrow keys, or swipe on a phone. Each step has
 its own address (`?step=3`), so you can share a single step.
@@ -33,8 +34,8 @@ tour of this page**. It walks you through the page you are on:
 - A tour can open on a given step from its address (`?tour=3`).
 
 The first time you open one of these pages, one line offers the tour: **Show me** starts it and **Dismiss**
-hides it. The line shows once on each device and leaves by itself after a few seconds. The map button starts
-the tour again at any time.
+hides it. The line shows once for your account: a page you have seen counts as seen on every device you sign
+in on. It leaves by itself after a few seconds, and the map button starts the tour again at any time.
 
 ## What each page does
 
