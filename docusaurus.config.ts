@@ -1,6 +1,8 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import sitePagesPlugin from './plugins/site-pages';
+import { createSitemapItems } from './plugins/sitemap-lastmod';
 
 // ---------------------------------------------------------------------------
 // Empora for WooCommerce — Documentation site config
@@ -26,11 +28,9 @@ const config: Config = {
   onBrokenAnchors: 'throw',
 
   // SEO + AI-citability head tags injected into <head> of every page.
+  // Never a canonical here: the theme emits one per route, and a global one
+  // would give every page a second canonical pointing at the home page.
   headTags: [
-    {
-      tagName: 'link',
-      attributes: { rel: 'canonical', href: `${SITE_URL}/` },
-    },
     {
       tagName: 'meta',
       attributes: { name: 'application-name', content: 'Empora for WooCommerce Docs' },
@@ -50,7 +50,7 @@ const config: Config = {
         rel: 'alternate',
         type: 'application/rss+xml',
         title: 'Empora for WooCommerce — releases',
-        href: `${SITE_URL}/changelog/rss.xml`,
+        href: `${SITE_URL}/feed.xml`,
       },
     },
     {
@@ -153,6 +153,8 @@ const config: Config = {
   ],
 
   plugins: [
+    // The readable /feed page and the /feed.xml copy of the changelog RSS.
+    sitePagesPlugin,
     // The founder page became the team page (team voice, D-144); the old URL keeps working.
     [
       '@docusaurus/plugin-client-redirects',
@@ -326,6 +328,8 @@ const config: Config = {
           blogSidebarTitle: 'Releases',
           blogSidebarCount: 'ALL',
           showReadingTime: false,
+          // Gives each post its git date, which becomes its sitemap lastmod.
+          showLastUpdateTime: true,
           onUntruncatedBlogPosts: 'ignore',
           feedOptions: {
             type: 'all',
@@ -344,16 +348,19 @@ const config: Config = {
           customCss: './src/css/custom.css',
         },
         sitemap: {
-          changefreq: 'weekly',
-          priority: 0.7,
+          // Google ignores changefreq and priority; a truthful lastmod is what counts.
+          changefreq: null,
+          priority: null,
           lastmod: 'date',
+          ignorePatterns: ['/search'],
+          createSitemapItems,
         },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
-    image: 'img/social-card.svg',
+    image: 'img/social-card.png',
     metadata: [
       {
         name: 'description',
@@ -465,7 +472,8 @@ const config: Config = {
             // Absolute: these are static files in build/, not Docusaurus routes,
             // so a root-relative href trips the broken-link checker.
             { label: 'sitemap.xml', href: `${SITE_URL}/sitemap.xml` },
-            { label: 'RSS feed', href: `${SITE_URL}/changelog/rss.xml` },
+            { label: 'Feed', to: '/feed' },
+            { label: 'feed.xml', href: `${SITE_URL}/feed.xml` },
             { label: 'llms.txt', href: `${SITE_URL}/llms.txt` },
           ],
         },

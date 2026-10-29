@@ -59,7 +59,7 @@ Details: https://empora-docs.aoneahsan.com/pricing
 - [Troubleshooting](https://empora-docs.aoneahsan.com/troubleshooting)
 - [FAQ](https://empora-docs.aoneahsan.com/faq)
 - [Support & contact](https://empora-docs.aoneahsan.com/support)
-- [Changelog](https://empora-docs.aoneahsan.com/changelog): Release notes. RSS: https://empora-docs.aoneahsan.com/changelog/rss.xml
+- [Changelog](https://empora-docs.aoneahsan.com/changelog): Release notes. RSS: https://empora-docs.aoneahsan.com/feed.xml
 
 ## Reference
 
@@ -68,12 +68,12 @@ Details: https://empora-docs.aoneahsan.com/pricing
 - [REST API](https://empora-docs.aoneahsan.com/reference/rest-api)
 - [License API](https://empora-docs.aoneahsan.com/reference/license-api)
 - [Privacy & data handling](https://empora-docs.aoneahsan.com/reference/privacy-and-data)
-- [About the author](https://empora-docs.aoneahsan.com/about-the-author)
+- [About the team](https://empora-docs.aoneahsan.com/about-the-team)
 
 ## Discovery
 
 - Sitemap (human): https://empora-docs.aoneahsan.com/sitemap
 - Sitemap (XML): https://empora-docs.aoneahsan.com/sitemap.xml
-- Release feed (RSS): https://empora-docs.aoneahsan.com/changelog/rss.xml
+- Release feed (RSS): https://empora-docs.aoneahsan.com/feed.xml (readable page: https://empora-docs.aoneahsan.com/feed)
 - Product website: https://empora.aoneahsan.com
 - Docs source: https://github.com/aoneahsan/empora-for-woocommerce-docs

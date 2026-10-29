@@ -247,11 +247,11 @@ export default function SitemapPage(): React.JSX.Element {
               every build.
             </li>
             <li>
-              <a href={`${SITE_URL}/changelog/rss.xml`}>
-                <code>/changelog/rss.xml</code>
+              <a href={`${SITE_URL}/feed.xml`}>
+                <code>/feed.xml</code>
               </a>{' '}
               — the RSS feed of release notes. Subscribe in any feed reader to get new versions without
-              checking back.
+              checking back. <Link to="/feed">Read it as a page</Link>.
             </li>
             <li>
               <a href={`${SITE_URL}/llms.txt`}>
