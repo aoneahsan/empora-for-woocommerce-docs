@@ -32,8 +32,8 @@ sheets from the bottom of the screen.
 
 ## A tour on every page
 
-Overview, License, Stores, Billing and Settings each have a **map button** in the header, labelled **Take a
-tour of this page**. It walks you through the page you are on:
+Overview, License, Downloads, Stores, AI drafts, Billing, Referrals and Settings each have a **map button** in
+the header, labelled **Take a tour of this page**. It walks you through the page you are on:
 
 - Each step highlights one area and explains it in a card.
 - **All steps** lets you jump to any step. **Skip tour** and **Close** end it at once.
