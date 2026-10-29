@@ -69,9 +69,9 @@ surface. The three sections that used to repeat them (sync rule, sub-agents, mod
 
 | Context budget | Value |
 | --- | --- |
-| Last optimized | 2026-10-14 |
-| Next routine optimization eligible | 2026-11-13 |
-| Guide bytes | 4,670 B |
+| Last optimized | 2026-10-29 |
+| Next routine optimization eligible | 2026-11-28 |
+| Guide bytes | 5,298 B |
 | Covered subtree | this repo's root pair (it has no nested guides) |
 | Method | Three fleet-law restatements replaced by one pointer; nothing project-specific removed |
 | Fleet record | `../../../docs/tracking/project-context-budget-tracker.json` |
