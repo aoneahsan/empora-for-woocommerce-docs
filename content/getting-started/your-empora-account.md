@@ -22,6 +22,14 @@ On the home page, **See how Empora works** sits beside **Get started** and **Exp
 at a time. Use the numbered dots, **Previous** and **Next**, the arrow keys, or swipe on a phone. Each step has
 its own address (`?step=3`), so you can share a single step.
 
+## On a phone
+
+On a phone, the account works like an app. The page title sits at the top with one action beside it, and a bar
+along the bottom holds **Overview**, **Licences**, **Stores**, **AI drafts** and **More**. **More** holds
+Downloads, Billing, Referrals and Settings, as well as How Empora works, notifications, appearance settings and
+signing out. Each page's main action sits just above the bar, within reach of your thumb, and dialogs open as
+sheets from the bottom of the screen.
+
 ## A tour on every page
 
 Overview, License, Stores, Billing and Settings each have a **map button** in the header, labelled **Take a
