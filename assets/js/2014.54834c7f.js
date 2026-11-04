@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkempora_for_woocommerce_docs=globalThis.webpackChunkempora_for_woocommerce_docs||[]).push([[2014],{32014(e,o,c){c.d(o,{createTreemapServices:()=>r.d});var r=c(51681);c(69302)}}]);

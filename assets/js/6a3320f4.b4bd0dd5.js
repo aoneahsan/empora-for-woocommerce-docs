@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkempora_for_woocommerce_docs=globalThis.webpackChunkempora_for_woocommerce_docs||[]).push([[8626],{25073(e){e.exports=JSON.parse('{"name":"site-pages","id":"default"}')}}]);

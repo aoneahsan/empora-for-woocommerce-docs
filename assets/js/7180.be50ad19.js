@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkempora_for_woocommerce_docs=globalThis.webpackChunkempora_for_woocommerce_docs||[]).push([[7180],{57180(e,o,c){c.d(o,{createPacketServices:()=>r.$});var r=c(64824);c(69302)}}]);

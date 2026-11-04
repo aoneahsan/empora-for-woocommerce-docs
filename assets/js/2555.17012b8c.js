@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkempora_for_woocommerce_docs=globalThis.webpackChunkempora_for_woocommerce_docs||[]).push([[2555],{62555(e,o,c){c.d(o,{createWardleyServices:()=>r.J});var r=c(54837);c(69302)}}]);

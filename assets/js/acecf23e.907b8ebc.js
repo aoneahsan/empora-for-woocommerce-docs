@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkempora_for_woocommerce_docs=globalThis.webpackChunkempora_for_woocommerce_docs||[]).push([[1903],{1912(o){o.exports=JSON.parse('{"blogBasePath":"/changelog","blogTitle":"Empora changelog","authorsListPath":"/changelog/authors"}')}}]);

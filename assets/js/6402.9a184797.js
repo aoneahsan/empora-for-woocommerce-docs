@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkempora_for_woocommerce_docs=globalThis.webpackChunkempora_for_woocommerce_docs||[]).push([[6402],{26402(e,o,c){c.d(o,{createArchitectureServices:()=>r.S});var r=c(45016);c(69302)}}]);
