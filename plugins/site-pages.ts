@@ -82,6 +82,17 @@ export default function sitePagesPlugin(context: LoadContext): Plugin {
     async postBuild({ outDir }) {
       const fs = await import('node:fs/promises');
       const path = await import('node:path');
+
+      // GitHub Pages also serves this file at /404.html with a 200, so it must say noindex itself.
+      const notFoundPath = path.join(outDir, '404.html');
+      const notFound = await fs.readFile(notFoundPath, 'utf8');
+      const noindexed = notFound.replace(
+        /(<meta[^>]*name="robots"[^>]*content=")[^"]*(")/,
+        '$1noindex, follow$2',
+      );
+      if (noindexed === notFound) throw new Error('site-pages: 404.html has no robots meta to change.');
+      await fs.writeFile(notFoundPath, noindexed);
+
       const rss = await waitForFile(path.join(outDir, 'changelog', 'rss.xml'), 'rel="self"');
       const feedXml = rss.replace(
         `${context.siteConfig.url}/changelog/rss.xml" rel="self"`,

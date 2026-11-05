@@ -169,7 +169,7 @@ issued credit first. See [Wallet](/modules/reference/wallet) and
 | Klaviyo Integration | `klaviyo` |
 | Live Chat & Customer Support | `livechat` |
 | Payments Hub | `payments_hub` |
-| Square Payments + Sync | `square` |
+| Square Sync | `square` |
 
 :::note
 That is the whole catalogue: 82 modules, 7 free and 75 premium. Not every module is part of every plan. The

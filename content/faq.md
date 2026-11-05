@@ -41,11 +41,11 @@ Only enabled modules register their hooks and front-end behaviour — disabled m
 
 ### What happens to my data if I disable a module or the plugin?
 
-Disabling a module keeps its data so you can re-enable later. Deleting the plugin runs its uninstall routine; export anything you want to keep first.
+Disabling a module keeps its data so you can re-enable later. Deleting the plugin keeps your store data as well, unless you turned on **Delete all Empora data on uninstall** on the Empora dashboard page. With that on, the records go for good, so export anything you want to keep first.
 
 ### How do updates work?
 
-The free build updates through WordPress.org. The premium build uses a bundled updater that checks the license/update server and updates in place once your license is active.
+The free build will update through WordPress.org once it is listed there; it is not listed yet. The premium build uses a bundled updater that checks the license/update server and updates in place once your license is active.
 
 ### Where do I get support?
 

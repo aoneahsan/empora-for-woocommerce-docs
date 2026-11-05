@@ -375,8 +375,6 @@ const config: Config = {
       { name: 'author', content: 'The Empora team' },
       { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:creator', content: '@aoneahsan' },
-      { name: 'twitter:site', content: '@aoneahsan' },
       { property: 'og:type', content: 'website' },
       { property: 'og:site_name', content: 'Empora for WooCommerce Docs' },
       { property: 'og:locale', content: 'en_US' },

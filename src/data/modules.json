@@ -738,7 +738,7 @@
     {
       "key": "square",
       "entitlement": "square",
-      "title": "Square Payments + Sync",
+      "title": "Square Sync",
       "tier": "premium",
       "plan": "enterprise",
       "category": "integrations",

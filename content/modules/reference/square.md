@@ -1,6 +1,6 @@
 ---
 id: square
-title: "Square Payments + Sync"
+title: "Square Sync"
 description: "OAuth-connected bidirectional inventory sync with a Square location, a signed webhook for near-live updates and automatic token refresh."
 keywords:
   - square woocommerce
@@ -11,7 +11,7 @@ format: md
 ---
 ## Overview
 
-Square Payments + Sync connects the store to a Square account over **OAuth** and keeps inventory in step between the two. A shop selling both in person through Square and online through WooCommerce has one stock level in two systems; this module's job is to stop them disagreeing.
+Square Sync connects the store to a Square account over **OAuth** and keeps inventory in step between the two. A shop selling both in person through Square and online through WooCommerce has one stock level in two systems; this module's job is to stop them disagreeing.
 
 Sync is **bidirectional** — each run records a direction — and each product carries a mapping to its Square item and variation with a sync hash, so a run only moves what changed.
 
@@ -127,7 +127,7 @@ The diagnostics route reports the module's own state — connection, tokens, map
 
 ## Known gaps
 
-- 🔴 **The module is called "Square Payments + Sync" but implements the sync, not the payments.** It registers no WooCommerce payment gateway and hooks nothing at checkout. Square remains a place inventory is mirrored to and from; taking payment through Square on the storefront needs Square's own gateway plugin.
+- **This module syncs inventory and catalogue. It does not take payments**, so it registers no WooCommerce payment gateway.
 - **A Square account and an OAuth application are required**, and none ships with the plugin, so the module does nothing until a store completes that setup on Square's side.
 - Only one location is synced at a time, so a chain with several Square locations mirrors one of them into WooCommerce, not the aggregate.
 - Inventory sync depends on the token refresh job running. If WP-Cron does not fire, the token expires and sync stops — reported as a sync failure rather than as an expiry.
