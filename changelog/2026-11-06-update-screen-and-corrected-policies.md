@@ -5,8 +5,6 @@ slug: update-screen-and-corrected-policies-2026-11-06
 authors: [empora-team]
 tags: [release]
 date: 2026-11-06
-last_update:
-  date: 2026-11-06
 ---
 
 When a fix matters, Empora can now ask you to update before you carry on, and tells you why.
