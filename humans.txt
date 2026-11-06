@@ -1,6 +1,10 @@
 /* TEAM */
-The Empora team
-Site: https://empora.aoneahsan.com
+Author: Ahsan Mahmood
+Site: https://aoneahsan.com
+Contact: aoneahsan [at] gmail.com
+GitHub: https://github.com/aoneahsan
+LinkedIn: https://linkedin.com/in/aoneahsan
+npm: https://www.npmjs.com/~aoneahsan
 
 /* PRODUCT */
 Name: Empora for WooCommerce
