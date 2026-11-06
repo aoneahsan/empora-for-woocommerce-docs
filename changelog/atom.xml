@@ -2,12 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://empora-docs.aoneahsan.com/changelog</id>
     <title>Empora for WooCommerce — releases</title>
-    <updated>2026-10-29T00:00:00.000Z</updated>
+    <updated>2026-11-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://empora-docs.aoneahsan.com/changelog"/>
     <subtitle>Release notes for Empora for WooCommerce, the all-in-one WooCommerce plugin.</subtitle>
     <icon>https://empora-docs.aoneahsan.com/img/favicon.svg</icon>
     <rights>Copyright © 2026 Ahsan Mahmood.</rights>
+    <entry>
+        <title type="html"><![CDATA[An update screen, and policies that match what Empora does]]></title>
+        <id>https://empora-docs.aoneahsan.com/changelog/update-screen-and-corrected-policies-2026-11-06</id>
+        <link href="https://empora-docs.aoneahsan.com/changelog/update-screen-and-corrected-policies-2026-11-06"/>
+        <updated>2026-11-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Empora can now ask you to update when a fix matters. The Privacy and Cookie Policies were corrected against the code, and usage counting is now told once at the foot of your first visit.]]></summary>
+        <content type="html"><![CDATA[<p>When a fix matters, Empora can now ask you to update before you carry on, and tells you why.</p>
+<p>An urgent update shows a full screen with the reason and one <strong>Update now</strong> button. A normal update tells you once, then becomes required the next time you open Empora. Your licences and stores are saved either way.</p>
+<p>We also read the Privacy Policy and Cookie Policy against the code and corrected them. The plugin sends no error reports and no administrator email. It sends your licence key, site URL, site name and version numbers.</p>
+<p>Empora now counts how it is used by default and says so once, in the bar at the foot of your first visit. Session recording runs only for signed-out visitors on public pages, with text and inputs masked. Your account pages are never recorded, and the Privacy preferences panel is gone.</p>]]></content>
+        <author>
+            <name>The Empora team</name>
+            <uri>https://empora.aoneahsan.com</uri>
+        </author>
+        <category label="release" term="release"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Page tours on Downloads, AI drafts and Referrals]]></title>
         <id>https://empora-docs.aoneahsan.com/changelog/tours-on-downloads-ai-drafts-and-referrals-2026-10-29</id>

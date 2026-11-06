@@ -5,6 +5,21 @@
     "description": "Release notes for Empora for WooCommerce, the all-in-one WooCommerce plugin.",
     "items": [
         {
+            "id": "https://empora-docs.aoneahsan.com/changelog/update-screen-and-corrected-policies-2026-11-06",
+            "content_html": "<p>When a fix matters, Empora can now ask you to update before you carry on, and tells you why.</p>\n<p>An urgent update shows a full screen with the reason and one <strong>Update now</strong> button. A normal update tells you once, then becomes required the next time you open Empora. Your licences and stores are saved either way.</p>\n<p>We also read the Privacy Policy and Cookie Policy against the code and corrected them. The plugin sends no error reports and no administrator email. It sends your licence key, site URL, site name and version numbers.</p>\n<p>Empora now counts how it is used by default and says so once, in the bar at the foot of your first visit. Session recording runs only for signed-out visitors on public pages, with text and inputs masked. Your account pages are never recorded, and the Privacy preferences panel is gone.</p>",
+            "url": "https://empora-docs.aoneahsan.com/changelog/update-screen-and-corrected-policies-2026-11-06",
+            "title": "An update screen, and policies that match what Empora does",
+            "summary": "Empora can now ask you to update when a fix matters. The Privacy and Cookie Policies were corrected against the code, and usage counting is now told once at the foot of your first visit.",
+            "date_modified": "2026-11-06T00:00:00.000Z",
+            "author": {
+                "name": "The Empora team",
+                "url": "https://empora.aoneahsan.com"
+            },
+            "tags": [
+                "release"
+            ]
+        },
+        {
             "id": "https://empora-docs.aoneahsan.com/changelog/tours-on-downloads-ai-drafts-and-referrals-2026-10-29",
             "content_html": "<p>Every page of your Empora account now has a page tour.</p>\n<h2 class=\"anchor anchorTargetStickyNavbar_Vzrq\" id=\"three-new-tours\">Three new tours<a href=\"https://empora-docs.aoneahsan.com/changelog/tours-on-downloads-ai-drafts-and-referrals-2026-10-29#three-new-tours\" class=\"hash-link\" aria-label=\"Direct link to Three new tours\" title=\"Direct link to Three new tours\" translate=\"no\">​</a></h2>\n<ul>\n<li class=\"\"><strong>Downloads</strong> shows the free edition, the premium download for each licence, how to install it, and what\nEmpora holds.</li>\n<li class=\"\"><strong>AI drafts</strong> shows how many drafts your plan leaves you this month, where to ask for a draft, and the\nGenerate draft button.</li>\n<li class=\"\"><strong>Referrals</strong> shows your referral link, how close you are to the next free plan month, and your sign-ups.</li>\n</ul>\n<p>Start one with the map button in the header, labelled <strong>Take a tour of this page</strong>.</p>\n<h2 class=\"anchor anchorTargetStickyNavbar_Vzrq\" id=\"smaller-changes\">Smaller changes<a href=\"https://empora-docs.aoneahsan.com/changelog/tours-on-downloads-ai-drafts-and-referrals-2026-10-29#smaller-changes\" class=\"hash-link\" aria-label=\"Direct link to Smaller changes\" title=\"Direct link to Smaller changes\" translate=\"no\">​</a></h2>\n<ul>\n<li class=\"\">An expired licence now carries an <strong>Expired</strong> tag in Billing → Licences.</li>\n</ul>\n<p>Details: <a class=\"\" href=\"https://empora-docs.aoneahsan.com/getting-started/your-empora-account\">Your Empora Account and Page Tours</a>.</p>",
             "url": "https://empora-docs.aoneahsan.com/changelog/tours-on-downloads-ai-drafts-and-referrals-2026-10-29",
