@@ -260,7 +260,7 @@ const config: Config = {
           // Docusaurus runs every plugin's postBuild concurrently (Promise.all),
           // so this races the blog plugin that writes the feed. Wait for it
           // rather than assuming an order that does not exist.
-          const deadline = Date.now() + 30_000;
+          const deadline = Date.now() + 300_000;
           let xml: string | null = null;
           while (Date.now() < deadline) {
             try {
@@ -272,7 +272,7 @@ const config: Config = {
           }
           if (xml === null) {
             throw new Error(
-              `feed-self-link: no feed appeared at ${feedPath} within 30s. The changelog blog must be enabled with feedOptions.`,
+              `feed-self-link: no feed appeared at ${feedPath} within 5 minutes. The changelog blog must be enabled with feedOptions.`,
             );
           }
 

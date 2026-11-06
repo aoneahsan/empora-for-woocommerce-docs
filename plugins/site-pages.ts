@@ -34,7 +34,7 @@ type BlogContent = {
 /** Reads a file, polling, because every plugin's postBuild runs at once. */
 async function waitForFile(file: string, mustInclude: string): Promise<string> {
   const fs = await import('node:fs/promises');
-  const deadline = Date.now() + 30_000;
+  const deadline = Date.now() + 300_000;
   while (Date.now() < deadline) {
     try {
       const text = await fs.readFile(file, 'utf8');
@@ -44,7 +44,7 @@ async function waitForFile(file: string, mustInclude: string): Promise<string> {
     }
     await new Promise((r) => setTimeout(r, 100));
   }
-  throw new Error(`site-pages: ${file} did not appear (with "${mustInclude}") within 30s.`);
+  throw new Error(`site-pages: ${file} did not appear (with "${mustInclude}") within 5 minutes.`);
 }
 
 export default function sitePagesPlugin(context: LoadContext): Plugin {
