@@ -19,8 +19,7 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
   a page — regenerate instead, or the docs and the software drift.
 - Live domain: `empora-docs.aoneahsan.com`. Product: `empora.aoneahsan.com`. The plugin is not published on
   WordPress.org yet — do not link a listing that does not exist.
-- 🔴 **Hosting is GitHub Pages, and only GitHub Pages.** `.github/workflows/deploy-pages.yml` builds and
-  deploys on every push to `main`; `static/CNAME` = `empora-docs.aoneahsan.com` pins the domain. There is no
+- 🔴 **Hosting is GitHub Pages, and only GitHub Pages.** A locally verified build is published by hand; there are no Actions (owner, 2026-10-31). `static/CNAME` = `empora-docs.aoneahsan.com` pins the domain. There is no
   Firebase project, no `firebase.json` and no `.firebaserc` — a docs site never gets one. Do not add a second
   host.
 
@@ -45,8 +44,7 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
   enabled.
 - SEO floor must stay intact: robots.txt AI-bot allowlist, sitemap.xml, llms.txt, per-page meta/OG, JSON-LD. Keep `lastmod` fresh.
 - **Pushing `main` here is pre-authorised** — this is an ordinary public docs site for an own product, so it
-  is committed and pushed without asking. The push triggers the Pages deploy; there is no separate deploy
-  step. DNS and the Pages custom-domain setting remain owner-only and belong in `docs/MANUAL-TASKS.md`.
+  is committed and pushed without asking. Publishing is a separate by-hand step from the verified build. DNS and the Pages custom-domain setting remain owner-only and belong in `docs/MANUAL-TASKS.md`.
 
 ## Verify
 
