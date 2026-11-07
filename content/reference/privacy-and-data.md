@@ -45,10 +45,10 @@ These are off until you enable the module and configure credentials. What is sen
 
 | Integration           | Endpoint                                  | Data                                                      |
 | --------------------- | ----------------------------------------- | --------------------------------------------------------- |
-| Square                | `connect.squareup.com`                    | Product / inventory / payment sync.                       |
+| Square                | `connect.squareup.com`                    | Product and inventory sync.                               |
 | Klaviyo               | `a.klaviyo.com`                           | Customer + order events.                                  |
 | Google Listings & Ads | Google                                    | Product feed sync.                                        |
-| Multi-Currency rates  | exchangerate.host / openexchangerates.org | Currency code list only — no store data.                  |
+| Multi-Currency rates  | exchangerate-api.com / openexchangerates.org | Currency code list only — no store data.                  |
 | Social Login          | OAuth providers                           | Standard OAuth handshake when a customer chooses it.      |
 | SMS                   | Twilio (etc.)                             | Message body + recipient phone, only when SMS is enabled. |
 
