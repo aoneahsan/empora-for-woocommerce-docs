@@ -56,6 +56,18 @@ const GROUPS: Group[] = [
     ],
   },
   {
+    name: 'Moving to Empora',
+    blurb: 'Coming from another plugin: what it costs there, where each job goes here, and the steps.',
+    entries: [
+      {
+        to: '/compare',
+        title: 'Moving to Empora from another plugin',
+        description: 'Fourteen other plugins and bundles, with dated prices read from their own pages.',
+        tags: ['compare', 'alternatives', 'migrate', 'switch'],
+      },
+    ],
+  },
+  {
     name: 'Modules',
     blurb: 'The 82 modules: what exists, what each plan unlocks, and how to switch them on.',
     entries: [
