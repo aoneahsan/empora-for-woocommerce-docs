@@ -5,6 +5,21 @@
     "description": "Release notes for Empora for WooCommerce, the all-in-one WooCommerce plugin.",
     "items": [
         {
+            "id": "https://empora-docs.aoneahsan.com/changelog/plugin-download-and-corrected-pages-2026-11-07",
+            "content_html": "<p>Free accounts can now download Empora for WooCommerce from <strong>Downloads</strong> on the dashboard, until the plugin is listed on WordPress.org.</p>\n<ul>\n<li class=\"\">Our free tools moved to ZTools. Old tool addresses go straight to the same tool there.</li>\n<li class=\"\">We corrected the home and pricing pages, which listed things the plugin does not do, including Apple sign-in and a Google Drive export.</li>\n<li class=\"\">Pages open faster, and a long store address no longer breaks the store card on a phone.</li>\n</ul>",
+            "url": "https://empora-docs.aoneahsan.com/changelog/plugin-download-and-corrected-pages-2026-11-07",
+            "title": "Free download from your dashboard, and corrected pages",
+            "summary": "Free accounts can download the plugin from the dashboard, the tools moved to ZTools, and the home and pricing pages now match what the plugin does.",
+            "date_modified": "2026-11-07T00:00:00.000Z",
+            "author": {
+                "name": "The Empora team",
+                "url": "https://empora.aoneahsan.com"
+            },
+            "tags": [
+                "release"
+            ]
+        },
+        {
             "id": "https://empora-docs.aoneahsan.com/changelog/update-screen-and-corrected-policies-2026-11-06",
             "content_html": "<p>When a fix matters, Empora can now ask you to update before you carry on, and tells you why.</p>\n<p>An urgent update shows a full screen with the reason and one <strong>Update now</strong> button. A normal update tells you once, then becomes required the next time you open Empora. Your licences and stores are saved either way.</p>\n<p>We also read the Privacy Policy and Cookie Policy against the code and corrected them. The plugin sends no error reports and no administrator email. It sends your licence key, site URL, site name and version numbers.</p>\n<p>Empora now counts how it is used by default and says so once, in the bar at the foot of your first visit. Session recording runs only for signed-out visitors on public pages, with text and inputs masked. Your account pages are never recorded, and the Privacy preferences panel is gone.</p>",
             "url": "https://empora-docs.aoneahsan.com/changelog/update-screen-and-corrected-policies-2026-11-06",

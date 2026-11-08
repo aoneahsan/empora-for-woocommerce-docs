@@ -5,11 +5,25 @@
         <title>Empora for WooCommerce — releases</title>
         <link>https://empora-docs.aoneahsan.com/changelog</link>
         <description>Release notes for Empora for WooCommerce, the all-in-one WooCommerce plugin.</description>
-        <lastBuildDate>Fri, 06 Nov 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 07 Nov 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2026 Ahsan Mahmood.</copyright>
+        <item>
+            <title><![CDATA[Free download from your dashboard, and corrected pages]]></title>
+            <link>https://empora-docs.aoneahsan.com/changelog/plugin-download-and-corrected-pages-2026-11-07</link>
+            <guid isPermaLink="true">https://empora-docs.aoneahsan.com/changelog/plugin-download-and-corrected-pages-2026-11-07</guid>
+            <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Free accounts can download the plugin from the dashboard, the tools moved to ZTools, and the home and pricing pages now match what the plugin does.]]></description>
+            <content:encoded><![CDATA[<p>Free accounts can now download Empora for WooCommerce from <strong>Downloads</strong> on the dashboard, until the plugin is listed on WordPress.org.</p>
+<ul>
+<li class="">Our free tools moved to ZTools. Old tool addresses go straight to the same tool there.</li>
+<li class="">We corrected the home and pricing pages, which listed things the plugin does not do, including Apple sign-in and a Google Drive export.</li>
+<li class="">Pages open faster, and a long store address no longer breaks the store card on a phone.</li>
+</ul>]]></content:encoded>
+            <category>release</category>
+        </item>
         <item>
             <title><![CDATA[An update screen, and policies that match what Empora does]]></title>
             <link>https://empora-docs.aoneahsan.com/changelog/update-screen-and-corrected-policies-2026-11-06</link>
