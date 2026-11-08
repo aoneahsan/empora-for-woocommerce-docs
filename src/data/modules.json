@@ -519,8 +519,8 @@
       "key": "import_export",
       "entitlement": "import_export",
       "title": "Product Import/Export",
-      "tier": "premium",
-      "plan": "professional",
+      "tier": "free",
+      "plan": "free",
       "category": "ops",
       "adminTab": "import-export",
       "available": true

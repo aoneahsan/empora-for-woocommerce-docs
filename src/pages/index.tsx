@@ -18,7 +18,7 @@ const FEATURES: Feature[] = [
   },
   {
     title: 'Premium modules on demand',
-    body: 'A paid license unlocks advanced shipping, payment gateways, advanced taxes, bulk edit, import/export, and extended reports — enable only what your store needs.',
+    body: 'A paid license unlocks advanced shipping, payment gateways, advanced taxes, bulk edit, every field in import and export, and extended reports — enable only what your store needs.',
   },
   {
     title: 'Conversion-focused storefront',

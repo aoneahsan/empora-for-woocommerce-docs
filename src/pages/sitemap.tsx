@@ -86,7 +86,7 @@ const GROUPS: Group[] = [
       {
         to: '/modules/free-core',
         title: 'Free core modules',
-        description: 'The seven modules that work forever without a license.',
+        description: 'The eight modules that work forever without a license.',
         tags: ['free', 'core', 'no license'],
       },
       {
