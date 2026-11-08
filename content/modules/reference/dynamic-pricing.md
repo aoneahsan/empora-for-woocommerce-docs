@@ -11,7 +11,7 @@ format: md
 ---
 ## Overview
 
-Dynamic Pricing is one of the seven modules in the free core. It applies rules that change what a customer pays, in three distinct ways: adjusting a **product's price**, applying a **cart-level discount**, or adding a **free gift** to the cart when the rule's conditions are met.
+Dynamic Pricing is one of the eight modules in the free core. It applies rules that change what a customer pays, in three distinct ways: adjusting a **product's price**, applying a **cart-level discount**, or adding a **free gift** to the cart when the rule's conditions are met.
 
 The three are genuinely different mechanisms. A product-price rule filters WooCommerce's price getters, so the new price appears everywhere a price is shown — the shop loop, the product page, variation prices, the cart line. A cart discount is a negative fee on the cart totals. A gift rule puts a product in the cart and keeps it there on the module's terms, not the customer's.
 

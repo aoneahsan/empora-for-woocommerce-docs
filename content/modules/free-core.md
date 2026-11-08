@@ -1,7 +1,7 @@
 ---
 id: free-core
 title: Free Core Modules
-description: The seven free Empora for WooCommerce core modules — Product Filters, Reviews, Wishlist, Compare, Social, SEO, and basic Dynamic Pricing — that work without any license.
+description: The eight free Empora for WooCommerce core modules — Product Filters, Reviews, Wishlist, Compare, Social, SEO, basic Dynamic Pricing and Product Import/Export — that work without any license.
 keywords:
   - free woocommerce plugin
   - woocommerce product filters
@@ -12,7 +12,7 @@ sidebar_position: 2
 
 # Free Core Modules
 
-These seven modules are part of the free core and work indefinitely without a license.
+These eight modules are part of the free core and work indefinitely without a license.
 
 ## Product Filters
 
@@ -49,9 +49,15 @@ Two everyday pricing rules with no license:
 
 For tiered/role-based/scheduled pricing, see the premium [Dynamic Pricing guide](/guides/dynamic-pricing).
 
+## Product Import/Export (core fields)
+
+Products in and out of the store as CSV or XML files. On the free tier an export carries the core of each product: name, SKU, type, regular and sale price, descriptions, categories, stock quantity and status, and status covers drafts and private products too. An import reads the same columns and skips the rest.
+
+A paid plan moves every field instead: images, attributes and each variation as its own row, tags, brands, sizes, tax, shipping class, sale dates, upsells, cross-sells, downloads and custom fields. No plan caps how many runs you make. See the [module reference](/modules/reference/import-export).
+
 ## Enabling free modules
 
-All seven are available the moment you install and activate Empora. Toggle each on under **Empora → Modules** and configure it on its tab under **Empora → Settings**. No license, no checkout, no time limit.
+All eight are available the moment you install and activate Empora. Toggle each on under **Empora → Modules** and configure it on its tab under **Empora → Settings**. No license, no checkout, no time limit.
 
 ## Next
 

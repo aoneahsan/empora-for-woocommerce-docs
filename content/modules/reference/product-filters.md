@@ -11,7 +11,7 @@ format: md
 ---
 ## Overview
 
-Product Filters lets customers narrow the shop by price, category, attribute, tag, rating and stock. It is one of the seven modules in the free core.
+Product Filters lets customers narrow the shop by price, category, attribute, tag, rating and stock. It is one of the eight modules in the free core.
 
 Two things separate it from a simple filter widget. The **result counts** beside each option are calculated and cached, so a customer sees how many products each choice would leave before clicking it. And the filtered state lives in the **URL**, under a configurable parameter prefix, so a filtered view can be shared, bookmarked and returned to.
 

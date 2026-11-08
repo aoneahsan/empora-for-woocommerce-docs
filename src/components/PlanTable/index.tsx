@@ -24,8 +24,6 @@ const LIMIT_LABEL: Record<string, string> = {
   maxProducts: 'Products',
   maxOrders: 'Orders',
   maxCustomers: 'Customers',
-  maxExportsPerMonth: 'Exports / month',
-  maxImportsPerMonth: 'Imports / month',
 };
 
 function money(cents: number, currency: string): string {
@@ -81,6 +79,12 @@ export default function PlanTable(): React.JSX.Element {
             <th scope="row">Sites</th>
             {plans.map((p) => (
               <td key={p.id}>{sites(p.maxSites)}</td>
+            ))}
+          </tr>
+          <tr>
+            <th scope="row">Import/Export</th>
+            {plans.map((p) => (
+              <td key={p.id}>{p.id === 'free' ? 'Core fields' : 'Every field'}</td>
             ))}
           </tr>
           {limitKeys.map((k) => (

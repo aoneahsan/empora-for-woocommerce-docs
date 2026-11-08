@@ -35,13 +35,14 @@ No license required; these stay functional indefinitely.
 | **Social Media Integration (Advanced)** | `social-advanced` | Share buttons, social meta tags, and social sign-in. |
 | **SEO & Schema Markup** | `seo` | Product schema, meta tags, and sitemap helpers. |
 | **Dynamic Pricing** | `dynamic_pricing` | Quantity discounts and percentage-off rules. |
+| **Product Import/Export** | `import_export` | Products in and out as CSV or XML; the core fields free, every field on a paid plan. |
 
 See [Free core](/modules/free-core) for details.
 
 ## The catalogue by area
 
 Every module in the plugin's manifest, grouped the same way the [module reference](/modules/reference) groups
-them. The seven free-core modules are marked **Free**; everything else needs a paid plan that includes it.
+them. The eight free-core modules are marked **Free**; everything else needs a paid plan that includes it.
 (Exact availability per plan is shown on your [License page](/getting-started/activating-your-license).)
 
 ### Storefront & discovery
@@ -153,7 +154,7 @@ issued credit first. See [Wallet](/modules/reference/wallet) and
 | Back-in-Stock Notifications | `stock_alerts` |
 | Barcode & SKU Management | `barcode` |
 | Bulk Edit Products | `bulk_edit` |
-| Product Import/Export | `import_export` |
+| Product Import/Export — **Free** | `import_export` |
 | Product Waitlist | `waitlist` |
 | Store Locator | `store_locator` |
 | Vendor Management | `vendor_management` |
@@ -172,7 +173,7 @@ issued credit first. See [Wallet](/modules/reference/wallet) and
 | Square Sync | `square` |
 
 :::note
-That is the whole catalogue: 82 modules, 7 free and 75 premium. Not every module is part of every plan. The
+That is the whole catalogue: 82 modules, 8 free and 74 premium. Not every module is part of every plan. The
 authoritative list of what **your** license unlocks is always the entitlement list on **Empora → Settings →
 License**.
 :::

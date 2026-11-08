@@ -1,7 +1,7 @@
 ---
 id: premium
 title: Premium Modules
-description: Empora for WooCommerce premium modules — advanced shipping, payments, taxes, inventory, bulk edit, import/export, reports, subscriptions, gift cards, rewards, and integrations unlocked by a paid license.
+description: Empora for WooCommerce premium modules — advanced shipping, payments, taxes, inventory, bulk edit, every-field import/export, reports, subscriptions, gift cards, rewards, and integrations unlocked by a paid license.
 keywords:
   - woocommerce premium modules
   - woocommerce advanced shipping
@@ -49,9 +49,9 @@ set. Back-in-Stock Notifications and Waitlist cover the customer-facing alerting
 
 Productivity tooling for editing many products or orders at once — change prices, stock, attributes, or statuses across a selection instead of one item at a time.
 
-## Import / Export
+## Import / Export, every field
 
-CSV/XML data migration for products and related data — move catalogues in and out, or sync with external systems.
+Import/Export itself is free, with the core fields. A paid plan moves every product field: variations, attributes, images, linked products, downloads and custom fields, so an export imports into another store whole.
 
 ## Reports
 

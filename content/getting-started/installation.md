@@ -49,7 +49,7 @@ To turn on premium modules, [activate your license](/getting-started/activating-
 
 :::tip Free build or premium build
 Both builds install identically; the difference is which modules they contain. The free build carries the
-seven free core modules. The premium build additionally carries the premium modules and the in-plugin
+eight free core modules. The premium build additionally carries the premium modules and the in-plugin
 updater — but which of those it will actually let you enable is decided by your license, not by the ZIP.
 :::
 

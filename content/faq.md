@@ -17,7 +17,7 @@ Yes. WooCommerce 8.0 or higher must be installed and active.
 
 ### Do I need a paid license to use the plugin?
 
-No. Seven core modules are free and work indefinitely without a license. A paid license is only required to enable premium modules.
+No. Eight core modules are free and work indefinitely without a license. A paid license is only required to enable premium modules.
 
 ### What license plans are available?
 

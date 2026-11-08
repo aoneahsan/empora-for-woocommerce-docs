@@ -1,7 +1,7 @@
 {
   "$schema": "Derived, public-safe snapshot. Do not hand-edit.",
   "source": "Generated from the Empora plan catalog. Regenerate whenever it changes; never hand-edit.",
-  "catalogVersion": 1,
+  "catalogVersion": 2,
   "currency": "USD",
   "defaultPlan": "free",
   "plans": [
@@ -11,13 +11,11 @@
       "priceCents": 0,
       "currency": "USD",
       "maxSites": 1,
-      "moduleCount": 7,
+      "moduleCount": 8,
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,
-        "maxCustomers": -1,
-        "maxExportsPerMonth": 0,
-        "maxImportsPerMonth": 0
+        "maxCustomers": -1
       }
     },
     {
@@ -26,13 +24,11 @@
       "priceCents": 1900,
       "currency": "USD",
       "maxSites": 1,
-      "moduleCount": 28,
+      "moduleCount": 29,
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,
-        "maxCustomers": -1,
-        "maxExportsPerMonth": 0,
-        "maxImportsPerMonth": 0
+        "maxCustomers": -1
       }
     },
     {
@@ -45,9 +41,7 @@
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,
-        "maxCustomers": -1,
-        "maxExportsPerMonth": 10,
-        "maxImportsPerMonth": 10
+        "maxCustomers": -1
       }
     },
     {
@@ -60,9 +54,7 @@
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,
-        "maxCustomers": -1,
-        "maxExportsPerMonth": 100,
-        "maxImportsPerMonth": 100
+        "maxCustomers": -1
       }
     },
     {
@@ -75,9 +67,7 @@
       "limits": {
         "maxProducts": -1,
         "maxOrders": -1,
-        "maxCustomers": -1,
-        "maxExportsPerMonth": -1,
-        "maxImportsPerMonth": -1
+        "maxCustomers": -1
       }
     }
   ]

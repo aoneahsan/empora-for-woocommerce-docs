@@ -22,8 +22,8 @@ A license is **only** required to enable premium modules. The free core stays fu
 ## What you get
 
 - **82 modules in total**, each switched on or off by itself, so a store only loads the code for what it uses. The full list is the [module reference](/modules/reference).
-- **Free core (no license required)** — seven modules: Product Filters, Reviews, Wishlist, Compare, Social, SEO, and Dynamic Pricing.
-- **Premium modules (license required)** — the remaining 75, covering advanced shipping, payments, advanced taxes, bulk edit, import/export, reports, subscriptions, bookings, gift cards, rewards points, multi-currency, email automation, shipment tracking, and integrations such as Square, Google Listings & Ads and Klaviyo, plus countdown timers, an email template customizer, a product designer and Amazon affiliate imports.
+- **Free core (no license required)** — eight modules: Product Filters, Reviews, Wishlist, Compare, Social, SEO, Dynamic Pricing and Product Import/Export with the core fields.
+- **Premium modules (license required)** — the remaining 74, covering advanced shipping, payments, advanced taxes, bulk edit, reports, subscriptions, bookings, gift cards, rewards points, multi-currency, email automation, shipment tracking, and integrations such as Square, Google Listings & Ads and Klaviyo, plus countdown timers, an email template customizer, a product designer and Amazon affiliate imports.
 - **One unified admin** — a React-powered admin panel with a Modules grid, a single Settings store, a Dashboard showing license and module status, and a Reports view.
 - **HPOS-compatible** — declares full compatibility with WooCommerce High-Performance Order Storage.
 
@@ -52,7 +52,7 @@ the software enforces their limits, but buying one is arranged by [contacting th
 than paying on the site. All 82 modules register and can be switched on in 1.0; which of them your license
 unlocks is decided by your plan, and every one is listed in the [module reference](/modules/reference).
 
-The free core is unaffected by any of that: seven modules, no license, no account, no payment.
+The free core is unaffected by any of that: eight modules, no license, no account, no payment.
 
 ## Next steps
 

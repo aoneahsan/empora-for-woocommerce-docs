@@ -1,7 +1,7 @@
 ---
 id: import-export
 title: "Product Import/Export"
-description: "Move products in and out as CSV or XML through batched jobs, with per-row validation, a log, and column mappings you can save and reuse."
+description: "Move products in and out as CSV or XML through batched jobs: the core fields on the free plan, every field with variations on a paid plan, with per-row validation, a log and reusable column mappings."
 keywords:
   - woocommerce product import
   - csv export
@@ -13,14 +13,37 @@ format: md
 
 The Import/Export module moves products in and out of a store as CSV or XML. An upload becomes a job; the job is processed in batches, each row validated and written through the WooCommerce product API, with a per-row log. Column mappings can be detected from the file's own headers and saved for reuse.
 
-It is for catalogue migration and bulk maintenance — bringing a supplier feed in, taking a snapshot out, repeating either without re-describing the columns each time.
+It is for catalogue migration and bulk maintenance — bringing a supplier feed in, taking a snapshot out, moving a catalogue to another store, repeating any of them without re-describing the columns each time.
+
+## What each plan moves
+
+| | Free plan, and the WordPress.org build | Any paid plan, premium build |
+| --- | --- | --- |
+| Fields | 12: `id`, `type`, `sku`, `name`, `status`, `short_description`, `description`, `regular_price`, `sale_price`, `stock_quantity`, `stock_status`, `categories` | All 50, below |
+| Variations | Not exported | One row each, straight after its parent |
+| Products exported | Every status except trash: published, scheduled, draft, pending and private | Same |
+| An import column outside the plan | Skipped; the row still saves | Read |
+| Runs per month | No cap | No cap |
+
+The 50 fields, in the order an export writes them: `id`, `type`, `sku`, `global_unique_id` (GTIN, UPC, EAN or ISBN, on WooCommerce 9.2 and later), `name`, `slug`, `parent`, `status`, `featured`, `catalog_visibility`, `short_description`, `description`, `regular_price`, `sale_price`, `date_on_sale_from`, `date_on_sale_to`, `tax_status`, `tax_class`, `manage_stock`, `stock_quantity`, `stock_status`, `low_stock_amount`, `backorders`, `sold_individually`, `virtual`, `downloadable`, `downloads`, `download_limit`, `download_expiry`, `weight`, `length`, `width`, `height`, `shipping_class`, `categories`, `tags`, `brands`, `images`, `attributes`, `default_attributes`, `upsells`, `cross_sells`, `grouped_products`, `product_url`, `button_text`, `purchase_note`, `reviews_allowed`, `menu_order`, `date_created`, `meta`.
+
+How the harder fields are written, so a file can be prepared by hand:
+
+- **Linked products** (`parent`, `upsells`, `cross_sells`, `grouped_products`) by SKU, or `id:123` for a product without one. A link to a product the store does not have yet is skipped, so keep parents above their variations.
+- **Categories** as paths, `Clothing > Shirts`; a missing category is created under the right parent.
+- **Attributes** as JSON: a list of `{name, taxonomy, options, visible, variation}` on a product, and an object of attribute to value on a variation (`{"pa_colour": "red"}`). A global attribute the store lacks is created.
+- **Downloads** as a JSON list of `{name, file}`; WooCommerce still checks each file against its approved download folders.
+- **Custom fields** (`meta`) as a JSON object. Keys starting with an underscore hold other plugins' internal state and are neither exported nor imported.
+- **Yes/no fields** as `yes` or `no`; dates in ISO 8601.
+
+Sales counts and ratings are not moved: they describe orders and reviews, not the product.
 
 ## Availability
 
 | Item            | Value                                                      |
 | --------------- | ---------------------------------------------------------- |
 | Module key      | `import_export`                                            |
-| Tier            | Premium                                                    |
+| Tier            | Free (the core fields); a paid plan moves every field      |
 | Entitlement key | `import_export`                                            |
 | Admin tab       | `import-export`, under **Operations**                      |
 | Enabled option  | `aiowc_module_enabled_import_export` (off until turned on) |
@@ -43,13 +66,13 @@ Stored in the option row `aiowc_ie_settings`.
 
 ## Formats and files
 
-Uploads are accepted with a `.csv` or `.xml` extension only; anything else is refused. Exports are written as `export-<jobId>-<date>.<format>`, again CSV or XML.
+Uploads are accepted with a `.csv` or `.xml` extension only; anything else is refused. Exports are written as `export-<jobId>-<hash>.<format>`, again CSV or XML, in a protected uploads folder; the hash keeps the name from being guessed on a server that ignores `.htaccess`.
 
 ## How a job runs
 
 1. `POST /import-export/import` uploads the file, validates it, counts its rows and creates a job row holding the format, path, total rows, the column mapping and the options.
 2. `POST /import-export/jobs/{id}/process` processes one batch of `batch_size` rows and returns the job's new state.
-3. While the state is still `processing`, the background job reschedules itself for the next batch. The first batch is driven by the process route.
+3. The first batch is scheduled when the job is created, and while the state is still `processing` the background job reschedules itself for the next one, so a job finishes without the admin screen open.
 4. `GET /import-export/jobs/{id}` reports progress; `GET /import-export/jobs/{id}/logs` returns the per-row log; `GET /import-export/jobs/{id}/download` returns a finished export.
 
 Exports follow the same shape through `POST /import-export/export`.
@@ -107,7 +130,7 @@ The module registers no storefront hook, no shortcode and no block. Products are
 
 ## Entitlement limits
 
-`import_export` is an on/off grant. The licence's default entitlement set also carries `maxImportsPerMonth` and `maxExportsPerMonth`, both `0` in the unlicensed defaults, but no code in this module reads them — in this release nothing counts or caps runs, and the only bound on a job is `batch_size` per batch.
+`import_export` is on for every plan, and no plan caps how many runs it makes; the only bound on a job is `batch_size` per batch. What the plan decides is the field set in the table above.
 
 ## Health check
 
