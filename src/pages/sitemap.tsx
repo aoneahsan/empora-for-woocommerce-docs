@@ -68,6 +68,48 @@ const GROUPS: Group[] = [
     ],
   },
   {
+    name: 'White-label & licensing',
+    blurb: 'Running Empora under your own brand, or buying its private source outright.',
+    entries: [
+      {
+        to: '/white-label',
+        title: 'White-label & licensing',
+        description: 'What a licence covers, what stays GPL, and the buyout. Prices live on the website.',
+        tags: ['white label', 'licence', 'buyout', 'resell'],
+      },
+      {
+        to: '/white-label/what-you-get',
+        title: 'What you get, part by part',
+        description: 'The WordPress plugin and the dashboard web app, and what each covers.',
+        tags: ['plugin', 'dashboard', 'parts'],
+      },
+      {
+        to: '/white-label/setup',
+        title: 'Setting up your deployment',
+        description: 'Domain, brand, build and the licence file a deployment serves.',
+        tags: ['setup', 'domain', 'brand'],
+      },
+      {
+        to: '/white-label/updates-and-renewals',
+        title: 'Updates and renewals',
+        description: 'What an update is, when the included months end, and how renewals count.',
+        tags: ['updates', 'renewal'],
+      },
+      {
+        to: '/white-label/verify-a-licence',
+        title: 'Verifying a licence',
+        description: 'Check a licence by key or by domain, and what each answer means.',
+        tags: ['verify', 'key', 'domain'],
+      },
+      {
+        to: '/white-label/faq',
+        title: 'White-label questions',
+        description: 'The questions agencies, hosts and platforms ask before licensing Empora.',
+        tags: ['faq', 'questions'],
+      },
+    ],
+  },
+  {
     name: 'Modules',
     blurb: 'The 82 modules: what exists, what each plan unlocks, and how to switch them on.',
     entries: [

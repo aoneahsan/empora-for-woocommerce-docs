@@ -39,6 +39,14 @@ Customer personal data, order details, your product catalogue, and store setting
   customer records and no order data are sent by this path.
 - **Opt-out:** do not enable the premium modules that upload files. They are off by default.
 
+### The website's white-label and verify pages
+
+This is the website, not the plugin. The [white-label pages](https://empora.aoneahsan.com/white-label) and the
+[verify page](https://empora.aoneahsan.com/verify-license) fetch prices, quotes and licence checks from our licence
+service in your browser, so your IP address and those requests reach that service; starting a checkout opens Polar,
+the payment provider. The website's [Privacy Policy](https://empora.aoneahsan.com/privacy) (section 2.6) lists what
+a white-label buyer's order keeps.
+
 ## 3. Per-module third-party integrations (off by default)
 
 These are off until you enable the module and configure credentials. What is sent depends on the module:
