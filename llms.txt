@@ -61,6 +61,17 @@ Details: https://empora-docs.aoneahsan.com/pricing
 - [Support & contact](https://empora-docs.aoneahsan.com/support)
 - [Changelog](https://empora-docs.aoneahsan.com/changelog): Release notes. RSS: https://empora-docs.aoneahsan.com/feed.xml
 
+## White-label & licensing
+
+- [White-label & licensing](https://empora-docs.aoneahsan.com/white-label): What a white-label licence covers, what stays GPL, and the buyout.
+- [What you get, part by part](https://empora-docs.aoneahsan.com/white-label/what-you-get)
+- [Setting up a deployment](https://empora-docs.aoneahsan.com/white-label/setup)
+- [Updates and renewals](https://empora-docs.aoneahsan.com/white-label/updates-and-renewals)
+- [Verifying a licence](https://empora-docs.aoneahsan.com/white-label/verify-a-licence)
+- [White-label questions](https://empora-docs.aoneahsan.com/white-label/faq)
+- Prices (read live from our licence service): https://empora.aoneahsan.com/white-label/pricing
+- Check a licence: https://empora.aoneahsan.com/verify-license
+
 ## Reference
 
 - [Requirements & compatibility](https://empora-docs.aoneahsan.com/reference/requirements)
