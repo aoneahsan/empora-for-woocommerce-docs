@@ -5,7 +5,7 @@ description: "How a white-label Empora is set up after you pay: your domain, you
 slug: /white-label/setup
 sidebar_position: 3
 last_update:
-  date: 2026-11-13
+  date: 2026-11-14
 keywords:
   - empora white label
   - white-label woocommerce plugin
@@ -16,8 +16,9 @@ keywords:
 
 Nothing here needs you to run a server. We do the setup; you send us what only you have.
 
-1. **You pay on the pricing page.** The checkout opens in the same tab. When the payment clears, our licence
-   service issues your licence and emails you its key and a certificate.
+1. **You pay by Wise transfer.** The pay button opens our payment page in the same tab, with the transfer details.
+   You send the transfer and give us its reference; once we confirm it, our licence service issues your licence
+   and emails you its key and a certificate.
 2. **Your brand.** We email you to collect your product name, logo and colours, and the domain the dashboard will
    run on.
 3. **Your domain.** You point the domain at the address we give you. DNS is yours to change; we cannot do it for you.

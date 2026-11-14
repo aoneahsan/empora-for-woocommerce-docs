@@ -5,7 +5,7 @@ description: "Answers to the questions agencies, hosts and platforms ask before 
 slug: /white-label/faq
 sidebar_position: 6
 last_update:
-  date: 2026-11-13
+  date: 2026-11-14
 keywords:
   - empora white label
   - white-label woocommerce plugin
@@ -22,6 +22,18 @@ with the copy we build for you.
 ### Can you sell Empora to someone else after I buy a licence?
 
 Yes, until someone buys it outright. A licence is not exclusive; a buyout is.
+
+### Is there anything to pay after a buyout?
+
+Yes, a royalty. The buyer pays us 7% of the gross revenue Empora earns, not counting sales tax or VAT they
+collect. It is paid every quarter with a revenue statement, for as long as Empora earns revenue, and it is still
+owed after the buyer sells Empora on to someone else.
+
+### How do I pay?
+
+By Wise bank transfer. The pay button opens our payment page with the transfer details and the exact total. You
+send the transfer and give us its reference there; once we confirm it, your licence key and certificate arrive by
+email.
 
 ### Is there a white-label mobile app?
 

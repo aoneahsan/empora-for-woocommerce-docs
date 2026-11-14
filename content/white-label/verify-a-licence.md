@@ -5,7 +5,7 @@ description: "Check an Empora white-label licence by its key or by the domain it
 slug: /white-label/verify-a-licence
 sidebar_position: 5
 last_update:
-  date: 2026-11-13
+  date: 2026-11-14
 keywords:
   - empora white label
   - white-label woocommerce plugin
@@ -24,7 +24,7 @@ Enter the key from the certificate. The answer is one of:
 | Answer | Meaning |
 | --- | --- |
 | Active licence | Paid, set up and in force |
-| Paid, and being set up | The payment cleared; the deployment is not live yet |
+| Paid, and being set up | The payment is confirmed; the deployment is not live yet |
 | Revoked | The licence was used outside its terms and is no longer in force |
 | No licence has that key | The key is well formed but unknown |
 | That is not the shape of an Empora key | The text is not a key at all |
