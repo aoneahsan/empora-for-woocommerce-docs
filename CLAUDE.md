@@ -46,6 +46,8 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
 - **Pushing `main` here is pre-authorised** — this is an ordinary public docs site for an own product, so it
   is committed and pushed without asking. Publishing is a separate by-hand step from the verified build. DNS and the Pages custom-domain setting remain owner-only and belong in `docs/MANUAL-TASKS.md`.
 
+<!-- fleet:node-26-13-1 v1 --> Node 26.13.1 LTS (.nvmrc), packages latest — 2026-11-16
+
 ## Verify
 
 ```bash
