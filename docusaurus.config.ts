@@ -3,6 +3,7 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import sitePagesPlugin from './plugins/site-pages';
 import { createSitemapItems } from './plugins/sitemap-lastmod';
+import { OTHER_PLATFORMS } from './src/data/platforms';
 
 // ---------------------------------------------------------------------------
 // Empora for WooCommerce — Documentation site config
@@ -434,9 +435,13 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://empora.aoneahsan.com',
-          label: 'Website',
+          type: 'dropdown',
+          label: 'Get Empora',
           position: 'right',
+          items: [
+            ...OTHER_PLATFORMS.map((platform) => ({ label: platform.name, href: platform.href })),
+            { label: 'All apps', to: '/apps' },
+          ],
         },
         {
           href: 'https://github.com/aoneahsan/empora-for-woocommerce-docs',
@@ -448,6 +453,13 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
+        {
+          title: 'Get Empora',
+          items: [
+            ...OTHER_PLATFORMS.map((platform) => ({ label: platform.name, href: platform.href })),
+            { label: 'All apps', to: '/apps' },
+          ],
+        },
         {
           title: 'Documentation',
           items: [
@@ -461,7 +473,6 @@ const config: Config = {
         {
           title: 'Product',
           items: [
-            { label: 'Website', href: 'https://empora.aoneahsan.com' },
             { label: 'Changelog', to: '/changelog' },
             { label: 'Support & contact', to: '/support' },
             { label: 'FAQ', to: '/faq' },

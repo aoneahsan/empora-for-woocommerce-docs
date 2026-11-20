@@ -4,6 +4,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 
+import { OTHER_PLATFORMS } from '@site/src/data/platforms';
 import styles from './index.module.css';
 
 type Feature = {
@@ -56,6 +57,13 @@ function HomepageHeader(): ReactNode {
             All 82 modules
           </Link>
         </div>
+        <p className={styles.also}>
+          <span>Get Empora</span>
+          {OTHER_PLATFORMS.map((platform) => (
+            <Link key={platform.id} href={platform.href}>{platform.name}</Link>
+          ))}
+          <Link to="/apps">All apps →</Link>
+        </p>
       </div>
     </header>
   );

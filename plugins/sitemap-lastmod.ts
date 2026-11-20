@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import type { Options as SitemapOptions } from '@docusaurus/plugin-sitemap';
 import { gitDate } from './site-pages';
+import { APPS_LASTMOD } from '../src/data/platforms';
 
 type CreateSitemapItems = NonNullable<SitemapOptions['createSitemapItems']>;
 
@@ -44,6 +45,9 @@ export const createSitemapItems: CreateSitemapItems = async ({ defaultCreateSite
       item.lastmod = newest(postItems.filter((p) => postTags.get(p.url)?.includes(tagMatch[1])).map((p) => p.lastmod));
     } else if (item.url === `${site}/changelog` || item.url.startsWith(`${site}/changelog/`) || item.url === `${site}/feed`) {
       item.lastmod = newestPost;
+    } else if (item.url === `${site}/apps`) {
+      // `/apps` lists the released surfaces; it changes when their proof date does.
+      item.lastmod = APPS_LASTMOD;
     } else if (item.url === `${site}/`) {
       item.lastmod = gitDate(siteDir, ['src/pages/index.tsx', 'src/pages/index.module.css']);
     }
