@@ -10,6 +10,12 @@
 
 This is the documentation site (https://empora-docs.aoneahsan.com). Product site: https://empora.aoneahsan.com.
 
+
+## Get Empora
+
+- [All apps](https://empora-docs.aoneahsan.com/apps): every released surface of Empora.
+- [Empora dashboard](https://empora.aoneahsan.com)
+
 ## Status of version 1.0
 
 - Empora 1.0 has not been released yet. No version is published on WordPress.org, CodeCanyon or Google Play.
