@@ -59,7 +59,8 @@ link for you, and the store stays connected until you say yes there within 10 mi
 **Never** is allowed only for a key that reads. A key that can change anything always expires, and Empora
 refuses **Never** for it with *"A key that can change things cannot be set to never expire. Set to 365 days."*
 
-In its last 7 days, a key shows how many days it has left in the list. Once it has expired, every call made
+Seven days before a key expires, Empora emails you once, with its name, what it reaches and the date it stops. In
+its last 7 days, the key also shows how many days it has left in the list. Once it has expired, every call made
 with it gets a `401` answer, and it stays in the list marked **Expired** until you remove it. An expired key
 cannot be brought back, and **Replace** keeps the same expiry date, so make a new key instead.
 

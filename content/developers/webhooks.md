@@ -401,8 +401,10 @@ off unless the test gets a `2xx`.
 
 ## Pause, test, send again {#pause-test-send-again}
 
-- **Pause** stops deliveries to an address without removing it. Events raised while it is paused are listed in its
-  deliveries as skipped, and are not sent when you turn it back on. **Send again** sends any one of them.
+- **Pause** stops deliveries to an address without removing it. Events raised while it is paused wait in its
+  deliveries, and go out, oldest first, when you turn it back on (Empora sends a test first). Events older than the
+  30-day log are not kept. An address that Empora **turned off** after failures does not collect events: those are
+  listed as skipped, and **Send again** sends any one of them.
 - **Send a test** sends a `webhook.test` event to the address, whatever its state. Its answer shows under
   **Deliveries**.
 - **Deliveries** lists what went to an address in the last 30 days: the event, when, the answer, how many tries,
