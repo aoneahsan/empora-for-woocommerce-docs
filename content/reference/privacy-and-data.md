@@ -64,6 +64,16 @@ These are off until you enable the module and configure credentials. What is sen
 
 This release includes **no** built-in usage analytics. If telemetry is added later, it will be opt-in by default and disclosed here and in the plugin.
 
+## 5. Apps you connect to your Empora account (off until you add one)
+
+This is your Empora account, not the plugin. An [access key](../developers/access-keys.md), a
+[connected assistant](../developers/assistants.md) such as Claude or ChatGPT, or a
+[webhook address](../developers/webhooks.md) receives only the parts of your account you tick: your licences, the
+sites they are activated on, your plan, and your store connections with the totals your Overview shows. Licence
+keys, the WooCommerce keys behind a store connection, card details and anything about your shoppers are never
+sent, whatever you tick. Each one sends the data to whoever runs it: the assistant's maker, or your own server.
+None exists until you add it, and removing it stops it at once.
+
 ## GDPR / compliance notes
 
 - Because store/customer data stays on your site, you remain the data controller for it.

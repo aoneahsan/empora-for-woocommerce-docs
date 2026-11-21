@@ -468,6 +468,7 @@ const config: Config = {
             { label: 'Quick Start', to: '/getting-started/quick-start' },
             { label: 'Module reference', to: '/modules/reference' },
             { label: 'Plans', to: '/pricing' },
+            { label: 'For developers', to: '/developers' },
           ],
         },
         {

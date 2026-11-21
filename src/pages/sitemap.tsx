@@ -212,6 +212,54 @@ const GROUPS: Group[] = [
     ],
   },
   {
+    name: 'For developers',
+    blurb: 'Your own Empora account from a script, an assistant or a server of yours, and two-factor sign-in.',
+    entries: [
+      {
+        to: '/developers',
+        title: 'Empora for developers',
+        description: 'The three ways in, what each reaches and never reaches, and the limits on each plan.',
+        tags: ['developers', 'api', 'mcp', 'webhooks'],
+      },
+      {
+        to: '/developers/access-keys',
+        title: 'Access keys',
+        description: 'Make a key that reads only what you tick, replace it, and move from older keys.',
+        tags: ['access key', 'em_pat', 'scopes'],
+      },
+      {
+        to: '/developers/api',
+        title: 'The Empora API',
+        description: 'Every route with curl examples: licences, sites, plan and store connections.',
+        tags: ['api', 'rest', 'openapi', 'curl'],
+      },
+      {
+        to: '/developers/assistants',
+        title: 'Assistants',
+        description: 'Connect Claude, ChatGPT, Claude Code or Cursor, and choose what each may do.',
+        tags: ['mcp', 'claude', 'chatgpt', 'cursor'],
+      },
+      {
+        to: '/developers/webhooks',
+        title: 'Webhooks',
+        description: 'Every event, sample deliveries, and checking the signature in Node or PHP.',
+        tags: ['webhooks', 'signature', 'php', 'node'],
+      },
+      {
+        to: '/developers/two-factor',
+        title: 'Two-factor sign-in',
+        description: 'Codes from your phone, recovery codes, a remembered browser and a lost phone.',
+        tags: ['two-factor', '2fa', 'security', 'recovery codes'],
+      },
+      {
+        to: '/developers/changelog',
+        title: 'Developers changelog',
+        description: 'What changed in the API, assistants, webhooks and two-factor, and when.',
+        tags: ['changelog', 'api changes'],
+      },
+    ],
+  },
+  {
     name: 'Reference',
     blurb: 'The technical detail: versions, architecture, APIs and data handling.',
     entries: [
