@@ -24,10 +24,21 @@ function formatDate(iso: string): string {
 }
 
 /**
- * The readable feed: every changelog post, newest first, with the feed files at the top.
+ * The readable feed: every changelog post, newest first, with the feed files at the top. Once the posts blog has
+ * posts, they are listed first, with that blog's own RSS feed among the files; /feed.xml stays the releases.
  * Its data comes from the site-pages plugin, so it is prerendered and needs no script.
  */
-export default function FeedPage({ posts }: { posts: FeedPost[] }): React.JSX.Element {
+export default function FeedPage({
+  posts,
+  blogPosts = [],
+}: {
+  posts: FeedPost[];
+  blogPosts?: FeedPost[];
+}): React.JSX.Element {
+  const feeds =
+    blogPosts.length > 0
+      ? [...FEEDS, { href: `${SITE_URL}/blog/rss.xml`, label: '/blog/rss.xml', hint: 'the posts, as RSS.' }]
+      : FEEDS;
   return (
     <Layout
       title="Feed"
@@ -43,7 +54,7 @@ export default function FeedPage({ posts }: { posts: FeedPost[] }): React.JSX.El
         <div className={styles.machine}>
           <h2 className={styles.machineHeading}>Subscribe</h2>
           <ul>
-            {FEEDS.map((f) => (
+            {feeds.map((f) => (
               <li key={f.href}>
                 <a href={f.href}>
                   <code>{f.label}</code>
@@ -53,6 +64,27 @@ export default function FeedPage({ posts }: { posts: FeedPost[] }): React.JSX.El
             ))}
           </ul>
         </div>
+
+        {blogPosts.length > 0 ? (
+          <>
+            <h2>
+              <Link to="/blog">Posts</Link> ({blogPosts.length})
+            </h2>
+            <ul className={styles.posts}>
+              {blogPosts.map((post) => (
+                <li key={post.permalink} className={styles.post}>
+                  <p className={styles.date}>
+                    <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  </p>
+                  <h3 className={styles.postTitle}>
+                    <Link to={post.permalink}>{post.title}</Link>
+                  </h3>
+                  <p className={styles.postDesc}>{post.description}</p>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
 
         <h2>Releases ({posts.length})</h2>
         <ul className={styles.posts}>

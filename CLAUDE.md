@@ -48,6 +48,14 @@ Public Docusaurus 3 documentation site for **Empora for WooCommerce**. This repo
 
 <!-- fleet:node-26-13-1 v1 --> Node 26.13.1 LTS (.nvmrc), packages latest — 2026-11-16
 
+## Blog
+
+The changelog is the preset's blog instance (`/changelog`, the release feed). Posts are a second instance, `id: 'posts'`, in
+`blog/`: one `.md` each (front matter: `slug`, `title`, `description`, `authors: [team]`, `image`, `date`; `<!-- truncate -->`
+after the opening line), each image in `static/img/social/`. Empty, that instance is not loaded; the first post turns on
+`/blog`, its RSS and Atom feeds (`/blog/rss.xml`), its search index, its dated sitemap entries (`/blog` and `/feed` by the
+newest post), Posts on `/feed`, a Blog group on `/sitemap` and the Blog links. The words live in `src/data/blog.ts` (2026-11-22).
+
 ## Verify
 
 ```bash

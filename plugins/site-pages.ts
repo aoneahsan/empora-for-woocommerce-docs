@@ -27,6 +27,7 @@ type BlogContent = {
       permalink: string;
       date: string | Date;
       tags: { label: string; permalink: string }[];
+      unlisted?: boolean;
     };
   }[];
 };
@@ -71,12 +72,28 @@ export default function sitePagesPlugin(context: LoadContext): Plugin {
         );
       }
 
+      // The posts blog (instance id 'posts', loaded only once blog/ has a post): listed on /feed beside the releases,
+      // and on /sitemap through this plugin's global data. Its own RSS is /blog/rss.xml; /feed.xml stays the releases.
+      const postsBlog = allContent['docusaurus-plugin-content-blog']?.posts as BlogContent | undefined;
+      const blogPosts: FeedPost[] = (postsBlog?.blogPosts ?? [])
+        .filter(({ metadata }) => !metadata.unlisted)
+        .map(({ metadata }) => ({
+          title: metadata.title,
+          description: metadata.description,
+          permalink: metadata.permalink,
+          date: new Date(metadata.date).toISOString().slice(0, 10),
+          tags: metadata.tags.map((t) => ({ label: t.label, permalink: t.permalink })),
+        }))
+        .sort((a, b) => b.date.localeCompare(a.date));
+      actions.setGlobalData({ blogPosts });
+
       const postsPath = await actions.createData('feed-posts.json', JSON.stringify(posts));
+      const blogPostsPath = await actions.createData('feed-blog-posts.json', JSON.stringify(blogPosts));
       actions.addRoute({
         path: '/feed',
         component: '@site/src/components/FeedPage/index.tsx',
         exact: true,
-        modules: { posts: postsPath },
+        modules: { posts: postsPath, blogPosts: blogPostsPath },
       });
     },
     async postBuild({ outDir }) {

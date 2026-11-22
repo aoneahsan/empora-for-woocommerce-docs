@@ -1,6 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import { usePluginData } from '@docusaurus/useGlobalData';
+import type { FeedPost } from '@site/plugins/site-pages';
+import { BLOG_DESCRIPTION, BLOG_PATH, BLOG_TITLE } from '@site/src/data/blog';
 import styles from './sitemap.module.css';
 
 /** Static files live in build/, not the route table, so they are linked absolutely. */
@@ -303,7 +306,25 @@ const GROUPS: Group[] = [
   },
 ];
 
-const ALL = GROUPS.flatMap((g) => g.entries);
+/**
+ * The posts blog as one group, led by its own page: none until it has a post (site-pages plugin's global data).
+ *
+ * @param blogPosts - the posts blog's posts, newest first
+ * @returns no group, or the Blog group
+ */
+function blogGroup(blogPosts: FeedPost[]): Group[] {
+  if (blogPosts.length === 0) return [];
+  return [
+    {
+      name: 'Blog',
+      blurb: BLOG_DESCRIPTION,
+      entries: [
+        { to: BLOG_PATH, title: BLOG_TITLE, description: BLOG_DESCRIPTION, tags: ['blog', 'posts'] },
+        ...blogPosts.map((post) => ({ to: post.permalink, title: post.title, description: post.description, tags: ['blog'] })),
+      ],
+    },
+  ];
+}
 
 function matches(entry: Entry, q: string): boolean {
   const haystack = `${entry.title} ${entry.description} ${entry.tags.join(' ')}`.toLowerCase();
@@ -316,13 +337,16 @@ function matches(entry: Entry, q: string): boolean {
 export default function SitemapPage(): React.JSX.Element {
   const [query, setQuery] = useState('');
   const q = query.trim().toLowerCase();
+  const { blogPosts } = usePluginData('site-pages') as { blogPosts: FeedPost[] };
+  const allGroups = useMemo(() => [...GROUPS, ...blogGroup(blogPosts)], [blogPosts]);
+  const ALL = allGroups.flatMap((g) => g.entries);
 
   const groups = useMemo(() => {
-    if (!q) return GROUPS;
-    return GROUPS.map((g) => ({ ...g, entries: g.entries.filter((e) => matches(e, q)) })).filter(
+    if (!q) return allGroups;
+    return allGroups.map((g) => ({ ...g, entries: g.entries.filter((e) => matches(e, q)) })).filter(
       (g) => g.entries.length > 0,
     );
-  }, [q]);
+  }, [q, allGroups]);
 
   const shown = groups.reduce((n, g) => n + g.entries.length, 0);
 

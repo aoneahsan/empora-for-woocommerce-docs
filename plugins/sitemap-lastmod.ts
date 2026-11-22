@@ -37,14 +37,21 @@ export const createSitemapItems: CreateSitemapItems = async ({ defaultCreateSite
 
   const postItems = items.filter((i) => postTags.has(i.url));
   const newestPost = newest(postItems.map((i) => i.lastmod));
+  // The posts blog (only loaded once blog/ has a post): its posts carry their git dates, and its own page lists them.
+  const newestBlogPost = newest(items.filter((i) => i.url.startsWith(`${site}/blog/`)).map((i) => i.lastmod));
 
   for (const item of items) {
     if (item.lastmod) continue;
     const tagMatch = new RegExp(`^${site}/changelog/tags/([^/]+)$`).exec(item.url);
     if (tagMatch) {
       item.lastmod = newest(postItems.filter((p) => postTags.get(p.url)?.includes(tagMatch[1])).map((p) => p.lastmod));
-    } else if (item.url === `${site}/changelog` || item.url.startsWith(`${site}/changelog/`) || item.url === `${site}/feed`) {
+    } else if (item.url === `${site}/feed`) {
+      // /feed lists the releases and, once there are any, the posts.
+      item.lastmod = newest([newestPost, newestBlogPost]);
+    } else if (item.url === `${site}/changelog` || item.url.startsWith(`${site}/changelog/`)) {
       item.lastmod = newestPost;
+    } else if (item.url === `${site}/blog` || item.url.startsWith(`${site}/blog/`)) {
+      item.lastmod = newestBlogPost;
     } else if (item.url === `${site}/apps`) {
       // `/apps` lists the released surfaces; it changes when their proof date does.
       item.lastmod = APPS_LASTMOD;

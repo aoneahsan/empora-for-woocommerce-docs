@@ -1,8 +1,12 @@
+import { existsSync, readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { themes as prismThemes } from 'prism-react-renderer';
-import type { Config } from '@docusaurus/types';
+import type { Config, PluginConfig } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { Options as BlogPluginOptions } from '@docusaurus/plugin-content-blog';
 import sitePagesPlugin from './plugins/site-pages';
 import { createSitemapItems } from './plugins/sitemap-lastmod';
+import { BLOG_DESCRIPTION, BLOG_PATH, BLOG_TITLE } from './src/data/blog';
 import { OTHER_PLATFORMS } from './src/data/platforms';
 
 // ---------------------------------------------------------------------------
@@ -12,6 +16,46 @@ import { OTHER_PLATFORMS } from './src/data/platforms';
 // ---------------------------------------------------------------------------
 
 const SITE_URL = 'https://empora-docs.aoneahsan.com';
+
+/**
+ * Whether blog/ holds a post yet. The changelog is the preset's blog instance; posts are a second instance (`posts`),
+ * loaded only once blog/ has one, so an empty blog page never sits in sitemap.xml and no Blog link points at nothing.
+ * The first post turns on that instance, its RSS and Atom feeds, its search index, its dated sitemap entries, its
+ * place on /feed and /sitemap, and the Blog links.
+ */
+const BLOG_DIR = fileURLToPath(new URL('./blog', import.meta.url));
+const HAS_POSTS = existsSync(BLOG_DIR) && readdirSync(BLOG_DIR).some((name) => name.endsWith('.md') || name.endsWith('.mdx'));
+
+/** The posts blog instance (`id: 'posts'`); the changelog keeps the preset's default instance. */
+const POSTS_BLOG: PluginConfig = [
+  '@docusaurus/plugin-content-blog',
+  {
+    id: 'posts',
+    path: 'blog',
+    routeBasePath: BLOG_PATH.slice(1),
+    blogTitle: BLOG_TITLE,
+    blogDescription: BLOG_DESCRIPTION,
+    blogSidebarTitle: 'Recent posts',
+    blogSidebarCount: 10,
+    postsPerPage: 10,
+    showReadingTime: false,
+    // A post's git date is shown under it and becomes its sitemap lastmod, as the changelog's does.
+    showLastUpdateTime: true,
+    showLastUpdateAuthor: false,
+    // Every author and tag is defined once, in blog/authors.yml (and blog/tags.yml when a post uses one).
+    onInlineAuthors: 'throw',
+    onInlineTags: 'throw',
+    onUntruncatedBlogPosts: 'throw',
+    feedOptions: {
+      type: ['rss', 'atom'],
+      xslt: true,
+      title: BLOG_TITLE,
+      description: BLOG_DESCRIPTION,
+      copyright: 'Made by the Empora team.',
+      language: 'en-GB',
+    },
+  } satisfies BlogPluginOptions,
+];
 
 const config: Config = {
   title: 'Empora for WooCommerce Docs',
@@ -148,8 +192,9 @@ const config: Config = {
         docsRouteBasePath: '/',
         // Both are needed: the plugin resolves the on-disk dir separately from
         // the route, and defaults blogDir to 'blog', which does not exist here.
-        blogDir: 'changelog',
-        blogRouteBasePath: '/changelog',
+        // The posts blog joins once it is loaded (HAS_POSTS).
+        blogDir: HAS_POSTS ? ['changelog', 'blog'] : 'changelog',
+        blogRouteBasePath: HAS_POSTS ? ['/changelog', BLOG_PATH] : '/changelog',
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
         searchBarShortcutHint: false,
@@ -160,6 +205,8 @@ const config: Config = {
   plugins: [
     // The readable /feed page and the /feed.xml copy of the changelog RSS.
     sitePagesPlugin,
+    // The posts blog, a second blog instance beside the changelog: loaded only once blog/ has a post.
+    ...(HAS_POSTS ? [POSTS_BLOG] : []),
     // The founder page became the team page (team voice, D-144); the old URL keeps working.
     [
       '@docusaurus/plugin-client-redirects',
@@ -357,7 +404,8 @@ const config: Config = {
           changefreq: null,
           priority: null,
           lastmod: 'date',
-          ignorePatterns: ['/search'],
+          // The posts blog's tag, author, archive and later list pages only repeat its posts; each post is listed once.
+          ignorePatterns: ['/search', '/blog/tags/**', '/blog/authors/**', '/blog/archive', '/blog/page/**'],
           createSitemapItems,
         },
       } satisfies Preset.Options,
@@ -434,6 +482,7 @@ const config: Config = {
           label: 'Changelog',
           position: 'left',
         },
+        ...(HAS_POSTS ? [{ to: BLOG_PATH, label: 'Blog', position: 'left' as const }] : []),
         {
           type: 'dropdown',
           label: 'Get Empora',
@@ -475,6 +524,7 @@ const config: Config = {
           title: 'Product',
           items: [
             { label: 'Changelog', to: '/changelog' },
+            ...(HAS_POSTS ? [{ label: 'Blog', to: BLOG_PATH }] : []),
             { label: 'Support & contact', to: '/support' },
             { label: 'FAQ', to: '/faq' },
           ],
