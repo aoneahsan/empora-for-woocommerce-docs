@@ -5,11 +5,33 @@
         <title>Empora for WooCommerce — releases</title>
         <link>https://empora-docs.aoneahsan.com/changelog</link>
         <description>Release notes for Empora for WooCommerce, the all-in-one WooCommerce plugin.</description>
-        <lastBuildDate>Sat, 07 Nov 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 21 Nov 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2026 Ahsan Mahmood.</copyright>
+        <item>
+            <title><![CDATA[Other apps and two-factor sign-in]]></title>
+            <link>https://empora-docs.aoneahsan.com/changelog/other-apps-and-two-factor-2026-11-21</link>
+            <guid isPermaLink="true">https://empora-docs.aoneahsan.com/changelog/other-apps-and-two-factor-2026-11-21</guid>
+            <pubDate>Sat, 21 Nov 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Your Empora account can now be reached by access keys, Claude and ChatGPT, and webhooks, each for only what you tick, and can ask for a code from your phone at sign-in.]]></description>
+            <content:encoded><![CDATA[<p>Settings in your Empora account has a new tab, <strong>Other apps</strong>, and <strong>Security</strong> now holds two-factor sign-in.</p>
+<p><strong>Other apps</strong> lets a script of yours, an assistant or a server of yours work with your licences, site activations,
+plan and store connections. Each one gets only what you tick, and only from your own account. None of them reaches
+your shoppers, orders or products, which stay on your store.</p>
+<ul>
+<li class=""><strong>Access keys</strong> for your own scripts and spreadsheets, calling the Empora API.</li>
+<li class=""><strong>Connected assistants</strong>: Claude, ChatGPT, Claude Code and Cursor. Disconnecting a store always waits for your
+yes on Empora, whichever app asks for it.</li>
+<li class=""><strong>Webhooks</strong>: a signed message to an address of yours when a licence, site, plan or connection changes.</li>
+</ul>
+<p><strong>Security</strong> turns on two-factor sign-in: a code from your phone after Google, with ten recovery codes in case the
+phone is lost. It is off unless you turn it on.</p>
+<p>Every plan includes all of this, Free too, with limits on each plan. Details:
+<a class="" href="https://empora-docs.aoneahsan.com/developers">Empora for developers</a>.</p>]]></content:encoded>
+            <category>release</category>
+        </item>
         <item>
             <title><![CDATA[Free download from your dashboard, and corrected pages]]></title>
             <link>https://empora-docs.aoneahsan.com/changelog/plugin-download-and-corrected-pages-2026-11-07</link>

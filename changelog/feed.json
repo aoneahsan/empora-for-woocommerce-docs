@@ -5,6 +5,21 @@
     "description": "Release notes for Empora for WooCommerce, the all-in-one WooCommerce plugin.",
     "items": [
         {
+            "id": "https://empora-docs.aoneahsan.com/changelog/other-apps-and-two-factor-2026-11-21",
+            "content_html": "<p>Settings in your Empora account has a new tab, <strong>Other apps</strong>, and <strong>Security</strong> now holds two-factor sign-in.</p>\n<p><strong>Other apps</strong> lets a script of yours, an assistant or a server of yours work with your licences, site activations,\nplan and store connections. Each one gets only what you tick, and only from your own account. None of them reaches\nyour shoppers, orders or products, which stay on your store.</p>\n<ul>\n<li class=\"\"><strong>Access keys</strong> for your own scripts and spreadsheets, calling the Empora API.</li>\n<li class=\"\"><strong>Connected assistants</strong>: Claude, ChatGPT, Claude Code and Cursor. Disconnecting a store always waits for your\nyes on Empora, whichever app asks for it.</li>\n<li class=\"\"><strong>Webhooks</strong>: a signed message to an address of yours when a licence, site, plan or connection changes.</li>\n</ul>\n<p><strong>Security</strong> turns on two-factor sign-in: a code from your phone after Google, with ten recovery codes in case the\nphone is lost. It is off unless you turn it on.</p>\n<p>Every plan includes all of this, Free too, with limits on each plan. Details:\n<a class=\"\" href=\"https://empora-docs.aoneahsan.com/developers\">Empora for developers</a>.</p>",
+            "url": "https://empora-docs.aoneahsan.com/changelog/other-apps-and-two-factor-2026-11-21",
+            "title": "Other apps and two-factor sign-in",
+            "summary": "Your Empora account can now be reached by access keys, Claude and ChatGPT, and webhooks, each for only what you tick, and can ask for a code from your phone at sign-in.",
+            "date_modified": "2026-11-21T00:00:00.000Z",
+            "author": {
+                "name": "The Empora team",
+                "url": "https://empora.aoneahsan.com"
+            },
+            "tags": [
+                "release"
+            ]
+        },
+        {
             "id": "https://empora-docs.aoneahsan.com/changelog/plugin-download-and-corrected-pages-2026-11-07",
             "content_html": "<p>Free accounts can now download Empora for WooCommerce from <strong>Downloads</strong> on the dashboard, until the plugin is listed on WordPress.org.</p>\n<ul>\n<li class=\"\">Our free tools moved to ZTools. Old tool addresses go straight to the same tool there.</li>\n<li class=\"\">We corrected the home and pricing pages, which listed things the plugin does not do, including Apple sign-in and a Google Drive export.</li>\n<li class=\"\">Pages open faster, and a long store address no longer breaks the store card on a phone.</li>\n</ul>",
             "url": "https://empora-docs.aoneahsan.com/changelog/plugin-download-and-corrected-pages-2026-11-07",
