@@ -1,5 +1,26 @@
 import { execFileSync } from 'node:child_process';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join, relative, sep } from 'node:path';
 import type { LoadContext, Plugin } from '@docusaurus/types';
+
+/**
+ * Docusaurus writes every route module's path into the client bundle, so the absolute path createData returns
+ * would publish this machine's folders and give each machine different chunk names. addRoute gets the alias.
+ */
+function generatedModule(generatedFilesDir: string, file: string): string {
+  return `@generated/${relative(generatedFilesDir, file).split(sep).join('/')}`;
+}
+
+/** Fails the build when any client bundle still carries this site's absolute path. */
+function assertNoLocalPaths(outDir: string, siteDir: string): void {
+  const jsDir = join(outDir, 'assets', 'js');
+  const forms = [siteDir.split(sep).join('/'), siteDir.split(sep).join('\\\\')];
+  for (const file of readdirSync(jsDir).filter((name) => name.endsWith('.js'))) {
+    const text = readFileSync(join(jsDir, file), 'utf8');
+    const found = forms.find((form) => text.includes(form));
+    if (found) throw new Error(`${file} carries the local path ${found}: pass createData paths to addRoute through generatedModule()`);
+  }
+}
 
 /**
  * The readable /feed page and the /feed.xml copy of the changelog RSS.
@@ -87,8 +108,11 @@ export default function sitePagesPlugin(context: LoadContext): Plugin {
         .sort((a, b) => b.date.localeCompare(a.date));
       actions.setGlobalData({ blogPosts });
 
-      const postsPath = await actions.createData('feed-posts.json', JSON.stringify(posts));
-      const blogPostsPath = await actions.createData('feed-blog-posts.json', JSON.stringify(blogPosts));
+      const postsPath = generatedModule(context.generatedFilesDir, await actions.createData('feed-posts.json', JSON.stringify(posts)));
+      const blogPostsPath = generatedModule(
+        context.generatedFilesDir,
+        await actions.createData('feed-blog-posts.json', JSON.stringify(blogPosts)),
+      );
       actions.addRoute({
         path: '/feed',
         component: '@site/src/components/FeedPage/index.tsx',
@@ -97,6 +121,7 @@ export default function sitePagesPlugin(context: LoadContext): Plugin {
       });
     },
     async postBuild({ outDir }) {
+      assertNoLocalPaths(outDir, context.siteDir);
       const fs = await import('node:fs/promises');
       const path = await import('node:path');
 
